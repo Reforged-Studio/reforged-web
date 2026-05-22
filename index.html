@@ -245,24 +245,10 @@
     @media (max-width: 600px) {
       .frame { padding: 64px 28px 32px; }
 
-      /* The nested-descender STUDIO doesn't hold at small sizes, so on mobile
-         the wordmark stacks and STUDIO becomes a centered tracked label below. */
-      .wordmark {
-        --wm-size: 72px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4px;
-      }
-      .wordmark__studio {
-        position: static;
-        width: auto;
-        display: block;
-        font-size: 13px;
-        font-weight: 800;
-        letter-spacing: 0.42em;
-        text-indent: 0.42em;   /* optical centering for the tracking */
-      }
+      /* Keep the nested STUDIO treatment at all widths — the em-based
+         (--wm-size) positioning scales it proportionally, so STUDIO stays
+         in the "g" descender pocket on mobile too. Only the size changes. */
+      .wordmark { --wm-size: clamp(56px, 16vw, 120px); }
 
       .tagline { font-size: 19px; margin-top: 16px; }
       .about { font-size: 13px; max-width: 300px; margin-top: 56px; }
