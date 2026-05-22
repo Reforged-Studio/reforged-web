@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="/streetproof/favicon.png" />
+<title>Support — StreetProof</title>
+<style>
+  :root {
+    --sp-black: #000000;
+    --sp-surface: #1C1C1E;
+    --sp-surface-2: #2C2C2E;
+    --sp-hairline: rgba(255, 255, 255, 0.08);
+    --sp-text: #FFFFFF;
+    --sp-text-secondary: #8E8E93;
+    --sp-text-tertiary: #636366;
+    --sp-blue: #0290FE;
+    --sp-blue-pressed: #0277D4;
+    --sp-route-green: #4EE34C;
+    --sp-route-missing: #FF3B30;
+    --sp-pin-yellow: #FFCC00;
+    --sp-radius-sm: 8px;
+    --sp-radius-md: 12px;
+    --sp-radius-lg: 16px;
+    --sp-radius-xl: 28px;
+    --sp-radius-full: 9999px;
+    --sp-font: "SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont,
+               "Inter Tight", "Segoe UI", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--sp-black);
+    color: var(--sp-text);
+    font-family: var(--sp-font);
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  a { color: var(--sp-blue); text-decoration: none; transition: color 150ms ease; }
+  a:hover { color: var(--sp-blue-pressed); }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  /* Unified nav */
+  .site-header { border-bottom: 1px solid var(--sp-hairline); padding: 18px 0; }
+  .site-header .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-icon { display: flex; align-items: center; }
+  .nav-icon img { width: 44px; height: 44px; border-radius: 10px; display: block; }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
+  .nav-links a { color: var(--sp-text-secondary); font-size: 14px; font-weight: 500; }
+  .nav-links a:hover { color: var(--sp-text); }
+  .nav-links a.active { color: var(--sp-text); }
+  .nav-links a.cta { background: var(--sp-blue); color: #fff; font-weight: 600; padding: 9px 18px; border-radius: var(--sp-radius-full); }
+  .nav-links a.cta:hover { background: var(--sp-blue-pressed); color: #fff; }
+
+  /* Title block */
+  .title-block {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--sp-hairline);
+    margin-bottom: 40px;
+  }
+  .title-block h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; margin-bottom: 14px; }
+  .title-block .intro { font-size: 17px; line-height: 1.5; color: var(--sp-text-secondary); max-width: 560px; }
+  .title-block .intro strong { color: var(--sp-text); font-weight: 600; }
+
+  /* Section heading */
+  .section-heading {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--sp-text-secondary);
+    margin: 32px 0 8px;
+  }
+  .section-heading:first-of-type { margin-top: 8px; }
+
+  /* FAQ */
+  .faq { border-top: 1px solid var(--sp-hairline); }
+  .faq-item { border-bottom: 1px solid var(--sp-hairline); }
+  .faq-question {
+    width: 100%; background: transparent; border: none; color: var(--sp-text);
+    font-family: inherit; font-size: 17px; font-weight: 600; text-align: left;
+    padding: 20px 0; cursor: pointer; display: flex; align-items: center;
+    justify-content: space-between; gap: 16px; transition: color 150ms ease;
+  }
+  .faq-question:hover { color: var(--sp-blue); }
+  .faq-icon {
+    width: 20px; height: 20px; color: var(--sp-text-secondary);
+    transition: transform 200ms ease, color 150ms ease; flex-shrink: 0;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--sp-blue); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 300ms ease; }
+  .faq-item.open .faq-answer { max-height: 1200px; }
+  .faq-answer-inner { padding: 0 0 24px; font-size: 16px; line-height: 1.65; color: var(--sp-text); }
+  .faq-answer-inner p { margin-bottom: 12px; }
+  .faq-answer-inner p:last-child { margin-bottom: 0; }
+  .faq-answer-inner em { color: var(--sp-text); font-style: italic; font-weight: 500; }
+
+  /* Pin legend */
+  .pin-legend {
+    display: flex; gap: 16px; margin: 12px 0; padding: 12px 16px;
+    background: var(--sp-surface); border-radius: var(--sp-radius-md); flex-wrap: wrap;
+  }
+  .pin { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--sp-text-secondary); }
+  .pin-dot { width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 8px currentColor; }
+  .pin-red .pin-dot { background: var(--sp-route-missing); color: var(--sp-route-missing); }
+  .pin-yellow .pin-dot { background: var(--sp-pin-yellow); color: var(--sp-pin-yellow); }
+  .pin-green .pin-dot { background: var(--sp-route-green); color: var(--sp-route-green); }
+
+  /* Contact — identical pattern to privacy */
+  .contact-section { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--sp-hairline); }
+  .contact-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.005em; margin-bottom: 16px; }
+  .contact-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; padding: 24px 0 0;
+  }
+  .contact-row .text { font-size: 16px; color: var(--sp-text); max-width: 460px; line-height: 1.5; }
+  .contact-btn {
+    background: var(--sp-blue); color: #fff; font-size: 15px; font-weight: 600;
+    padding: 12px 24px; border-radius: var(--sp-radius-xl); transition: all 150ms ease; white-space: nowrap;
+  }
+  .contact-btn:hover { background: var(--sp-blue-pressed); color: #fff; box-shadow: 0 8px 24px -8px rgba(2, 144, 254, 0.45); }
+
+  /* Footer */
+  .site-footer { border-top: 1px solid var(--sp-hairline); margin-top: 80px; padding: 28px 0 48px; }
+  .site-footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-attr { font-size: 13px; color: var(--sp-text-secondary); }
+  .footer-attr a { color: var(--sp-text); font-weight: 500; }
+  .footer-attr a:hover { color: var(--sp-blue); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 13px; color: var(--sp-text-secondary); }
+  .footer-links a:hover { color: var(--sp-text); }
+
+  @media (max-width: 600px) {
+    .title-block { padding: 36px 0 28px; }
+    .title-block h1 { font-size: 34px; }
+    .contact-row { flex-direction: column; align-items: flex-start; }
+    .nav-links { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="nav-icon" href="/streetproof"><img src="/streetproof/streetproof-icon-dark.png" alt="StreetProof" /></a>
+      <nav class="nav-links">
+        <a href="/streetproof/privacy">Privacy</a>
+        <a href="/streetproof/support" class="active">Support</a>
+        <a href="https://apps.apple.com" class="cta">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="title-block">
+      <h1>Support</h1>
+      <p class="intro"><strong>StreetProof is a map-first running app.</strong> Here's help with the common questions — and a way to reach us if you're stuck.</p>
+    </div>
+
+    <div class="section-heading">Getting started</div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-question"><span>How do I record a workout?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner"><p>Tap the start button to begin. Tap end to stop.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>How do I make sure my walks get saved as walks?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Open <em>Menu → Workout Options</em> and change the default activity type to Walk before you start. Every workout you record after that will be saved as a walk until you change the setting back.</p>
+          <p>The default is Run, so if you switch back and forth between running and walking, remember to update this setting each time you change activities.</p>
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>How are splits handled?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>StreetProof tracks your splits at every mile by default, with kilometers available within <em>Menu → Workout Options</em>. Apple limits third-party apps from using their split format when viewing workouts in Apple Fitness, so your splits display there as laps.</p>
+          <p>On the Apple Watch, you can also get a notification at each split — choose vibrate, an on-screen alert, or both in the watch app's settings.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="section-heading">Apple Watch</div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-question"><span>Can I use StreetProof without an Apple Watch?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner"><p>Yes — StreetProof works on iPhone alone. Start a workout, keep your phone with you, and the app records your route. The Apple Watch companion is optional.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>Can I use the Apple Watch app without my iPhone?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Yes — the Watch app is designed to work independently if you have a cellular Apple Watch, so you can leave your phone at home and still have the full live-map experience on your wrist.</p>
+          <p>Without cellular, the Watch still records GPS and syncs to your iPhone when reconnected (so your workout will save fine), but the live map view on the Watch requires either cellular service or your iPhone within range.</p>
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>What can I configure on the Apple Watch app?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner"><p>Open Settings on your watch app by tapping the gear icon. You'll find options to change your default screen during a workout to the metrics, add distance and time to the map screen, add split notifications, add/remove map layers, and force a sync of routes.</p></div></div>
+      </div>
+    </div>
+
+    <div class="section-heading">Pins &amp; map</div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-question"><span>Can I customize what shows on my coverage map?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Yes — by default, the coverage map shows runs. On the phone in <em>Menu → Map Options</em>, you can also enable walks and bike rides imported from Apple Health to display them on your map. You can also toggle visibility of red, yellow, and green pins from the same screen.</p>
+          <p>On the watch, the Settings screen lets you toggle past routes and individual pin layers on and off.</p>
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>What are pins for, and how do I use them?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Pins are flexible markers you can drop anywhere on the map. There are three colors so you can use them for different purposes:</p>
+          <div class="pin-legend">
+            <div class="pin pin-red"><span class="pin-dot"></span><span>Red</span></div>
+            <div class="pin pin-yellow"><span class="pin-dot"></span><span>Yellow</span></div>
+            <div class="pin pin-green"><span class="pin-dot"></span><span>Green</span></div>
+          </div>
+          <p>Common uses include marking pit stops along planned routes, flagging missed streets you want to circle back to, or noting streets that were closed due to construction. You can give each pin color a custom label in <em>Menu → Map Options</em> (for example, naming red pins "Pit Stops") so you can tell them apart at a glance.</p>
+          <p>To add or edit pins, go to <em>Menu → Map Options</em> and tap <em>Add/Edit Pins</em>. This brings you back to the map in pin-editing mode. The dropdown at the top lets you switch between red, yellow, and green before placing a pin. Tap an existing pin to delete it, or tap and hold to drag it to a new location. Tap the X to exit pin-editing mode.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="section-heading">Troubleshooting</div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-question"><span>Why isn't my past workout showing on the map?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>StreetProof shows workouts from Apple Health that include GPS route data. Workouts without route data (for example, indoor workouts or workouts from apps that don't save routes to Health) won't appear on the coverage map.</p>
+          <p>If a workout still isn't showing, open <em>Menu → Workout History</em> and tap the refresh button. Permissions can be viewed in <em>Menu → Support</em>, though changes have to be made in the iPhone's Settings app under Privacy &amp; Security.</p>
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>My workout finished but the route isn't showing in Apple Fitness yet.</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Route syncing sometimes takes a few minutes, especially after a Watch-only workout — give it time before assuming something's wrong. <strong>Don't delete the workout from Apple Fitness</strong> just because the route is missing.</p>
+          <p>If the route still hasn't appeared after a while, make sure your Apple Watch is near your iPhone (for Watch-only workouts), open both StreetProof and the StreetProof Watch app, and try the Route Recovery tool in <em>Menu → Support</em>. If those don't work, restarting both devices usually does the trick.</p>
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>The app crashed or did something unexpected.</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner"><p>Email <a href="mailto:hello@reforged.studio">hello@reforged.studio</a> with a description of what happened. Including your iPhone model, iOS version, and what you were doing when it happened helps a lot.</p></div></div>
+      </div>
+    </div>
+
+    <div class="section-heading">Your data</div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-question"><span>Can I delete a past workout?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner"><p>Workouts are stored in Apple Health. Open the Fitness app or Health app to delete them — note that this is generally permanent and the workout cannot be recovered. Deletions there will be reflected in StreetProof.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question"><span>What happens to my data if I delete the app?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner"><p>Workouts saved to Apple Health stay there and remain in the Fitness app. Pins and app-specific settings are removed with the app.</p></div></div>
+      </div>
+    </div>
+
+    <section class="contact-section">
+      <h2>Still stuck?</h2>
+      <div class="contact-row">
+        <div class="text">Need help or have feedback? We'd love to hear it. If you're reporting a bug, including your device and OS version helps.</div>
+        <a href="mailto:hello@reforged.studio" class="contact-btn">Email us</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-attr">© 2026 <a href="https://reforged.studio">Reforged Studio LLC</a></div>
+      <div class="footer-links">
+        <a href="/streetproof/privacy">Privacy</a>
+        <a href="/streetproof/support">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => btn.closest('.faq-item').classList.toggle('open'));
+    });
+  </script>
+
+</body>
+</html>

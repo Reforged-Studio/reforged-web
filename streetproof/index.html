@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="/streetproof/favicon.png" />
+<title>StreetProof — A map-first running app</title>
+<meta name="description" content="StreetProof is a map-first running app for iPhone and Apple Watch. Every run fills in your map — see where you've run, and cover new ground." />
+<style>
+  :root{
+    --sp-black:#000;--sp-surface:#1C1C1E;--sp-surface-2:#2C2C2E;--sp-hairline:rgba(255,255,255,0.08);
+    --sp-text:#FFF;--sp-text-secondary:#8E8E93;--sp-text-tertiary:#636366;
+    --sp-blue:#0290FE;--sp-blue-pressed:#0277D4;--sp-route-cyan:#8AD5F4;--sp-route-green:#4EE34C;
+    --sp-radius-sm:8px;--sp-radius-md:12px;--sp-radius-lg:16px;--sp-radius-xl:28px;--sp-radius-full:9999px;
+    --sp-font:"SF Pro Display","SF Pro",-apple-system,BlinkMacSystemFont,"Inter Tight","Segoe UI",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--sp-black);color:var(--sp-text);font-family:var(--sp-font);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;}
+  a{color:var(--sp-blue);text-decoration:none;}
+  .container{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--sp-hairline);}
+  .nav .navicon img{width:48px;height:48px;border-radius:11px;display:block;}
+  .nav .links{display:flex;gap:24px;align-items:center;}
+  .nav .links a{color:var(--sp-text-secondary);font-size:14px;font-weight:500;}
+  .nav .links a:hover{color:var(--sp-text);}
+  .nav .links a.cta{background:var(--sp-blue);color:#fff;font-weight:600;padding:9px 18px;border-radius:var(--sp-radius-full);}
+  .nav .links a.cta:hover{background:var(--sp-blue-pressed);color:#fff;}
+
+  .hero{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;padding:72px 0 88px;}
+  .hero-copy{display:flex;flex-direction:column;}
+  .hero .wm{font-size:68px;font-weight:700;letter-spacing:-0.03em;line-height:1;margin-bottom:24px;}
+  .hero h1{font-size:32px;font-weight:700;letter-spacing:-0.02em;line-height:1.12;margin-bottom:20px;}
+  .hero h1 .l1{color:var(--sp-blue);}
+  .hero h1 .l2{color:var(--sp-text);}
+  .hero .sub{font-size:18px;line-height:1.55;color:var(--sp-text-secondary);margin-bottom:32px;max-width:480px;}
+  .hero .actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+  .btn-primary{background:var(--sp-blue);color:#fff;font-size:16px;font-weight:600;padding:15px 30px;border-radius:var(--sp-radius-xl);box-shadow:0 8px 30px -8px rgba(2,144,254,.5);transition:all 150ms ease;}
+  .btn-primary:hover{background:var(--sp-blue-pressed);color:#fff;transform:translateY(-1px);}
+
+  .phone{justify-self:center;width:300px;height:610px;border-radius:46px;background:#0d0d0f;border:1px solid rgba(255,255,255,0.12);box-shadow:0 30px 80px -30px rgba(0,0,0,.9),0 0 60px -20px rgba(2,144,254,.25);padding:11px;position:relative;}
+  .phone::before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:90px;height:24px;background:#000;border-radius:14px;z-index:3;}
+  .screen{width:100%;height:100%;border-radius:36px;overflow:hidden;position:relative;background:#0a1020;}
+  .screen-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+
+  .pitch{padding:88px 0;border-top:1px solid var(--sp-hairline);border-bottom:1px solid var(--sp-hairline);}
+  .pitch p{font-size:30px;font-weight:600;letter-spacing:-0.01em;line-height:1.35;max-width:840px;}
+  .pitch p .accent{color:var(--sp-blue);}
+
+  .sec-title{font-size:34px;font-weight:700;letter-spacing:-0.02em;}
+
+  .features{padding:88px 0;}
+  .features .sec-title{margin-bottom:40px;}
+  .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px 56px;}
+  .feat{display:flex;gap:16px;align-items:flex-start;}
+  .feat .ico{width:38px;height:38px;border-radius:10px;background:var(--sp-surface);border:1px solid var(--sp-hairline);display:flex;align-items:center;justify-content:center;color:var(--sp-blue);flex-shrink:0;}
+  .feat .ico svg{width:20px;height:20px;}
+  .feat .txt h3{font-size:17px;font-weight:600;margin-bottom:5px;}
+  .feat .txt p{font-size:14px;line-height:1.55;color:var(--sp-text-secondary);}
+
+  .watch{padding:96px 0;border-top:1px solid var(--sp-hairline);}
+  .watch .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center;}
+  .watch .wbody .sec-title{margin:0 0 16px;}
+  .watch .wbody p{font-size:17px;line-height:1.65;color:var(--sp-text-secondary);max-width:520px;}
+  .watch-frame{justify-self:center;position:relative;width:230px;}
+  .watch-body{position:relative;width:230px;height:278px;border-radius:62px;background:#0d0d0f;border:1px solid rgba(255,255,255,0.14);box-shadow:0 30px 70px -28px rgba(0,0,0,.9),0 0 50px -18px rgba(78,227,76,.22);padding:12px;}
+  .watch-screen{width:100%;height:100%;border-radius:50px;overflow:hidden;position:relative;background:#0a1020;}
+  .watch-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .crown{position:absolute;right:-4px;top:96px;width:7px;height:34px;background:#1c1c1e;border:1px solid rgba(255,255,255,0.14);border-radius:4px;}
+  .sidebtn{position:absolute;right:-3px;top:140px;width:5px;height:46px;background:#1c1c1e;border:1px solid rgba(255,255,255,0.12);border-radius:4px;}
+  .band{position:absolute;left:50%;transform:translateX(-50%);width:150px;background:#141416;border:1px solid rgba(255,255,255,0.06);}
+  .band.top{top:-26px;height:40px;border-radius:18px 18px 6px 6px;}
+  .band.bot{bottom:-26px;height:40px;border-radius:6px 6px 18px 18px;}
+
+  .final{padding:104px 0;text-align:center;border-top:1px solid var(--sp-hairline);}
+  .final h2{font-size:34px;font-weight:700;letter-spacing:-0.02em;margin-bottom:28px;}
+  .final .sub{font-size:16px;color:var(--sp-text-secondary);margin-top:22px;}
+
+  .ft{border-top:1px solid var(--sp-hairline);padding:32px 0 56px;}
+  .ft .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+  .ft .attr{font-size:13px;color:var(--sp-text-secondary);}
+  .ft .attr a{color:var(--sp-text);font-weight:500;}
+  .ft .lk{display:flex;gap:20px;}
+  .ft .lk a{font-size:13px;color:var(--sp-text-secondary);}
+
+  @media(max-width:860px){
+    .hero{grid-template-columns:1fr;gap:48px;text-align:center;}
+    .hero-copy{align-items:center;}
+    .hero .wm{font-size:52px;margin-bottom:18px;}
+    .hero .actions{justify-content:center;}
+    .hero .sub{margin-left:auto;margin-right:auto;}
+    .feat-grid{grid-template-columns:1fr;gap:26px;}
+    .feat{text-align:left;}
+    .watch .wrap{grid-template-columns:1fr;gap:48px;text-align:center;}
+    .watch .wbody p{margin-left:auto;margin-right:auto;}
+    .watch .wbody{order:2;}
+    .watch-frame{order:1;}
+    .pitch p{font-size:24px;}.sec-title{font-size:28px;}.final h2{font-size:28px;}
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <a class="navicon" href="/streetproof"><img src="/streetproof/streetproof-icon-dark.png" alt="StreetProof"/></a>
+      <div class="links"><a href="/streetproof/privacy">Privacy</a><a href="/streetproof/support">Support</a><a href="https://apps.apple.com" class="cta">Download</a></div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="wm">StreetProof</div>
+        <h1><span class="l1">See where you've run.</span><br><span class="l2">Cover new ground.</span></h1>
+        <p class="sub">A map-first running app for iPhone and Apple Watch. Every run fills in your map — the streets you've covered show, and the ones you haven't are waiting.</p>
+        <div class="actions"><a href="https://apps.apple.com" class="btn-primary">Download on the App Store</a></div>
+      </div>
+      <div>
+        <div class="phone"><div class="screen"><img class="screen-img" src="/streetproof/screenshot-coverage.jpg" alt="StreetProof coverage map"/></div></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="pitch">
+    <div class="container">
+      <p>Most run trackers focus on numbers. <span class="accent">StreetProof focuses on the map.</span> Instead of repeating the same three loops, you head out knowing exactly where you haven't been yet.</p>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <div class="sec-title">What's in the app</div>
+      <div class="feat-grid">
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0zM15 5.764v15M9 3.236v15"/></svg></div><div class="txt"><h3>Your coverage map</h3><p>Every run you've ever recorded, on one map.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div><div class="txt"><h3>Live route tracking</h3><p>Watch your current run draw on top of your history.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="txt"><h3>Pins</h3><p>Mark pit stops, flag a block to hit, save spots worth remembering.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg></div><div class="txt"><h3>Live Activities</h3><p>Your run on the Lock Screen and Dynamic Island.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></div><div class="txt"><h3>Full metrics in Apple Fitness</h3><p>Splits, time, elevation, heart rate, ground contact, stride length, vertical oscillation.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg></div><div class="txt"><h3>Apple Health sync</h3><p>Runs from Apple Watch import automatically — even from before you installed StreetProof.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="txt"><h3>Workout history</h3><p>Every workout with its route, time, distance, and stats.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM12 17.5h-3l1.5-7 4 3 2-3"/></svg></div><div class="txt"><h3>More than running</h3><p>Walks and bike rides are supported, too.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="watch">
+    <div class="container">
+      <div class="wrap">
+        <div class="watch-frame">
+          <div class="band top"></div>
+          <div class="watch-body">
+            <div class="watch-screen"><img src="/streetproof/screenshot-watch.jpg" alt="StreetProof on Apple Watch"/></div>
+            <div class="crown"></div>
+            <div class="sidebtn"></div>
+          </div>
+          <div class="band bot"></div>
+        </div>
+        <div class="wbody">
+          <div class="sec-title">Leave your phone at home.</div>
+          <p>Most fitness apps treat the Apple Watch as a stripped-down, metrics-only companion to the phone. StreetProof gives you the full map-first experience on your wrist with a cellular Watch — your coverage, your current run, and the streets you haven't hit yet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="container">
+      <h2>Now get outside.</h2>
+      <a href="https://apps.apple.com" class="btn-primary">Download on the App Store</a>
+      <p class="sub">Free for iPhone and Apple Watch.</p>
+    </div>
+  </section>
+
+  <footer class="ft">
+    <div class="container">
+      <div class="attr">© 2026 <a href="https://reforged.studio">Reforged Studio LLC</a></div>
+      <div class="lk"><a href="/streetproof/privacy">Privacy</a><a href="/streetproof/support">Support</a></div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Reforged Studio</title>
+  <meta name="description" content="Reforged Studio builds purposeful solutions — tools and processes made stronger, sharper, and better suited for the work ahead.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Reforged Studio">
+  <meta property="og:description" content="An independent studio. Stronger for what's next.">
+  <meta property="og:url" content="https://reforged.studio">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://reforged.studio/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Reforged Studio">
+  <meta name="twitter:description" content="An independent studio. Stronger for what's next.">
+  <meta name="twitter:image" content="https://reforged.studio/og.png">
+
+  <meta name="theme-color" content="#14110F">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Surfaces */
+      --surface-base: #14110F;
+      --surface-deep: #0E0C0A;
+      --surface-lift: #1F1A16;
+      /* Ink */
+      --ink-primary: #EFE8DF;
+      --ink-secondary: #8A8076;
+      --ink-tertiary: #4F4740;
+      /* Accent */
+      --ember: #D97F4A;
+      --ember-muted: #B86B3D;
+      /* Type */
+      --font-display: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+      --font-meta: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+      background-color: var(--surface-base);
+      color: var(--ink-primary);
+      font-family: var(--font-display);
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow: hidden;
+      background-image: radial-gradient(ellipse at 50% 45%, var(--surface-lift) 0%, var(--surface-base) 55%, var(--surface-deep) 100%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    }
+
+    .frame {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: 32px 48px 36px;
+      z-index: 2;
+    }
+
+    /* ---- Identity ---- */
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .identity {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Wordmark: "Reforged" on its own line; "STUDIO" nested into the
+       descender pocket of the "g", bottom-right. Positioned in wordmark-em
+       space via --wm-size so it tracks the glyphs at any viewport width. */
+    .wordmark {
+      --wm-size: clamp(88px, 13.5vw, 220px);
+      position: relative;
+      display: inline-block;
+      line-height: 0.9;
+      font-weight: 400;
+    }
+
+    .wordmark__name {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-variation-settings: "opsz" 72;
+      font-size: var(--wm-size);
+      letter-spacing: -0.03em;
+      color: var(--ink-primary);
+      display: block;
+    }
+
+    .wordmark__studio {
+      position: absolute;
+      right: calc(var(--wm-size) * 0.0);
+      bottom: calc(var(--wm-size) * 0.0);
+      width: calc(var(--wm-size) * 0.92);
+      font-family: var(--font-meta);
+      font-weight: 900;
+      font-size: calc(var(--wm-size) * 0.15);
+      text-transform: uppercase;
+      color: var(--ember);
+      line-height: 1;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .tagline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(20px, 2.4vw, 30px);
+      letter-spacing: -0.005em;
+      color: var(--ink-secondary);
+      margin-top: 18px;
+    }
+
+    .about {
+      font-family: var(--font-meta);
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.7;
+      letter-spacing: 0.005em;
+      color: var(--ink-secondary);
+      max-width: 470px;
+      margin-top: 88px;
+    }
+
+    /* ---- Footer (two-zone) ---- */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-family: var(--font-meta);
+    }
+
+    .footer__links {
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+    }
+
+    .footer__group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__label {
+      font-weight: 500;
+      font-size: 9px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--ink-tertiary);
+    }
+
+    .footer__link {
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.03em;
+      color: var(--ink-secondary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 7px;
+    }
+
+    .footer__link:hover,
+    .footer__link:focus-visible { color: var(--ink-primary); }
+
+    .footer__link .arrow { color: var(--ember); }
+
+    .footer__legal {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .footer__legal span {
+      font-weight: 500;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-tertiary);
+      line-height: 1;
+    }
+
+    /* ---- Load animation ---- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    }
+    .reveal--1 { animation-delay: 0.10s; }
+    .reveal--2 { animation-delay: 0.25s; }
+    .reveal--3 { animation-delay: 0.40s; }
+    .reveal--4 { animation-delay: 0.55s; }
+    .reveal--5 { animation-delay: 0.70s; }
+
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 600px) {
+      .frame { padding: 64px 28px 32px; }
+
+      /* The nested-descender STUDIO doesn't hold at small sizes, so on mobile
+         the wordmark stacks and STUDIO becomes a centered tracked label below. */
+      .wordmark {
+        --wm-size: 72px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+      .wordmark__studio {
+        position: static;
+        width: auto;
+        display: block;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.42em;
+        text-indent: 0.42em;   /* optical centering for the tracking */
+      }
+
+      .tagline { font-size: 19px; margin-top: 16px; }
+      .about { font-size: 13px; max-width: 300px; margin-top: 56px; }
+
+      /* Footer: links on one row, legal centered below a divider */
+      .footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+      }
+      .footer__links {
+        justify-content: space-between;
+        gap: 0;
+      }
+      .footer__group:last-child { align-items: flex-end; text-align: right; }
+      .footer__legal {
+        align-items: center;
+        text-align: center;
+        gap: 4px;
+        border-top: 1px solid rgba(79, 71, 64, 0.4);
+        padding-top: 20px;
+      }
+      .footer__legal span { line-height: 1.6; }
+    }
+
+    /* ---- Reduced motion ---- */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <main>
+      <div class="identity">
+        <h1 class="wordmark reveal reveal--1" aria-label="Reforged Studio">
+          <span class="wordmark__name">Reforged</span>
+          <span class="wordmark__studio" aria-hidden="true"><span>S</span><span>T</span><span>U</span><span>D</span><span>I</span><span>O</span></span>
+        </h1>
+        <p class="tagline reveal reveal--3">Stronger for what&rsquo;s next.</p>
+      </div>
+      <p class="about reveal reveal--4">
+        Reforged Studio builds purposeful solutions &mdash; tools and processes made stronger, sharper, and better suited for the work ahead.
+      </p>
+    </main>
+
+    <footer class="footer reveal reveal--5">
+      <div class="footer__links">
+        <div class="footer__group">
+          <span class="footer__label">Our Work</span>
+          <a class="footer__link" href="/streetproof"><span class="arrow" aria-hidden="true">&rarr;</span>StreetProof</a>
+        </div>
+        <div class="footer__group">
+          <span class="footer__label">Connect</span>
+          <a class="footer__link" href="mailto:hello@reforged.studio"><span class="arrow" aria-hidden="true">&rarr;</span>hello@reforged.studio</a>
+        </div>
+      </div>
+      <div class="footer__legal">
+        <span>Reforged Studio LLC</span>
+        <span>&copy; 2026 &middot; Hoboken, NJ</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

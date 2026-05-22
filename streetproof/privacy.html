@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="/streetproof/favicon.png" />
+<title>Privacy Policy — StreetProof</title>
+<style>
+  :root {
+    --sp-black: #000000;
+    --sp-surface: #1C1C1E;
+    --sp-surface-2: #2C2C2E;
+    --sp-hairline: rgba(255, 255, 255, 0.08);
+    --sp-text: #FFFFFF;
+    --sp-text-secondary: #8E8E93;
+    --sp-text-tertiary: #636366;
+    --sp-blue: #0290FE;
+    --sp-blue-pressed: #0277D4;
+    --sp-radius-sm: 8px;
+    --sp-radius-md: 12px;
+    --sp-radius-lg: 16px;
+    --sp-radius-xl: 28px;
+    --sp-radius-full: 9999px;
+    --sp-font: "SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont,
+               "Inter Tight", "Segoe UI", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--sp-black);
+    color: var(--sp-text);
+    font-family: var(--sp-font);
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  a { color: var(--sp-blue); text-decoration: none; transition: color 150ms ease; }
+  a:hover { color: var(--sp-blue-pressed); }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  /* Unified nav */
+  .site-header { border-bottom: 1px solid var(--sp-hairline); padding: 18px 0; }
+  .site-header .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-icon { display: flex; align-items: center; }
+  .nav-icon img { width: 44px; height: 44px; border-radius: 10px; display: block; }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
+  .nav-links a { color: var(--sp-text-secondary); font-size: 14px; font-weight: 500; }
+  .nav-links a:hover { color: var(--sp-text); }
+  .nav-links a.active { color: var(--sp-text); }
+  .nav-links a.cta { background: var(--sp-blue); color: #fff; font-weight: 600; padding: 9px 18px; border-radius: var(--sp-radius-full); }
+  .nav-links a.cta:hover { background: var(--sp-blue-pressed); color: #fff; }
+
+  /* Title block */
+  .title-block {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--sp-hairline);
+    margin-bottom: 48px;
+  }
+  .title-block h1 {
+    font-size: 48px; font-weight: 700; letter-spacing: -0.02em;
+    line-height: 1.04; margin-bottom: 16px;
+  }
+  .title-meta { display: flex; align-items: baseline; gap: 10px; }
+  .title-meta .label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--sp-text-secondary);
+  }
+  .title-meta .value { font-size: 15px; font-weight: 600; color: var(--sp-blue); }
+
+  /* Sections — option 2: prominent white H2, grey uppercase H3 */
+  .section { margin-bottom: 44px; }
+  .section h2 {
+    font-size: 22px; font-weight: 700; letter-spacing: -0.005em; margin-bottom: 16px;
+  }
+  .section h3 {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--sp-text-secondary);
+    margin-top: 24px; margin-bottom: 8px;
+  }
+  .section p {
+    font-size: 16px; line-height: 1.65; margin-bottom: 16px; color: var(--sp-text);
+  }
+  .section p:last-child { margin-bottom: 0; }
+
+  /* Plain bullets */
+  .section ul { list-style: none; padding: 0; margin: 16px 0 0; }
+  .section ul li {
+    font-size: 16px; line-height: 1.6; color: var(--sp-text);
+    padding-left: 22px; position: relative; margin-bottom: 10px;
+  }
+  .section ul li:last-child { margin-bottom: 0; }
+  .section ul li::before {
+    content: ""; position: absolute; left: 4px; top: 11px;
+    width: 5px; height: 5px; background: var(--sp-text-tertiary); border-radius: 50%;
+  }
+
+  /* Apple services — inline icon list */
+  .svc-list { margin: 16px 0 0; }
+  .svc-item {
+    display: flex; gap: 14px; align-items: center; padding: 14px 0;
+    border-top: 1px solid var(--sp-hairline);
+  }
+  .svc-item:last-child { border-bottom: 1px solid var(--sp-hairline); }
+  .svc-ico { color: var(--sp-blue); flex-shrink: 0; display: flex; }
+  .svc-ico svg { width: 20px; height: 20px; display: block; }
+  .svc-name { font-size: 15px; font-weight: 600; color: var(--sp-text); flex: 0 0 120px; }
+  .svc-desc { font-size: 15px; color: var(--sp-text-secondary); line-height: 1.5; }
+
+  /* Contact */
+  .contact-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; padding: 24px 0 0;
+  }
+  .contact-row .text { font-size: 16px; color: var(--sp-text); }
+  .contact-btn {
+    background: var(--sp-blue); color: #fff; font-size: 15px; font-weight: 600;
+    padding: 12px 24px; border-radius: var(--sp-radius-xl); transition: all 150ms ease;
+  }
+  .contact-btn:hover { background: var(--sp-blue-pressed); color: #fff; box-shadow: 0 8px 24px -8px rgba(2, 144, 254, 0.45); }
+
+  /* Footer */
+  .site-footer { border-top: 1px solid var(--sp-hairline); margin-top: 80px; padding: 28px 0 48px; }
+  .site-footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-attr { font-size: 13px; color: var(--sp-text-secondary); }
+  .footer-attr a { color: var(--sp-text); font-weight: 500; }
+  .footer-attr a:hover { color: var(--sp-blue); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 13px; color: var(--sp-text-secondary); }
+  .footer-links a:hover { color: var(--sp-text); }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(8px); animation: reveal 400ms ease-out forwards; }
+  .reveal:nth-child(1){animation-delay:40ms;}.reveal:nth-child(2){animation-delay:100ms;}
+  .reveal:nth-child(3){animation-delay:160ms;}.reveal:nth-child(4){animation-delay:220ms;}
+  .reveal:nth-child(5){animation-delay:280ms;}.reveal:nth-child(6){animation-delay:340ms;}
+  .reveal:nth-child(7){animation-delay:400ms;}
+  @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 600px) {
+    .title-block { padding: 36px 0 28px; }
+    .title-block h1 { font-size: 34px; }
+    .svc-item { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .svc-name { flex-basis: auto; }
+    .svc-ico { margin-bottom: 2px; }
+    .contact-row { flex-direction: column; align-items: flex-start; }
+    .nav-links { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="nav-icon" href="/streetproof"><img src="/streetproof/streetproof-icon-dark.png" alt="StreetProof" /></a>
+      <nav class="nav-links">
+        <a href="/streetproof/privacy" class="active">Privacy</a>
+        <a href="/streetproof/support">Support</a>
+        <a href="https://apps.apple.com" class="cta">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="title-block">
+      <h1>Privacy Policy</h1>
+      <div class="title-meta">
+        <span class="label">Last updated</span>
+        <span class="value">May 13, 2026</span>
+      </div>
+    </div>
+
+    <section class="section reveal">
+      <h2>Summary</h2>
+      <p>StreetProof is designed with privacy as a default. StreetProof does not collect, transmit, sell, share, or store your personal data on any server. There are no user accounts, no analytics, no advertising, and no third-party tracking. All data stays on your device or in Apple Health.</p>
+    </section>
+
+    <section class="section reveal">
+      <h2>Data the app uses</h2>
+      <h3>Location data</h3>
+      <p>StreetProof records your GPS location during active workouts to draw your route on the map and build your coverage map over time. Location is captured to record your route during active workouts and to center the map on your current position; the app does not access your location at other times. The app uses "When In Use" location authorization. Location data is stored on your device and in Apple Health (as part of the workout's route data); it is not transmitted to any server.</p>
+      <h3>Health and fitness data</h3>
+      <p>With your permission, StreetProof reads your past workouts and GPS routes from Apple Health so they appear on your coverage map and in workout history. During active workouts, the app saves the completed workout, route, and metrics (such as heart rate, distance, pace, and running form metrics from Apple Watch) to Apple Health so they appear in the Fitness app. All Health data stays on your device unless you have enabled iCloud sync for Apple Health, which is managed by Apple, not by StreetProof.</p>
+      <h3>Reminder pins</h3>
+      <p>Pins you create in the app (to mark stops, missed blocks, or other notes) are stored as files on your device. They are not transmitted anywhere.</p>
+    </section>
+
+    <section class="section reveal">
+      <h2>Data the app does not collect</h2>
+      <ul>
+        <li>No name, email, phone number, or contact information</li>
+        <li>No advertising identifiers or device identifiers used for tracking</li>
+        <li>No usage analytics</li>
+        <li>No crash reporting through third-party services</li>
+        <li>No data shared with advertisers, data brokers, or any third party</li>
+      </ul>
+    </section>
+
+    <section class="section reveal">
+      <h2>Apple services used</h2>
+      <p>StreetProof uses the following Apple frameworks, which are governed by Apple's privacy policy:</p>
+      <div class="svc-list">
+        <div class="svc-item">
+          <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></span>
+          <span class="svc-name">HealthKit</span>
+          <span class="svc-desc">Reading and writing workouts and routes</span>
+        </div>
+        <div class="svc-item">
+          <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0zM15 5.764v15M9 3.236v15"/></svg></span>
+          <span class="svc-name">MapKit</span>
+          <span class="svc-desc">Underlying maps; your routes and workouts are layered on top</span>
+        </div>
+        <div class="svc-item">
+          <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2M5.22 5.22l1.42 1.42M2 12h2M20 12h2M15.97 12.5A4 4 0 0 0 9.5 9M13 22H7a5 5 0 1 1 4.9-6h1.1a3 3 0 0 1 0 6Z"/></svg></span>
+          <span class="svc-name">WeatherKit</span>
+          <span class="svc-desc">Weather conditions during workouts</span>
+        </div>
+        <div class="svc-item">
+          <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></span>
+          <span class="svc-name">Core Location</span>
+          <span class="svc-desc">GPS recording of your route during active workouts, map centering, and directional beacons</span>
+        </div>
+      </div>
+      <p style="margin-top:16px;">Apple's privacy policy applies to data handled by these frameworks. See <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a> for details.</p>
+    </section>
+
+    <section class="section reveal">
+      <h2>Children's privacy</h2>
+      <p>StreetProof is not directed at children under 13 and does not knowingly collect any personal information from children.</p>
+    </section>
+
+    <section class="section reveal">
+      <h2>Changes to this policy</h2>
+      <p>If this policy changes, the updated version will be posted to this page with a revised "Last updated" date.</p>
+    </section>
+
+    <section class="section reveal">
+      <h2>Contact</h2>
+      <div class="contact-row">
+        <div class="text">Questions about this privacy policy?</div>
+        <a href="mailto:hello@reforged.studio" class="contact-btn">Email us</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-attr">© 2026 <a href="https://reforged.studio">Reforged Studio LLC</a></div>
+      <div class="footer-links">
+        <a href="/streetproof/privacy">Privacy</a>
+        <a href="/streetproof/support">Support</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 48 48">
+  <!-- Background: warm-dark surface -->
+  <rect width="48" height="48" fill="#14110F"/>
+  <!-- Serif R, cream -->
+  <text x="24" y="36" text-anchor="middle" font-family="Newsreader, 'Iowan Old Style', Georgia, serif" font-weight="500" font-size="38" fill="#EFE8DF" letter-spacing="-0.02em">R</text>
+  <!-- Ember bar underneath -->
+  <line x1="14" y1="42" x2="34" y2="42" stroke="#D97F4A" stroke-width="1.5"/>
+</svg>
