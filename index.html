@@ -45,6 +45,7 @@
       --ink-primary: #EFE8DF;
       --ink-secondary: #8A8076;
       --ink-tertiary: #4F4740;
+      --ink-tagline: #B5ADA0;   /* warm taupe — tier between wordmark and body */
       /* Accent */
       --ember: #D97F4A;
       --ember-muted: #B86B3D;
@@ -148,7 +149,7 @@
       font-weight: 300;
       font-size: clamp(20px, 2.4vw, 30px);
       letter-spacing: -0.005em;
-      color: var(--ink-secondary);
+      color: var(--ink-tagline);
       margin-top: 18px;
     }
 
@@ -253,23 +254,32 @@
       .tagline { font-size: 19px; margin-top: 16px; }
       .about { font-size: 13px; max-width: 300px; margin-top: 56px; }
 
-      /* Footer: links on one row, legal centered below a divider */
+      /* Footer (mobile): single centered column — link groups stacked and
+         centered on the same axis as the wordmark, then a divider, then the
+         centered legal block. Calmer than the stretched desktop row, and the
+         full email address fits at any width. */
       .footer {
         flex-direction: column;
-        align-items: stretch;
-        gap: 24px;
+        align-items: center;
+        gap: 16px;
       }
       .footer__links {
-        justify-content: space-between;
-        gap: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
       }
-      .footer__group:last-child { align-items: flex-end; text-align: right; }
+      .footer__group {
+        align-items: center;
+        text-align: center;
+      }
       .footer__legal {
         align-items: center;
         text-align: center;
         gap: 4px;
+        width: 100%;
         border-top: 1px solid rgba(79, 71, 64, 0.4);
         padding-top: 20px;
+        margin-top: 4px;
       }
       .footer__legal span { line-height: 1.6; }
     }
