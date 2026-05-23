@@ -256,8 +256,7 @@
 
       /* Footer (mobile): single centered column — link groups stacked and
          centered on the same axis as the wordmark, then a divider, then the
-         centered legal block. Calmer than the stretched desktop row, and the
-         full email address fits at any width. */
+         centered legal block. Keeps the full email address at any width. */
       .footer {
         flex-direction: column;
         align-items: center;
@@ -282,6 +281,9 @@
         margin-top: 4px;
       }
       .footer__legal span { line-height: 1.6; }
+
+      /* No hover on touch devices; drop the arrows to save space. */
+      .footer__link .arrow { display: none; }
     }
 
     /* ---- Reduced motion ---- */
