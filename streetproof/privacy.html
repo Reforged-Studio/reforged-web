@@ -170,13 +170,13 @@
       <h1>Privacy Policy</h1>
       <div class="title-meta">
         <span class="label">Last updated</span>
-        <span class="value">May 13, 2026</span>
+        <span class="value">July 8, 2026</span>
       </div>
     </div>
 
     <section class="section reveal">
       <h2>Summary</h2>
-      <p>StreetProof is designed with privacy as a default. StreetProof does not collect, transmit, sell, share, or store your personal data on any server. There are no user accounts, no analytics, no advertising, and no third-party tracking. All data stays on your device or in Apple Health.</p>
+      <p>StreetProof is designed with privacy as a default. There are no user accounts, no analytics, no advertising, and no third-party tracking — anywhere in the app, including StreetProof+. Your runs, routes, coverage progress, and pins stay on your device and in Apple Health; StreetProof does not upload them to any server. StreetProof+ purchases are handled entirely by Apple. The only things the app sends to our own server are the city-download and city-request actions described below — and none of them include your name, your runs, or any other personal data.</p>
     </section>
 
     <section class="section reveal">
@@ -185,17 +185,29 @@
       <p>StreetProof records your GPS location during active workouts to draw your route on the map and build your coverage map over time. Location is captured to record your route during active workouts and to center the map on your current position; the app does not access your location at other times. The app uses "When In Use" location authorization. Location data is stored on your device and in Apple Health (as part of the workout's route data); it is not transmitted to any server.</p>
       <h3>Health and fitness data</h3>
       <p>With your permission, StreetProof reads your past workouts and GPS routes from Apple Health so they appear on your coverage map and in workout history. During active workouts, the app saves the completed workout, route, and metrics (such as heart rate, distance, pace, and running form metrics from Apple Watch) to Apple Health so they appear in the Fitness app. All Health data stays on your device unless you have enabled iCloud sync for Apple Health, which is managed by Apple, not by StreetProof.</p>
-      <h3>Reminder pins</h3>
-      <p>Pins you create in the app (to mark stops, missed blocks, or other notes) are stored as files on your device. They are not transmitted anywhere.</p>
+      <h3>My Pins</h3>
+      <p>My Pins let you mark spots on the map in a color you choose. They're stored as files on your device and are not transmitted anywhere. If you also use an Apple Watch, your pins sync directly between your own iPhone and Watch over Apple's device-pairing connection — never through our servers.</p>
+      <h3>StreetProof+ purchases</h3>
+      <p>StreetProof+ is an optional in-app purchase — an annual subscription with a free trial, or a one-time lifetime purchase. Payment is handled entirely by Apple through the App Store; StreetProof never sees or stores your card number, billing address, or other payment details. There's no account and no sign-up. The app keeps a small record on your device noting whether StreetProof+ is unlocked, so it doesn't have to ask Apple every time you open the app — that record contains nothing about you personally, just an unlocked/locked flag.</p>
+      <h3>Proof Pin city packs</h3>
+      <p>StreetProof+ can track which streets you've covered in a city using Proof Pins, downloaded in city-sized packs. A few actions in this feature reach our server:</p>
+      <ul>
+        <li>Downloading a city's Proof Pin pack fetches a data file from our server, the same way downloading anything from the internet does. This can happen when you add a city manually, or automatically after a run if Auto-Add Cities is on (it's on by default and can be turned off in Map Options). The app identifies itself with a fixed access key built into every copy of the app — it isn't tied to you or your device.</li>
+        <li>Searching for a city sends the text you type to our server so it can look up matching cities.</li>
+        <li>If a city isn't available yet, you or the Auto-Add feature can request it. This sends the city's name and location (not yours) to our server, along with a random ID generated on your device the first time you use this feature. That ID isn't linked to your name, email, or any account; it exists only so our server can prevent spam requests, and it resets if you delete and reinstall the app.</li>
+        <li>"Scan & Suggest" looks for cities near routes you've already run, and may ask Apple's location service to match a run location to a nearby city name — the same kind of lookup Maps or Weather does. That request goes to Apple, governed by Apple's privacy policy, not to our server.</li>
+      </ul>
     </section>
 
     <section class="section reveal">
       <h2>Data the app does not collect</h2>
       <ul>
         <li>No name, email, phone number, or contact information</li>
+        <li>No accounts or sign-up, for the free app or for StreetProof+</li>
         <li>No advertising identifiers or device identifiers used for tracking</li>
         <li>No usage analytics</li>
         <li>No crash reporting through third-party services</li>
+        <li>No payment or card details — Apple handles all purchases</li>
         <li>No data shared with advertisers, data brokers, or any third party</li>
       </ul>
     </section>
@@ -222,7 +234,7 @@
         <div class="svc-item">
           <span class="svc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></span>
           <span class="svc-name">Core Location</span>
-          <span class="svc-desc">GPS recording of your route during active workouts, map centering, and directional beacons</span>
+          <span class="svc-desc">GPS recording of your route during active workouts, map centering, directional beacons, and (with Scan & Suggest) matching a run location to a nearby city name</span>
         </div>
       </div>
       <p style="margin-top:16px;">Apple's privacy policy applies to data handled by these frameworks. See <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a> for details.</p>

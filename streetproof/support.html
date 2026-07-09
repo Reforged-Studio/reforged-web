@@ -59,13 +59,27 @@
 
   /* Title block */
   .title-block {
-    padding: 56px 0 40px;
-    border-bottom: 1px solid var(--sp-hairline);
-    margin-bottom: 40px;
+    padding: 56px 0 32px;
   }
   .title-block h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; margin-bottom: 14px; }
   .title-block .intro { font-size: 17px; line-height: 1.5; color: var(--sp-text-secondary); max-width: 560px; }
   .title-block .intro strong { color: var(--sp-text); font-weight: 600; }
+
+  /* Filter chips */
+  .filter-bar {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    padding: 0 0 32px; margin-bottom: 40px;
+    border-bottom: 1px solid var(--sp-hairline);
+  }
+  .filter-chip {
+    background: var(--sp-surface); color: var(--sp-text-secondary);
+    border: 1px solid var(--sp-hairline); font-family: inherit;
+    font-size: 13px; font-weight: 600; padding: 8px 14px;
+    border-radius: var(--sp-radius-full); cursor: pointer;
+    transition: color 150ms ease, background 150ms ease;
+  }
+  .filter-chip:hover { color: var(--sp-text); }
+  .filter-chip.active { background: var(--sp-blue); border-color: transparent; color: #fff; }
 
   /* Section heading */
   .section-heading {
@@ -73,7 +87,7 @@
     text-transform: uppercase; color: var(--sp-text-secondary);
     margin: 32px 0 8px;
   }
-  .section-heading:first-of-type { margin-top: 8px; }
+  .faq-section:first-of-type .section-heading { margin-top: 8px; }
 
   /* FAQ */
   .faq { border-top: 1px solid var(--sp-hairline); }
@@ -91,22 +105,14 @@
   }
   .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--sp-blue); }
   .faq-answer { max-height: 0; overflow: hidden; transition: max-height 300ms ease; }
-  .faq-item.open .faq-answer { max-height: 1200px; }
+  .faq-item.open .faq-answer { max-height: 1600px; }
   .faq-answer-inner { padding: 0 0 24px; font-size: 16px; line-height: 1.65; color: var(--sp-text); }
   .faq-answer-inner p { margin-bottom: 12px; }
   .faq-answer-inner p:last-child { margin-bottom: 0; }
   .faq-answer-inner em { color: var(--sp-text); font-style: italic; font-weight: 500; }
-
-  /* Pin legend */
-  .pin-legend {
-    display: flex; gap: 16px; margin: 12px 0; padding: 12px 16px;
-    background: var(--sp-surface); border-radius: var(--sp-radius-md); flex-wrap: wrap;
-  }
-  .pin { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--sp-text-secondary); }
-  .pin-dot { width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 8px currentColor; }
-  .pin-red .pin-dot { background: var(--sp-route-missing); color: var(--sp-route-missing); }
-  .pin-yellow .pin-dot { background: var(--sp-pin-yellow); color: var(--sp-pin-yellow); }
-  .pin-green .pin-dot { background: var(--sp-route-green); color: var(--sp-route-green); }
+  .faq-answer-inner ul { margin: 0 0 12px 20px; }
+  .faq-answer-inner li { margin-bottom: 8px; }
+  .faq-answer-inner li:last-child { margin-bottom: 0; }
 
   /* Contact — identical pattern to privacy */
   .contact-section { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--sp-hairline); }
@@ -133,7 +139,7 @@
   .footer-links a:hover { color: var(--sp-text); }
 
   @media (max-width: 600px) {
-    .title-block { padding: 36px 0 28px; }
+    .title-block { padding: 36px 0 24px; }
     .title-block h1 { font-size: 34px; }
     .contact-row { flex-direction: column; align-items: flex-start; }
     .nav-links { gap: 16px; }
@@ -157,107 +163,255 @@
 
     <div class="title-block">
       <h1>Support</h1>
-      <p class="intro"><strong>StreetProof is a map-first running app.</strong> Here's help with the common questions — and a way to reach us if you're stuck.</p>
+      <p class="intro"><strong>StreetProof is a map-first running app.</strong> Here's help with the common questions, plus a way to reach us if you're stuck.</p>
     </div>
 
-    <div class="section-heading">Getting started</div>
-    <div class="faq">
-      <div class="faq-item">
-        <button class="faq-question"><span>How do I record a workout?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner"><p>Tap the start button to begin. Tap end to stop.</p></div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question"><span>How do I make sure my walks get saved as walks?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner">
-          <p>Open <em>Menu → Workout Options</em> and change the default activity type to Walk before you start. Every workout you record after that will be saved as a walk until you change the setting back.</p>
-          <p>The default is Run, so if you switch back and forth between running and walking, remember to update this setting each time you change activities.</p>
-        </div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question"><span>How are splits handled?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner">
-          <p>StreetProof tracks your splits at every mile by default, with kilometers available within <em>Menu → Workout Options</em>. Apple limits third-party apps from using their split format when viewing workouts in Apple Fitness, so your splits display there as laps.</p>
-          <p>On the Apple Watch, you can also get a notification at each split — choose vibrate, an on-screen alert, or both in the watch app's settings.</p>
-        </div></div>
-      </div>
+    <div class="filter-bar" role="tablist" aria-label="Filter questions by topic">
+      <button class="filter-chip active" data-filter="all">All</button>
+      <button class="filter-chip" data-filter="apple-watch">Apple Watch</button>
+      <button class="filter-chip" data-filter="proof-pins">Proof Pins</button>
+      <button class="filter-chip" data-filter="my-pins">My Pins</button>
+      <button class="filter-chip" data-filter="custom-routes">Custom Routes</button>
+      <button class="filter-chip" data-filter="splits-stats">Splits &amp; Stats</button>
+      <button class="filter-chip" data-filter="buying">Buying</button>
+      <button class="filter-chip" data-filter="my-data">My Data</button>
     </div>
 
-    <div class="section-heading">Apple Watch</div>
-    <div class="faq">
-      <div class="faq-item">
-        <button class="faq-question"><span>Can I use StreetProof without an Apple Watch?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner"><p>Yes — StreetProof works on iPhone alone. Start a workout, keep your phone with you, and the app records your route. The Apple Watch companion is optional.</p></div></div>
+    <section class="faq-section">
+      <div class="section-heading">Getting started</div>
+      <div class="faq">
+        <div class="faq-item" data-tags="">
+          <button class="faq-question"><span>What devices does StreetProof work on?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>StreetProof runs on iPhone, with an optional Apple Watch app. There's no Android or web version at this time.</p></div></div>
+        </div>
+        <div class="faq-item" data-tags="">
+          <button class="faq-question"><span>How do I record a run?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Tap the start button to begin. Tap end to stop.</p></div></div>
+        </div>
+        <div class="faq-item" data-tags="">
+          <button class="faq-question"><span>How do I make sure my walks get saved as walks?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Open <em>Menu → Workout Options</em> and set Activity Type to Walking before you start. Every workout you record after that will be saved as a walk until you change the setting back.</p>
+            <p>The default is Running, so if you switch back and forth between running and walking, remember to update this setting each time you change activities.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="splits-stats apple-watch">
+          <button class="faq-question"><span>Can I change which stats show during a run?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Yes. On the phone, <em>Menu → Workout Options</em> lets you pick what appears in each slot of the in-run metrics bar. On the watch, open Settings → Active Run Metrics to choose up to four stats and emphasize the one you care about most.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="my-pins proof-pins apple-watch">
+          <button class="faq-question"><span>Can I customize what shows on my coverage map?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Yes, everything lives in <em>Menu → Map Options</em>. Activity Types picks which workouts appear: runs by default, plus walks and bike rides, including ones imported from Apple Health. Past Routes shows or hides all your past routes with one switch, and My Pins toggles your own pins. With StreetProof+, the Proof Pins section adds separate switches for uncompleted and completed pins.</p>
+            <p>The watch has its own set of layer switches in its Settings, so you can run a clean map on your wrist and a full one on your phone.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="my-pins">
+          <button class="faq-question"><span>What are My Pins, and how do I use them?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>My Pins are your own markers. Drop one on any spot you want to hit on a run: a missed street (if you don't have StreetProof+), a place to stop for water, a spot you want to eat at after your run.</p>
+            <p>To edit, go to <em>Menu → Map Options</em> and tap <em>Edit My Pins</em>. You're back on the map in edit mode: tap anywhere to drop a pin, tap a pin to delete it, or press and drag one to move it. Tap the My Pins pill to pick a color for all your pins. Your pins and color carry over to your watch automatically, and you can tap the X to exit edit mode.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="splits-stats apple-watch">
+          <button class="faq-question"><span>How are splits handled?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>StreetProof tracks your splits at every mile, or every kilometer if you switch units in <em>Menu → Workout Options</em>.</p>
+            <p>On the Apple Watch, you can get a notification at each split: vibrate, an on-screen alert, or both, set in the watch app's settings. With StreetProof+, each split can also be spoken out loud as you run.</p>
+            <p>After the run, your splits are on the workout's Metrics tab in <em>Menu → History</em>. One quirk: Apple limits third-party apps from using their split format in Apple Fitness, so your splits display there as laps.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="apple-watch">
+          <button class="faq-question"><span>Can I use StreetProof without an Apple Watch?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. StreetProof works on iPhone alone: start a run, keep your phone with you, and the app records your route. The Apple Watch companion is optional.</p></div></div>
+        </div>
+        <div class="faq-item" data-tags="apple-watch">
+          <button class="faq-question"><span>Can I use the Apple Watch app without my iPhone?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Yes. The Watch app is designed to work independently if you have a cellular Apple Watch, so you can leave your phone at home and still have the full live-map experience on your wrist.</p>
+            <p>Without cellular, the Watch still records GPS and syncs to your iPhone when reconnected (so your workout will save fine), but the live map view on the Watch requires either cellular service or your iPhone within range.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="my-data proof-pins">
+          <button class="faq-question"><span>Do I have to record my runs in StreetProof?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Nope. If you already have a running app you love, keep using it. Any workout with a GPS route that gets saved to Apple Health (whether from Apple Fitness, Strava, Nike Run Club, or anything else) shows up in StreetProof automatically. Your past routes appear on the map, and with StreetProof+ those runs count toward your Proof Pin coverage too.</p>
+            <p>Even without recording a single workout in it, StreetProof gives you the full map view of everywhere you've been, your workout history with route visuals, and all the stats and splits from every run.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="apple-watch custom-routes my-pins">
+          <button class="faq-question"><span>What can I configure on the Apple Watch app?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Open Settings on your watch app by tapping the gear icon. You'll find map layers (past routes, My Pins, and with StreetProof+, Proof Pins with per-city control), custom routes to show or hide, split notifications (vibrate, an on-screen alert, or spoken with StreetProof+), run display options like starting on the metrics screen or adding distance and time to the map screen, your in-run metric slots, and a Sync Now button to pull the latest from your phone.</p>
+          </div></div>
+        </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question"><span>Can I use the Apple Watch app without my iPhone?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner">
-          <p>Yes — the Watch app is designed to work independently if you have a cellular Apple Watch, so you can leave your phone at home and still have the full live-map experience on your wrist.</p>
-          <p>Without cellular, the Watch still records GPS and syncs to your iPhone when reconnected (so your workout will save fine), but the live map view on the Watch requires either cellular service or your iPhone within range.</p>
-        </div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question"><span>What can I configure on the Apple Watch app?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner"><p>Open Settings on your watch app by tapping the gear icon. You'll find options to change your default screen during a workout to the metrics, add distance and time to the map screen, add split notifications, add/remove map layers, and force a sync of routes.</p></div></div>
-      </div>
-    </div>
+    </section>
 
-    <div class="section-heading">Pins &amp; map</div>
-    <div class="faq">
-      <div class="faq-item">
-        <button class="faq-question"><span>Can I customize what shows on my coverage map?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner">
-          <p>Yes — by default, the coverage map shows runs. On the phone in <em>Menu → Map Options</em>, you can also enable walks and bike rides imported from Apple Health to display them on your map. You can also toggle visibility of red, yellow, and green pins from the same screen.</p>
-          <p>On the watch, the Settings screen lets you toggle past routes and individual pin layers on and off.</p>
-        </div></div>
+    <section class="faq-section">
+      <div class="section-heading">StreetProof+</div>
+      <div class="faq">
+        <div class="faq-item" data-tags="buying custom-routes">
+          <button class="faq-question"><span>What is StreetProof+?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>StreetProof+ is an optional upgrade that turns your map into a game and adds a few power features:</p>
+            <ul>
+              <li><em>Proof Pins</em>: every block in your cities gets a pin. Run the street and the pin is yours; watch your map fill in run by run.</li>
+              <li><em>Progress by city</em>: completion percentages, pin counts, and a coverage map for every city you're working on.</li>
+              <li><em>Scan &amp; Suggest</em>: run somewhere new, and a quick scan notices and offers to add that city's pins.</li>
+              <li><em>Custom routes</em>: map out new ground with your pins and past runs in view, then follow along live on your phone or watch.</li>
+              <li><em>Spoken splits</em>: mile and pace in your ears, no glancing at your wrist.</li>
+              <li><em>GPX export</em>: take your runs with you, including ones imported from Apple Health.</li>
+            </ul>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="custom-routes apple-watch">
+          <button class="faq-question"><span>How do I use custom routes?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Custom routes are for planning your run before you head out the door. Open <em>Menu → Custom Routes</em> and draw right on the map: tap to extend the route, drag to reshape it, and undo if you change your mind. The total distance updates as you draw, so you can build exactly the miles you want, and your pins and past runs stay in view while you plan.</p>
+            <p>Saved routes sync to your watch and appear as a map overlay during a run on either device, so you can follow along as you go. On the watch, choose which routes show in Settings → Custom Routes.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="buying">
+          <button class="faq-question"><span>How much does it cost, and how does the free trial work?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Two options: <em>$4.99 a year</em> with a 7-day free trial, or <em>$19.99 once</em> for lifetime access with no subscription at all. You'll find the upgrade anywhere you see the StreetProof+ badge in the app; <em>Menu → Progress</em> is the easiest place to start.</p>
+            <p>The trial runs on the yearly plan: everything unlocks free for 7 days, and you're only charged when the trial ends. If it's not for you, cancel any time before then in your iPhone's Settings (tap your name → Subscriptions) and you won't pay a thing.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="buying">
+          <button class="faq-question"><span>How do I get StreetProof+ back on a new phone or reinstall?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>You never pay twice. Your purchase is tied to your Apple ID: open <em>Menu → Progress</em>, tap Get StreetProof+, then tap <em>Restore Purchases</em>. The app unlocks and runs a short setup that scans your run history and lights your map back up. Your Proof Pin progress is rebuilt from your workouts, so nothing is lost.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="buying">
+          <button class="faq-question"><span>Can I get a refund?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>App Store purchases are billed by Apple, so refunds go through Apple too. Sign in at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>, find the purchase, and request a refund. Apple reviews and decides these directly.</p>
+            <p>And if something in the app drove you to a refund, we'd genuinely like to know. <a href="mailto:hello@reforged.studio">Email us</a>.</p>
+          </div></div>
+        </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question"><span>What are pins for, and how do I use them?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner">
-          <p>Pins are flexible markers you can drop anywhere on the map. There are three colors so you can use them for different purposes:</p>
-          <div class="pin-legend">
-            <div class="pin pin-red"><span class="pin-dot"></span><span>Red</span></div>
-            <div class="pin pin-yellow"><span class="pin-dot"></span><span>Yellow</span></div>
-            <div class="pin pin-green"><span class="pin-dot"></span><span>Green</span></div>
-          </div>
-          <p>Common uses include marking pit stops along planned routes, flagging missed streets you want to circle back to, or noting streets that were closed due to construction. You can give each pin color a custom label in <em>Menu → Map Options</em> (for example, naming red pins "Pit Stops") so you can tell them apart at a glance.</p>
-          <p>To add or edit pins, go to <em>Menu → Map Options</em> and tap <em>Add/Edit Pins</em>. This brings you back to the map in pin-editing mode. The dropdown at the top lets you switch between red, yellow, and green before placing a pin. Tap an existing pin to delete it, or tap and hold to drag it to a new location. Tap the X to exit pin-editing mode.</p>
-        </div></div>
-      </div>
-    </div>
+    </section>
 
-    <div class="section-heading">Troubleshooting</div>
-    <div class="faq">
-      <div class="faq-item">
-        <button class="faq-question"><span>Why isn't my past workout showing on the map?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner">
-          <p>StreetProof shows workouts from Apple Health that include GPS route data. Workouts without route data (for example, indoor workouts or workouts from apps that don't save routes to Health) won't appear on the coverage map.</p>
-          <p>If a workout still isn't showing, open <em>Menu → Workout History</em> and tap the refresh button. Permissions can be viewed in <em>Menu → Support</em>, though changes have to be made in the iPhone's Settings app under Privacy &amp; Security.</p>
-        </div></div>
+    <section class="faq-section">
+      <div class="section-heading">Proof Pins &amp; Progress</div>
+      <div class="faq">
+        <div class="faq-item" data-tags="proof-pins">
+          <button class="faq-question"><span>What are Proof Pins?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Proof Pins are the heart of StreetProof+. Every block in your cities gets a pin at its center. Run the street and the pin flips from uncompleted to completed. The proof is yours, and when you've covered them all, so is the city.</p>
+            <p>Pins are dropped by algorithm, not scouted on foot. Use your head out there: skip any pin you can't reach safely, stay alert, and stay visible.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="proof-pins">
+          <button class="faq-question"><span>How do I add a city?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Open <em>Menu → Progress</em> and tap the + (or go through <em>Menu → Map Options → Manage Cities</em>). On the Add tab, search for a city. If its pins are ready, tap Download and you're set. If we haven't built that city yet, tap <em>Request</em> and we'll place its pins for you; new cities can take some time, and yours appears automatically when it's ready. StreetProof covers US cities and towns, from the biggest cities down to small unincorporated communities.</p>
+            <p><em>Scan &amp; Suggest</em> does the searching for you: it looks through your run history, finds the cities you've been running that don't have pins yet, and lets you add each one with a tap.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="proof-pins">
+          <button class="faq-question"><span>What is Auto-Add Cities?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Auto-Add Cities saves you a step. When it's on, finishing a run in a new area automatically adds that city's Proof Pins to the app, so your Progress page and pin stats in Workout Details just update on their own. No need to open Manage Cities or search for it yourself.</p>
+            <p>It's on by default for StreetProof+ users. If you'd rather add cities by hand, toggle it off in <em>Menu → Map Options</em>. You can still add any city manually through <em>Map Options → Manage Cities</em> or the + button on the Progress page.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="proof-pins">
+          <button class="faq-question"><span>What's on the Progress page?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p><em>Menu → Progress</em> is your coverage, city by city: each row shows the city's completion percentage, how many pins you've completed, and a mini-map of your coverage so far. Finish a city and it moves to your completed shelf up top. Tap any city for the full picture: a coverage map of the whole city, plus pins remaining, runs, and distance there.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="proof-pins splits-stats">
+          <button class="faq-question"><span>What's the Explore Score?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Open any run from <em>Menu → History</em> and check the Metrics tab. The Proof Pins card shows the pins that run completed, plus its <em>Explore Score</em>: a ring showing how much of the run was new ground (green) versus streets you'd already proofed (blue). A high score means you were out exploring; a low one means a familiar loop. Both count.</p>
+          </div></div>
+        </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question"><span>My workout finished but the route isn't showing in Apple Fitness yet.</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner">
-          <p>Route syncing sometimes takes a few minutes, especially after a Watch-only workout — give it time before assuming something's wrong. <strong>Don't delete the workout from Apple Fitness</strong> just because the route is missing.</p>
-          <p>If the route still hasn't appeared after a while, make sure your Apple Watch is near your iPhone (for Watch-only workouts), open both StreetProof and the StreetProof Watch app, and try the Route Recovery tool in <em>Menu → Support</em>. If those don't work, restarting both devices usually does the trick.</p>
-        </div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question"><span>The app crashed or did something unexpected.</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner"><p>Email <a href="mailto:hello@reforged.studio">hello@reforged.studio</a> with a description of what happened. Including your iPhone model, iOS version, and what you were doing when it happened helps a lot.</p></div></div>
-      </div>
-    </div>
+    </section>
 
-    <div class="section-heading">Your data</div>
-    <div class="faq">
-      <div class="faq-item">
-        <button class="faq-question"><span>Can I delete a past workout?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner"><p>Workouts are stored in Apple Health. Open the Fitness app or Health app to delete them — note that this is generally permanent and the workout cannot be recovered. Deletions there will be reflected in StreetProof.</p></div></div>
+    <section class="faq-section">
+      <div class="section-heading">Troubleshooting</div>
+      <div class="faq">
+        <div class="faq-item" data-tags="my-data">
+          <button class="faq-question"><span>Why isn't my past workout showing on the map?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>StreetProof shows workouts from Apple Health that include GPS route data. Workouts without route data (for example, indoor workouts or workouts from apps that don't save routes to Health) won't appear on the coverage map.</p>
+            <p>If a workout still isn't showing, open <em>Menu → History</em> and tap the refresh button, and make sure StreetProof has all the permissions it asks for. You can check them in <em>Menu → Support</em>; changes are made in the iPhone's Settings app under Privacy &amp; Security.</p>
+            <p>Still missing? See the next question for a full resync.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="my-data">
+          <button class="faq-question"><span>My workout history looks wrong or is missing runs.</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Open <em>Menu → Support</em> and tap <em>Resync All from HealthKit</em>. It re-checks Apple Health for every workout with a route and imports anything that's missing. It's safe to run: existing workouts are preserved, and nothing is deleted.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="proof-pins">
+          <button class="faq-question"><span>My Proof Pin coverage looks off or out of date.</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Open <em>Menu → Support</em> and tap <em>Reprocess All Proof Pins</em>. It rebuilds your coverage from scratch from your workout history and selected activity types, so your map and Progress numbers come back correct. It's safe to run, and nothing is deleted.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="proof-pins">
+          <button class="faq-question"><span>Why can't I find a city for Proof Pins?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>A few reasons a place might not be available:</p>
+            <ul>
+              <li>Proof Pins are currently US-only, covering cities, towns, and communities across all 50 states, DC, and Puerto Rico.</li>
+              <li>Some places don't have clearly defined boundaries in the public map data we use to build pin packs. If we can't find a boundary, we can't generate pins for it.</li>
+              <li>Some rural or unincorporated areas that aren't a recognized named community won't have a pin pack. A run in one of those areas still shows on your map and saves to your history, but it won't count toward any city's coverage.</li>
+            </ul>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="apple-watch">
+          <button class="faq-question"><span>My workout finished but the route isn't showing in Apple Fitness yet.</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Route syncing sometimes takes a few minutes, especially after a Watch-only workout, so give it time before assuming something's wrong. <strong>Don't delete the workout from Apple Fitness</strong> just because the route is missing.</p>
+            <p>If the route still hasn't appeared after a while, make sure your Apple Watch is near your iPhone (for Watch-only workouts) and open both StreetProof and the StreetProof Watch app; syncing happens when the two can talk. If that doesn't work, restarting both devices usually does the trick. Still missing? <a href="mailto:hello@reforged.studio">Email us</a>.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="buying">
+          <button class="faq-question"><span>I bought StreetProof+ but the app still shows it locked.</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Give it a few seconds, then close and reopen the app. If it still shows locked, open the upgrade screen and tap <em>Restore Purchases</em>, which re-checks your purchase with Apple and unlocks on the spot. If it's still stuck after that, <a href="mailto:hello@reforged.studio">email us</a> and we'll sort it out.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="">
+          <button class="faq-question"><span>The app crashed or did something unexpected.</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Email <a href="mailto:hello@reforged.studio">hello@reforged.studio</a> with a description of what happened. Including your iPhone model, iOS version, and what you were doing when it happened helps a lot.</p></div></div>
+        </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-question"><span>What happens to my data if I delete the app?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner"><p>Workouts saved to Apple Health stay there and remain in the Fitness app. Pins and app-specific settings are removed with the app.</p></div></div>
+    </section>
+
+    <section class="faq-section">
+      <div class="section-heading">Your data</div>
+      <div class="faq">
+        <div class="faq-item" data-tags="my-data">
+          <button class="faq-question"><span>Can I delete a past workout?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p>Workouts are stored in Apple Health. Open the Fitness app or Health app to delete them; note that this is generally permanent and the workout cannot be recovered. Deletions there will be reflected in StreetProof.</p></div></div>
+        </div>
+        <div class="faq-item" data-tags="my-data">
+          <button class="faq-question"><span>Can I export my runs?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>With StreetProof+, yes: as GPX files, the standard route format most running apps and sites can read. Open <em>Menu → History</em>, tap the export button in the top corner, select the runs you want, and tap Export. Works for runs recorded in StreetProof and ones imported from Apple Health.</p>
+          </div></div>
+        </div>
+        <div class="faq-item" data-tags="my-data proof-pins">
+          <button class="faq-question"><span>What happens to my data if I delete the app?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Workouts saved to Apple Health stay there and remain in the Fitness app. My Pins and app settings are removed with the app.</p>
+            <p>If you reinstall, your StreetProof+ purchase restores free (see the StreetProof+ section above), and your Proof Pin progress is rebuilt from your workout history during setup. The streets you've run stay proofed.</p>
+          </div></div>
+        </div>
       </div>
-    </div>
+    </section>
 
     <section class="contact-section">
       <h2>Still stuck?</h2>
@@ -282,6 +436,23 @@
   <script>
     document.querySelectorAll('.faq-question').forEach(btn => {
       btn.addEventListener('click', () => btn.closest('.faq-item').classList.toggle('open'));
+    });
+
+    const chips = document.querySelectorAll('.filter-chip');
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.toggle('active', c === chip));
+        const tag = chip.dataset.filter;
+        document.querySelectorAll('.faq-item').forEach(item => {
+          const tags = (item.dataset.tags || '').split(' ');
+          item.style.display = (tag === 'all' || tags.includes(tag)) ? '' : 'none';
+        });
+        document.querySelectorAll('.faq-section').forEach(section => {
+          const anyVisible = Array.from(section.querySelectorAll('.faq-item'))
+            .some(item => item.style.display !== 'none');
+          section.style.display = anyVisible ? '' : 'none';
+        });
+      });
     });
   </script>
 

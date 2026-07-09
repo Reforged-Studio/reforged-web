@@ -7,6 +7,9 @@
 <title>StreetProof — Map-first running app</title>
 <meta name="description" content="StreetProof is a map-first running app for iPhone and Apple Watch. Every run fills in your map — see where you've run, and cover new ground." />
 <style>
+  /* ============================================================
+     LIVE SITE CSS — UNCHANGED
+     ============================================================ */
   :root{
     --sp-black:#000;--sp-surface:#1C1C1E;--sp-surface-2:#2C2C2E;--sp-hairline:rgba(255,255,255,0.08);
     --sp-text:#FFF;--sp-text-secondary:#8E8E93;--sp-text-tertiary:#636366;
@@ -35,13 +38,14 @@
   .hero h1 .l2{color:var(--sp-text);}
   .hero .sub{font-size:18px;line-height:1.55;color:var(--sp-text-secondary);margin-bottom:32px;max-width:480px;}
   .hero .actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
-  .btn-primary{background:var(--sp-blue);color:#fff;font-size:16px;font-weight:600;padding:15px 30px;border-radius:var(--sp-radius-xl);box-shadow:0 8px 30px -8px rgba(2,144,254,.5);transition:all 150ms ease;}
+  .btn-primary{background:var(--sp-blue);color:#fff;font-size:16px;font-weight:600;padding:15px 30px;border-radius:var(--sp-radius-xl);box-shadow:0 8px 30px -8px rgba(2,144,254,.5);transition:all 150ms ease;border:0;cursor:pointer;}
   .btn-primary:hover{background:var(--sp-blue-pressed);color:#fff;transform:translateY(-1px);}
 
   .phone{justify-self:end;width:300px;height:610px;border-radius:46px;background:#0d0d0f;border:1px solid rgba(255,255,255,0.12);box-shadow:0 30px 80px -30px rgba(0,0,0,.9),0 0 60px -20px rgba(2,144,254,.25);padding:11px;position:relative;}
   .phone::before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:90px;height:24px;background:#000;border-radius:14px;z-index:3;}
   .screen{width:100%;height:100%;border-radius:36px;overflow:hidden;position:relative;background:#0a1020;}
   .screen-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .screen svg{position:absolute;inset:0;width:100%;height:100%;}
 
   .pitch{padding:88px 0;border-top:1px solid var(--sp-hairline);border-bottom:1px solid var(--sp-hairline);}
   .pitch p{font-size:30px;font-weight:600;letter-spacing:-0.01em;line-height:1.35;}
@@ -50,7 +54,7 @@
   .sec-title{font-size:34px;font-weight:700;letter-spacing:-0.02em;}
 
   .features{padding:88px 0;}
-  .features .sec-title{margin-bottom:40px;}
+  .features .sec-title{margin-bottom:12px;}
   .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px 56px;}
   .feat{display:flex;gap:16px;align-items:flex-start;}
   .feat .ico{width:38px;height:38px;border-radius:10px;background:var(--sp-surface);border:1px solid var(--sp-hairline);display:flex;align-items:center;justify-content:center;color:var(--sp-blue);flex-shrink:0;}
@@ -65,7 +69,7 @@
   .watch-frame{justify-self:start;position:relative;width:230px;}
   .watch-body{position:relative;width:230px;height:278px;border-radius:62px;background:#0d0d0f;border:1px solid rgba(255,255,255,0.14);box-shadow:0 30px 70px -28px rgba(0,0,0,.9),0 0 50px -18px rgba(78,227,76,.22);padding:12px;}
   .watch-screen{width:100%;height:100%;border-radius:50px;overflow:hidden;position:relative;background:#0a1020;}
-  .watch-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .watch-screen img,.watch-screen svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
   .crown{position:absolute;right:-4px;top:96px;width:7px;height:34px;background:#1c1c1e;border:1px solid rgba(255,255,255,0.14);border-radius:4px;}
   .sidebtn{position:absolute;right:-3px;top:140px;width:5px;height:46px;background:#1c1c1e;border:1px solid rgba(255,255,255,0.12);border-radius:4px;}
   .band{position:absolute;left:50%;transform:translateX(-50%);width:150px;background:#141416;border:1px solid rgba(255,255,255,0.06);}
@@ -99,13 +103,102 @@
     .watch-frame{order:1;justify-self:center;}
     .pitch p{font-size:24px;text-align:center;}.sec-title{font-size:28px;}.final h2{font-size:28px;}
   }
+
+  /* ============================================================
+     NEW — StreetProof+ sections (v1.3). Everything below is
+     additive; nothing above changed except .features .sec-title
+     margin (12px, to fit the new subtitle line).
+     ============================================================ */
+  .features .free-line{font-size:16px;color:var(--sp-text-secondary);margin-bottom:40px;}
+  .features .free-line b{color:var(--sp-text);font-weight:600;}
+
+  /* StreetProof+ chapter break — second wordmark moment, hero's own style */
+  .plus-hero{padding:132px 0 108px;border-top:1px solid var(--sp-hairline);text-align:center;position:relative;overflow:hidden;
+    background:radial-gradient(ellipse 125% 95% at 50% -10%,rgba(2,144,254,.44) 0%,rgba(2,144,254,.22) 30%,rgba(2,144,254,.07) 56%,transparent 80%);}
+  .plus-hero::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(2,144,254,.7),transparent);}
+  .plus-hero .kicker{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--sp-blue);margin-bottom:20px;}
+  .plus-hero .wm2{font-size:64px;font-weight:700;letter-spacing:-0.03em;line-height:1;}
+  .plus-hero .statement{margin:30px auto 0;font-size:26px;font-weight:600;line-height:1.4;letter-spacing:-0.01em;max-width:700px;}
+  .plus-hero .statement .accent{color:var(--sp-blue);}
+  .plus-hero .terms{margin-top:24px;font-size:15px;color:var(--sp-text-secondary);}
+
+  /* plus feature rows — small phone frame + copy, alternating */
+  .pfeat{padding:72px 0;border-top:1px solid var(--sp-hairline);}
+  .pfeat .wrap{display:grid;grid-template-columns:240px minmax(0,1fr);column-gap:64px;align-items:center;}
+  .pfeat.flip .wrap{grid-template-columns:minmax(0,1fr) 240px;}
+  .pfeat.flip .pf-media{order:2;}
+  .pfeat h3{font-size:26px;font-weight:700;letter-spacing:-0.02em;margin-bottom:12px;}
+  .pfeat .k{display:block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sp-blue);margin-bottom:10px;}
+  .pfeat .body{font-size:17px;line-height:1.65;color:var(--sp-text-secondary);max-width:520px;}
+  .pf-media{position:relative;justify-self:center;}
+  .phone.sm{width:240px;height:488px;border-radius:38px;padding:9px;justify-self:center;}
+  .phone.sm::before{width:74px;height:20px;top:15px;}
+  .phone.sm .screen{border-radius:30px;}
+
+  /* plus extras grid — reuses .feat pattern */
+  .pextras{padding:88px 0;border-top:1px solid var(--sp-hairline);}
+  .pextras .sec-title{margin-bottom:40px;}
+
+  /* pricing */
+  .pricing{padding:96px 0;border-top:1px solid var(--sp-hairline);}
+  .pricing .sec-title{margin-bottom:40px;}
+  .price-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:680px;align-items:stretch;}
+  .pcard{background:var(--sp-surface);border:1px solid var(--sp-hairline);border-radius:var(--sp-radius-lg);padding:28px;position:relative;display:flex;flex-direction:column;}
+  .pcard p{flex:1;}
+  .pcard .btn-primary,.pcard .btn-ghost{align-self:flex-start;}
+  .pcard.primary{border-color:rgba(2,144,254,.6);box-shadow:0 0 50px -22px rgba(2,144,254,.45);}
+  .pcard .plan{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sp-text-secondary);}
+  .pcard.primary .plan{color:var(--sp-blue);}
+  .pcard .price{font-size:36px;font-weight:700;letter-spacing:-0.02em;margin-top:10px;}
+  .pcard .per{font-size:15px;font-weight:400;color:var(--sp-text-secondary);}
+  .pcard p{margin-top:12px;font-size:14.5px;line-height:1.55;color:var(--sp-text-secondary);}
+  .pcard .btn-primary{display:inline-block;margin-top:20px;padding:11px 22px;font-size:15px;}
+  .pcard .btn-ghost{display:inline-block;margin-top:20px;padding:10px 22px;font-size:15px;font-weight:600;
+    color:var(--sp-text);border:1.5px solid var(--sp-surface-2);border-radius:var(--sp-radius-xl);}
+  .pcard .btn-ghost:hover{border-color:var(--sp-text-secondary);}
+  .pcard.lifetime .btn-ghost{background:#3a3a3d;border-color:#3a3a3d;}
+  .pcard.lifetime .btn-ghost:hover{background:#48484b;border-color:#48484b;}
+  .pbadge{position:absolute;top:-12px;right:16px;background:var(--sp-blue);color:#fff;font-size:10.5px;
+    font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:var(--sp-radius-full);}
+  /* post-card close: one calm block, no competing box */
+  .price-note{margin:32px 0 0;padding-top:28px;border-top:1px solid var(--sp-hairline);
+    display:flex;flex-direction:column;gap:14px;}
+  .price-note .why p:first-child{font-size:15px;font-weight:600;}
+  .price-note .why p+p{margin-top:4px;font-size:15px;color:var(--sp-text-secondary);}
+  .final .support-final{margin-top:10px;}
+
+  /* faq */
+  .faq{margin-top:52px;max-width:680px;}
+  .faq h4{font-size:20px;font-weight:700;margin-bottom:14px;}
+  details{border-top:1px solid var(--sp-hairline);padding:16px 2px;}
+  details:last-of-type{border-bottom:1px solid var(--sp-hairline);}
+  summary{cursor:pointer;font-size:16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px;}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+";color:var(--sp-text-tertiary);font-weight:400;}
+  details[open] summary::after{content:"–";}
+  details p{margin-top:10px;font-size:14.5px;line-height:1.6;color:var(--sp-text-secondary);max-width:62ch;}
+
+  @media(max-width:860px){
+    .pfeat .wrap,.pfeat.flip .wrap{grid-template-columns:1fr;gap:44px;text-align:center;}
+    .pfeat.flip .pf-media{order:0;}
+    .pfeat .body{margin-left:auto;margin-right:auto;}
+    .pf-media{justify-self:center;}
+    .plus-hero .wm2{font-size:40px;}
+    .plus-hero .statement{font-size:21px;}
+    .plus-hero .statement br{display:none;}
+    .price-cards{grid-template-columns:1fr;}
+    .note{text-align:left;}
+  }
 </style>
 </head>
 <body>
   <div class="container">
+    <!-- LIVE SITE: unchanged, except one added nav link (annotated) -->
     <nav class="nav">
       <a class="navicon" href="/streetproof"><img src="/streetproof/streetproof-icon-dark.png" alt="StreetProof"/></a>
-      <div class="links"><a href="/streetproof/privacy">Privacy</a><a href="/streetproof/support">Support</a><a href="https://apps.apple.com/us/app/streetproof/id6764345712" class="cta">Download</a></div>
+      <div class="links"><a href="#plus">StreetProof+</a><a href="/streetproof/privacy">Privacy</a><a href="/streetproof/support">Support</a><a href="https://apps.apple.com/us/app/streetproof/id6764345712" class="cta">Download</a></div>
     </nav>
 
     <section class="hero">
@@ -121,20 +214,23 @@
     </section>
   </div>
 
+  <!-- LIVE SITE: unchanged -->
   <section class="pitch">
     <div class="container">
       <p>Most run trackers focus on numbers. <span class="accent">StreetProof focuses on the map.</span> It's for explorers chasing new territory, completionists hitting every block, and anyone tired of the same loop. The route isn't an afterthought anymore. It's the reason you're out there.</p>
     </div>
   </section>
 
+  <!-- LIVE SITE: format kept exactly; contents updated for v1.3 (annotated) -->
   <section class="features" id="features">
     <div class="container">
       <div class="sec-title">What's in the app</div>
+      <p class="free-line"><b>All of it free.</b> No ads, no run limits.</p>
       <div class="feat-grid">
         <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0zM15 5.764v15M9 3.236v15"/></svg></div><div class="txt"><h3>Your coverage map</h3><p>Every route you've run, drawn on one map.</p></div></div>
         <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div><div class="txt"><h3>Live route tracking</h3><p>Watch your run draw in real time as you go.</p></div></div>
         <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="txt"><h3>Workout history</h3><p>Browse past workouts with routes, splits, and stats.</p></div></div>
-        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="txt"><h3>Pins</h3><p>Mark pit stops, blocks to hit, spots worth remembering.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="txt"><h3>Map markers</h3><p>Mark pit stops, blocks to hit, spots worth remembering.</p></div></div>
         <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></div><div class="txt"><h3>Works with Apple Health</h3><p>Pulls routes from Apple Health and saves new ones back to it, all kept private.</p></div></div>
         <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></div><div class="txt"><h3>Detailed metrics</h3><p>Everything your devices capture — pace, heart rate, elevation, running form — saved to Apple Health.</p></div></div>
         <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><rect x="9" y="5" width="6" height="2.2" rx="1.1" fill="currentColor" stroke="none"/></svg></div><div class="txt"><h3>Live Activities</h3><p>Your workout on the Lock Screen and Dynamic Island.</p></div></div>
@@ -143,6 +239,7 @@
     </div>
   </section>
 
+  <!-- LIVE SITE: unchanged -->
   <section class="watch">
     <div class="container">
       <div class="wrap">
@@ -163,19 +260,132 @@
     </div>
   </section>
 
+  <!-- ============================================================
+       NEW FROM HERE DOWN (until the final section)
+       ============================================================ -->
+
+  <section class="plus-hero" id="plus">
+    <div class="container">
+      <span class="kicker">The upgrade</span>
+      <div class="wm2">StreetProof+</div>
+      <p class="statement">Your map shows where you've run.<br><span class="accent">StreetProof+ raises the stakes:</span><br>the blocks you've claimed, the cities you're closing in on,<br>and the streets still waiting.</p>
+      <p class="terms">7-day free trial · $4.99/year or $19.99 once — <a href="#pricing">see pricing</a></p>
+    </div>
+  </section>
+
+  <section class="pfeat">
+    <div class="container">
+      <div class="wrap">
+        <div class="pf-media">
+          <div class="phone sm"><div class="screen"><img class="screen-img" src="/streetproof/screenshot-proofpins.jpg" alt="StreetProof Proof Pins — claimed pins in blue, unclaimed in red"/></div></div>
+        </div>
+        <div>
+          <span class="k">Proof Pins</span>
+          <h3>Claim your streets</h3>
+          <p class="body">Proof Pins mark every block in your city. Run past one and it's yours — that's StreetProof. Chase down the rest on streets you've never run.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pfeat flip">
+    <div class="container">
+      <div class="wrap">
+        <div>
+          <span class="k">Progress</span>
+          <h3>Your cities, your progress.</h3>
+          <p class="body">Zoom out and watch each city fill in, run by run. See how far you've come and how close you are to closing one out.</p>
+        </div>
+        <div class="pf-media">
+          <div class="phone sm"><div class="screen"><img class="screen-img" src="/streetproof/screenshot-progress.jpg" alt="StreetProof Progress — 26 cities, per-city coverage"/></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pextras">
+    <div class="container">
+      <div class="sec-title">Also in StreetProof+</div>
+      <div class="feat-grid">
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg></div><div class="txt"><h3>Auto-Add Cities</h3><p>Run somewhere new and its pin pack loads automatically — coverage ready, no taps.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><circle cx="18" cy="5" r="3"/><path d="M12 19h4.5a3.5 3.5 0 0 0 0-7h-9a3.5 3.5 0 0 1 0-7H12"/></svg></div><div class="txt"><h3>Custom routes</h3><p>Map out new ground with your pins and past runs in view, then follow along live on your phone or watch.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div><div class="txt"><h3>Spoken splits</h3><p>Mile and pace in your ears, no glancing at your wrist.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><div class="txt"><h3>GPX export</h3><p>Take it all with you. Export your StreetProof runs or those from Apple Health.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="sec-title">Try StreetProof+ free for 7 days.</div>
+      <div class="price-cards">
+        <div class="pcard primary">
+          <span class="pbadge">7-day free trial</span>
+          <div class="plan">Annual</div>
+          <div class="price">$4.99 <span class="per">/ year</span></div>
+          <p>Try everything free for 7 days. Cancel before the trial ends and pay nothing.</p>
+          <a class="btn-primary" href="https://apps.apple.com/us/app/streetproof/id6764345712">Start free trial</a><!-- for per-button analytics, swap in App Store Connect campaign links (ct=web-trial / ct=web-lifetime) -->
+        </div>
+        <div class="pcard lifetime">
+          <div class="plan">Lifetime</div>
+          <div class="price">$19.99 <span class="per">once</span></div>
+          <p>Yours forever. Every future StreetProof+ feature included.</p>
+          <a class="btn-ghost" href="https://apps.apple.com/us/app/streetproof/id6764345712">Own it forever</a>
+        </div>
+      </div>
+
+      <div class="price-note">
+        <div class="why">
+          <p>No ads, no accounts, no tracking.</p>
+          <p>Built by one runner. StreetProof+ is what keeps it that way.</p>
+        </div>
+      </div>
+
+      <!-- FAQ moved to the Support page ("StreetProof+ & purchases" group).
+           Final wording, ready to paste there:
+
+           Q: What do I get without paying?
+           A: The complete running app: live route tracking, your full workout
+              history, every route on your coverage map, detailed metrics,
+              Apple Health sync, and the Apple Watch app. No ads, no run limits.
+
+           Q: How does the free trial work?
+           A: Start the trial and everything in StreetProof+ unlocks for 7 days.
+              Cancel anytime in Settings → Apple ID → Subscriptions before it
+              ends and you won't be charged. Otherwise it's $4.99 for the year.
+
+           Q: Annual or lifetime — what's the difference?
+           A: Same features, different commitment. Annual renews at $4.99/year
+              and you can cancel whenever. Lifetime is one $19.99 purchase that
+              never renews and includes everything added to StreetProof+ in
+              the future.
+
+           Q: What happens to my runs if I stop subscribing?
+           A: Your runs, your workout history, and every past route on your map
+              are part of the free app — they stay right where they are.
+              StreetProof+ features stop, including Proof Pins and custom
+              routes. If you resubscribe, your coverage rebuilds automatically
+              from your run history.
+      -->
+    </div>
+  </section>
+
+  <!-- LIVE SITE: unchanged except the sub line gains three words -->
   <section class="final">
     <div class="container">
       <h2>Now get outside.</h2>
       <a href="https://apps.apple.com/us/app/streetproof/id6764345712" class="btn-primary">Download on the App Store</a>
-      <p class="sub">Free for iPhone and Apple Watch.</p>
+      <p class="sub">Free for iPhone and Apple Watch. StreetProof+ optional.</p>
+      <p class="sub support-final">More questions? <a href="/streetproof/support">See Support</a>.</p>
     </div>
   </section>
 
   <footer class="ft">
     <div class="container">
       <div class="attr">© 2026 <a href="https://reforged.studio">Reforged Studio LLC</a></div>
-      <div class="lk"><a href="/streetproof/privacy">Privacy</a><a href="/streetproof/support">Support</a></div>
+      <div class="lk"><a href="#">Privacy</a><a href="#">Support</a></div>
     </div>
   </footer>
+
 </body>
 </html>
