@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support — FitFerry</title>
+  <meta name="description" content="Support for FitFerry: troubleshooting imports, frequently asked questions, where workouts appear in Apple Health and Fitness, and how to get in touch.">
+  <meta name="theme-color" content="#1EB093">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231EB093'/><path fill='%23fff' d='M86 21 L69.9 9.4 L69.9 13 L38 13 Q21.2 13 21.2 30.4 L21.2 87 L37.2 87 L37.2 65 L25.4 53.1 L37.2 41.3 L37.2 31 Q37.2 29 39 29 L69.9 29 L69.9 32.7 Z'/><path fill='%23fff' d='M27.2 53.1 L37.6 42.7 L37.7 45.3 L71.6 45.3 L71.6 61 L37.7 61 L37.6 63.6 Z'/></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">
+        <span class="mark">
+          <svg width="18" height="18" viewBox="0 0 100 100" aria-hidden="true">
+            <path fill="#fff" d="M86 21 L69.9 9.4 L69.9 13 L38 13 Q21.2 13 21.2 30.4 L21.2 87 L37.2 87 L37.2 65 L25.4 53.1 L37.2 41.3 L37.2 31 Q37.2 29 39 29 L69.9 29 L69.9 32.7 Z"/>
+            <path fill="#fff" d="M27.2 53.1 L37.6 42.7 L37.7 45.3 L71.6 45.3 L71.6 61 L37.7 61 L37.6 63.6 Z"/>
+          </svg>
+        </span>
+        FitFerry
+      </a>
+      <nav class="site-nav" aria-label="Site">
+        <a href="./">Overview</a>
+        <a href="support.html" aria-current="page">Support</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ================= Page header band ================= -->
+    <section class="page-hero">
+      <svg class="big-f" viewBox="0 0 100 100" aria-hidden="true">
+        <path fill="#fff" d="M86 21 L69.9 9.4 L69.9 13 L38 13 Q21.2 13 21.2 30.4 L21.2 87 L37.2 87 L37.2 65 L25.4 53.1 L37.2 41.3 L37.2 31 Q37.2 29 39 29 L69.9 29 L69.9 32.7 Z"/>
+        <path fill="#fff" d="M27.2 53.1 L37.6 42.7 L37.7 45.3 L71.6 45.3 L71.6 61 L37.7 61 L37.6 63.6 Z"/>
+      </svg>
+      <div class="wrap">
+        <span class="tag">Support</span>
+        <h1>Here to help.</h1>
+        <p class="sub">FitFerry imports GPX, TCX, and FIT files into Apple Health as real historical workouts, and exports workouts back out. If something isn't working, the answer is probably below.</p>
+      </div>
+    </section>
+
+    <!-- ================= Wayfinding: this row is real navigation ================= -->
+    <div class="signs">
+      <div class="wrap">
+        <a class="sign" href="#troubleshooting"><span class="arr" aria-hidden="true">→</span> TROUBLESHOOTING</a>
+        <a class="sign" href="#faq"><span class="arr" aria-hidden="true">→</span> FAQ</a>
+        <a class="sign" href="#contact"><span class="arr" aria-hidden="true">→</span> CONTACT</a>
+      </div>
+    </div>
+
+    <div class="doc">
+      <div class="wrap">
+
+        <h2 id="troubleshooting">Troubleshooting</h2>
+
+        <h3>A file won't import</h3>
+        <p>When an import fails, FitFerry shows a specific reason rather than a generic error. The two most common:</p>
+        <ul>
+          <li><strong>No timestamps.</strong> Apple Health requires every workout to have a start and end time. Some files contain track points without timestamps, most often GPX routes exported as courses rather than recorded activities, and there is no honest way to invent times that were never recorded. Re-export the activity (not the route or course) from the original platform to get a timestamped file.</li>
+          <li><strong>Unsupported format.</strong> FitFerry reads GPX, TCX, and FIT. Other formats, such as CSV or KML, need to be converted to one of those first. If an unsupported file is inside a zip alongside supported files, FitFerry simply skips it and imports the rest.</li>
+        </ul>
+        <p>If you're unsure what a file contains, open it in the File Inspector first. It shows the dates, route points, and samples a file carries before anything is written to Health.</p>
+
+        <h3>Where do imported workouts appear?</h3>
+        <p>In the Health app under Browse → Activity → Workouts, and in the Fitness app on the Summary tab. Because imports keep their real historical dates, scroll back to the workout's original date: a 2021 ride appears in 2021, not today. Route maps and heart rate appear on the workout's detail page when the file included them.</p>
+
+        <h3>FitFerry can't see Apple Health</h3>
+        <p>Imports and exports need Health permission. Check Settings → Privacy &amp; Security → Health → FitFerry, and make sure both read and write access are enabled for workouts.</p>
+
+        <h2 id="faq">Frequently asked</h2>
+
+        <div class="faq">
+          <div>
+            <h3>Where does my data go?</h3>
+            <p>Only where you send it. Files are parsed on your device, and every read or write to Apple Health happens on your device. FitFerry has no servers, no accounts, and no analytics.</p>
+          </div>
+          <div>
+            <h3>Which formats does it support?</h3>
+            <p>GPX, TCX, and FIT for import. GPX and TCX for export. Zip archives containing those formats work too.</p>
+          </div>
+          <div>
+            <h3>Does it work with a Strava or Garmin export zip?</h3>
+            <p>Yes. Request your data export from the platform, get the zip onto your device, and FitFerry will import the workouts inside it.</p>
+          </div>
+          <div>
+            <h3>Do imported workouts show up in Apple Fitness?</h3>
+            <p>Yes. They appear in the Fitness and Health apps as real workouts at their real historical dates. A run from 2019 lands in 2019, with its route and heart rate intact.</p>
+          </div>
+          <div>
+            <h3>Is it a subscription?</h3>
+            <p>No. The unlock is a one-time $2.99 purchase. Use the free imports to see that everything works, then unlock when you're ready to bring the rest over.</p>
+          </div>
+          <div>
+            <h3>How do I get my files onto my iPhone?</h3>
+            <p>Any way you'd move a normal file: save them to iCloud Drive, AirDrop them from a Mac, or put them anywhere the Files app can reach. FitFerry opens them from there.</p>
+          </div>
+        </div>
+
+        <h2 id="contact">Contact</h2>
+        <p>Stuck on something not covered here? Email us and a person will read it. Including the exact error text the app showed helps a lot.</p>
+        <!-- PLACEHOLDER: replace with the real support email address (both the href and the visible text). -->
+        <a class="contact-sign" href="mailto:support@example.com"><span class="arr" aria-hidden="true">→</span> support@example.com</a>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Reforged Studio. FitFerry is not affiliated with Apple, Strava, or Garmin.</p>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="privacy.html">Privacy policy</a>
+        <a href="support.html">Support</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
