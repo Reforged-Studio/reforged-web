@@ -198,9 +198,9 @@ h2 {
   justify-self: center; position: relative; z-index: 1;
   width: min(240px, 64vw); aspect-ratio: 1290 / 2796;
   border: 9px solid var(--hero-ink); border-radius: 40px;
-  background: #fff; color: #47605A;
-  display: grid; place-items: center; text-align: center;
-  font-size: 0.8125rem; padding: 0;
+  background: #fff;
+  overflow: hidden;
+  padding: 0;
   box-shadow: 0 30px 60px -30px rgba(4, 40, 32, 0.55);
 }
 .device img {
