@@ -189,9 +189,11 @@ h2 {
 }
 .page-hero .doc-date { font-size: 0.875rem; font-weight: 600; margin: 1.1rem 0 0; opacity: 0.85; }
 
-/* Giant watermark of the app mark, cropped by the block edge */
+/* Giant watermark of the app mark, cropped by the block edge.
+   All blocks crop the same proportion of the mark: ~13% off the right
+   edge, ~23% off the bottom, scaled to each block's mark size. */
 .big-f { position: absolute; right: -60px; bottom: -110px; width: 480px; }
-.page-hero .big-f { width: 300px; right: -70px; bottom: -130px; }
+.page-hero .big-f { width: 300px; right: -40px; bottom: -70px; }
 
 /* Closing CTA band: same green-block language as the hero */
 .cta-band {
@@ -205,7 +207,7 @@ h2 {
 }
 .cta-band h2 { letter-spacing: -0.045em; margin-bottom: 0; }
 .cta-band .cta { margin-top: 2rem; }
-.cta-band .big-f { width: 340px; right: -70px; bottom: -120px; }
+.cta-band .big-f { width: 340px; right: -45px; bottom: -80px; }
 
 /* Device frame (screenshot placeholder) */
 .device {
@@ -353,7 +355,8 @@ a.sign:hover { background: var(--paper-2); color: var(--ink); }
 @media (max-width: 860px) {
   .hero .wrap { grid-template-columns: 1fr; }
   .big-f { width: 340px; right: -90px; bottom: -80px; }
-  .page-hero .big-f { width: 240px; right: -80px; bottom: -110px; }
+  .page-hero .big-f { width: 240px; right: -32px; bottom: -55px; }
+  .cta-band .big-f { width: 220px; right: -30px; bottom: -50px; }
   .device { margin-top: 0.5rem; }
   .features-grid { grid-template-columns: 1fr; gap: 2.25rem; }
   .pricing-grid { grid-template-columns: 1fr; }
