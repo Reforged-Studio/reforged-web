@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support — StopScout</title>
+<meta name="description" content="Answers to common StopScout questions: live versus scheduled times, widget refreshing, saving stops, and how to report bad data.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0E0B09" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FAF7F4" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://reforged.studio/stopscout/support">
+<link rel="icon" href="favicon.png" sizes="32x32">
+<link rel="icon" href="icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Support — StopScout">
+<meta property="og:description" content="Answers to common StopScout questions: live versus scheduled times, widget refreshing, saving stops, and how to report bad data.">
+<meta property="og:image" content="https://reforged.studio/stopscout/icon-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="stopscout.css">
+</head>
+<!-- DRAFT: remove class="draft" to publish. See README.md -->
+<body class="draft">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="mark" href="index.html"><i aria-hidden="true"></i>StopScout</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="index.html">Overview</a></li><li><a href="support.html" aria-current="page">Support</a></li><li><a href="privacy.html">Privacy</a></li>
+  </ul></nav>
+</div></header>
+<main id="main">
+<section class="flush"><div class="wrap">
+  <p class="eyebrow">Support</p>
+  <h1 style="font-size:clamp(28px,5vw,44px)">Answers, and where to send the rest.</h1>
+  <p class="lead" style="margin-top:20px">Most questions about StopScout come up more than once,
+  so the common ones are answered below. Anything else, there's an address at the bottom of the
+  page.</p>
+  <ul class="jump">
+    <li><a href="#faq">&rarr; Common questions</a></li>
+    <li><a href="#report">&rarr; Report bad data</a></li>
+    <li><a href="#contact">&rarr; Contact</a></li>
+  </ul>
+
+  <div class="doc">
+    <h2 id="faq">Common questions</h2>
+    <div class="faq">
+    <details open><summary>Why do my bus times say Scheduled instead of Live?</summary>
+      <div class="a"><p>Real-time predictions from NJ TRANSIT require an approved developer application, which is pending. Until it is granted, bus and rail departures come from the timetable bundled in the app and are labelled Scheduled. PATH is already live.</p><p>The timetable is the floor, and it is always there. Live predictions sit on top of it when the agency provides them &mdash; so a Scheduled time is a real countdown, it just can't know that a particular bus is running late. StopScout labels it rather than letting you assume otherwise.</p></div></details>
+    <details open><summary>Why does my widget show times that look old?</summary>
+      <div class="a"><p>iOS decides how often widgets may refresh in the background, and it budgets that across every widget on the device. StopScout can ask; it cannot insist.</p><p>So the widget always states how old its data is, and tapping the footer fetches fresh predictions immediately. That is the trade: a widget that is instant and occasionally stale, and honest about which. Past fifteen minutes it says so outright.</p></div></details>
+    <details><summary>What is free, and what costs money?</summary>
+      <div class="a"><p>The app is free, and not a limited version &mdash; search, nearest stops, unlimited saved combos, full stop detail, every mode, live and scheduled times. Free also includes a Home Screen widget for whichever stop you are nearest to.</p><p>StopScout+ adds widgets for the stops you have saved, which is what lets you keep a morning bus and an evening train on the Home Screen at once. It is $2.99, once &mdash; not a subscription. No ads and no account either way.</p></div></details>
+    <details><summary>What is a combo?</summary>
+      <div class="a"><p>A saved bundle: one stop, optionally the routes you care about, optionally a direction, and a nickname you choose. &ldquo;Morning bus&rdquo; is a combo. Each widget shows one.</p></div></details>
+    <details><summary>How do I add a widget and choose which stop it shows?</summary>
+      <div class="a"><p>Touch and hold an empty part of the Home Screen, tap <b>Edit</b> &rarr; <b>Add Widget</b>, find StopScout, and pick a size.</p><p>Then touch and hold the widget you just placed, tap <b>Edit Widget</b>, and choose the saved stop. That last step is the one people miss &mdash; a freshly placed widget hasn't been pointed at anything yet. Widgets for saved stops need StopScout+; the free widget finds your nearest stop on its own and needs no setup.</p></div></details>
+    <details><summary>Why doesn't the app icon switch to its dark version in dark mode?</summary>
+      <div class="a"><p>That is an iOS setting rather than something the app controls. Touch and hold the Home Screen, tap <b>Edit</b> &rarr; <b>Customize</b>, and choose <b>Dark</b> or <b>Auto</b>. The default pins every icon on the device to its light version, which is why it affects every app you own, not just this one.</p></div></details>
+    <details><summary>Why does a stop say drop-off only?</summary>
+      <div class="a"><p>Some stops in the timetable let riders off but do not take them on. StopScout labels those instead of offering a departure you could not board.</p></div></details>
+    <details><summary>How accurate is the gate information at Port Authority?</summary>
+      <div class="a"><p>Terminal gate assignments are best-effort and may change. Check station signage before boarding.</p><p>Gates are shown where the data provides them, which is not everywhere and not always in advance.</p></div></details>
+    <details><summary>Which agencies and modes are supported?</summary>
+      <div class="a"><p>NJ TRANSIT bus, rail and light rail, plus PATH. Not New York City Transit, not Amtrak, and not private carriers.</p></div></details>
+    <details><summary>Is there an Apple Watch app?</summary>
+      <div class="a"><p>Not yet.</p></div></details>
+    </div>
+
+    <h2 id="report">Report bad data</h2>
+    <p>Stop names, destination strings, gate assignments and timetables come from agency data.
+    Some errors can be corrected in the app; others have to be reported upstream. Either way,
+    send what you saw and where you saw it &mdash; the stop, the route, what StopScout showed
+    and what it should have said. A screenshot helps.</p>
+    <p class="small">Data availability is not guaranteed. When a feed is unreachable, StopScout
+    falls back to timetable times and says so.</p>
+
+    <h2 id="contact">Contact</h2>
+    <p><a href="mailto:hello@reforged.studio">hello@reforged.studio</a></p>
+    <p>Including your device model, iOS version, the stop or route involved, and a screenshot
+    makes a fix much more likely.</p>
+  </div>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap">
+  <p class="indep">StopScout is an independent app. It is not endorsed by, affiliated with, or
+  supported by NJ TRANSIT or the Port Authority of NY&nbsp;&amp;&nbsp;NJ.</p>
+  <p>Predictions from NJ TRANSIT data. Derived from publicly available PATH data. Data
+  availability is not guaranteed.</p>
+  <nav aria-label="Footer"><a href="privacy.html">Privacy policy</a>
+    <a href="support.html">Support</a>
+    <a href="mailto:hello@reforged.studio">hello@reforged.studio</a></nav>
+  <p>&copy; 2026 Reforged Studio LLC</p>
+</div></footer>
+<p class="draft-flag">Draft &mdash; not for publication</p>
+</body>
+</html>
