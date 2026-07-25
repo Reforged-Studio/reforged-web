@@ -136,6 +136,29 @@ lives in the one `prefers-color-scheme: light` block near the top of
 change `color-scheme` to `dark` plus drop the second `theme-color` tag in each
 page's `<head>`. Print is separate and always renders black on white.
 
+### Troubleshooting: icons not appearing
+
+If the nav icon, hero icon and browser-tab icon are all missing at once, the
+cause is almost always that the PNGs never reached the server rather than
+anything in the CSS. Check by opening the file directly:
+
+```
+https://reforged.studio/stopscout/icon-tile.png
+```
+
+A 404 means the binaries aren't in the repo. The usual culprit is a `.gitignore`
+entry like `*.png` or `img/` somewhere up the tree — Cloudflare Pages only serves
+what's committed. `git check-ignore -v stopscout/icon-tile.png` names the rule
+and the file it came from. `git add -f` gets past it once; fixing the ignore rule
+is better.
+
+The icons are `<img>` elements rather than CSS backgrounds precisely so this
+fails loudly: a missing file shows a broken-image marker instead of empty space.
+The 32px favicon is additionally inlined as a base64 data URI in each page's
+`<head>`, so the tab icon works even if no image file deploys at all.
+
+---
+
 **The icon ships as a tile** (`icon-tile.png`) — the peach glyph on the app's
 dark surface with rounded corners, which is how the icon actually appears on a
 Home Screen. An earlier version filled the glyph's alpha channel with
