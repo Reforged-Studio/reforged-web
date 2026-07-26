@@ -37,7 +37,7 @@
 
 @media (prefers-color-scheme:light){
   :root{
-    --bg:#FAF7F4; --bg2:#F1EBE5; --card:#FFFFFF; --card2:#F6F1EB;
+    --bg:#FAF7F4; --bg2:#F0E9E1; --card:#FDF9F4; --card2:#F3ECE4;
     --ink:#221C17; --ink2:#55483F; --ink3:#6F625A;
     --line:rgba(34,28,23,.12); --line2:rgba(34,28,23,.22);
     --split-bg:#FCEDE3;

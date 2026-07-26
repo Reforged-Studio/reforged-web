@@ -130,6 +130,32 @@ accent token automatically — the light icon variant isn't needed for the web.
 Worth replacing with an SVG eventually: simple geometry, a fraction of the size,
 crisp at any density.
 
+**No pure white anywhere.** The light set is built on `#FAF7F4`, the app's own
+light surface — the value the mode spec cites when it says a sage badge with dark
+text works on `#0E0B09` and `#FAF7F4` alike. Cards sit just above it at
+`#FDF9F4`, a warm off-white rather than `#FFFFFF`, with recessed bands at
+`#F0E9E1`. The only `#fff` left in the stylesheet is inside the print block,
+where paper is white. All light-mode text clears WCAG AA: ink 15.8:1, secondary
+8.3:1, tertiary 5.5:1, accent 5.4:1, and the provenance colours 4.5:1+.
+
+**One thing to decide about badges in light mode.** Mode fills are the same in
+both appearances by design (A16.2), so against the light card they measure only
+1.6–1.8:1 as *shapes* — the badge reads as tinted paper rather than as a chip.
+The text inside is unaffected at 9.5–10.7:1, and this is inherent to the spec's
+shared-lightness register rather than anything the site introduced; the app has
+the same property. If you want the badges more defined on light, the least
+invasive fix is a hairline border in the light block only:
+
+```css
+@media (prefers-color-scheme:light){
+  .wg-badge.m-bus,.wg-badge.m-rail,.wg-badge.m-lrail,.wg-badge.m-path{
+    border-color:rgba(34,28,23,.14)}
+}
+```
+
+That deviates from how the app renders them, which is why it isn't on by
+default.
+
 **Light and dark both follow the OS.** Dark is the default and the light set
 lives in the one `prefers-color-scheme: light` block near the top of
 `stopscout.css`. If you ever want to force dark, comment that block out and
