@@ -40,27 +40,22 @@
   page.</p>
   <ul class="jump">
     <li><a href="#faq">&rarr; Common questions</a></li>
-    <li><a href="#report">&rarr; Report bad data</a></li>
     <li><a href="#contact">&rarr; Contact</a></li>
   </ul>
 
   <div class="doc">
     <h2 id="faq">Common questions</h2>
     <div class="faq">
-    <details open><summary>Why do my bus times say Scheduled instead of Live?</summary>
-      <div class="a"><p>Real-time predictions from NJ TRANSIT require an approved developer application, which is pending. Until it is granted, bus and rail departures come from the timetable bundled in the app and are labelled Scheduled. PATH is already live.</p><p>The timetable is the floor, and it is always there. Live predictions sit on top of it when the agency provides them &mdash; so a Scheduled time is a real countdown, it just can't know that a particular bus is running late. StopScout labels it rather than letting you assume otherwise.</p></div></details>
+    <details open><summary>Why do my times say Scheduled instead of Live?</summary>
+      <div class="a"><p>Real-time predictions from NJ TRANSIT require an approved developer application, which is pending. Until it is granted, NJ TRANSIT bus, rail and light rail times come from the timetable bundled in the app and are labelled Scheduled. PATH is already live.</p><p>The timetable is the floor, and it is always there. Live predictions sit on top of it when the agency provides them &mdash; so a Scheduled time is a real countdown, it just can't know that a particular bus is running late. StopScout labels it rather than letting you assume otherwise.</p></div></details>
     <details open><summary>Why does my widget show times that look old?</summary>
       <div class="a"><p>iOS decides how often widgets may refresh in the background, and it budgets that across every widget on the device. StopScout can ask; it cannot insist.</p><p>So the widget always states how old its data is, and tapping the footer fetches fresh predictions immediately. That is the trade: a widget that is instant and occasionally stale, and honest about which. Past fifteen minutes it says so outright.</p></div></details>
     <details><summary>What is free, and what costs money?</summary>
-      <div class="a"><p>The app is free, and not a limited version &mdash; search, nearest stops, unlimited saved combos, full stop detail, every mode, live and scheduled times. Free also includes a Home Screen widget for whichever stop you are nearest to.</p><p>StopScout+ adds widgets for the stops you have saved, which is what lets you keep a morning bus and an evening train on the Home Screen at once. It is $2.99, once &mdash; not a subscription. No ads and no account either way.</p></div></details>
-    <details><summary>What is a combo?</summary>
-      <div class="a"><p>A saved bundle: one stop, optionally the routes you care about, optionally a direction, and a nickname you choose. &ldquo;Morning bus&rdquo; is a combo. Each widget shows one.</p></div></details>
+      <div class="a"><p>The app is free, and not a limited version &mdash; search, nearby stops, as many saved stops as you like, full detail on any of them, every mode, live and scheduled times. Free also includes a Home Screen widget for whichever stop you are nearest to.</p><p>StopScout+ adds widgets for the stops you have saved, which is what lets you keep a morning bus and an evening train on the Home Screen at once. It is $2.99, once &mdash; not a subscription. No ads and no account either way.</p></div></details>
+    <details><summary>What do I choose when I save a stop?</summary>
+      <div class="a"><p>The stop itself, and then as much or as little as you want on top of it: which routes you care about, which direction, and a name of your own.</p><p>Narrowing to one or two routes keeps the list short and useful; leaving it open shows everything departing that stop. The name you give it is what appears on the widget, so &ldquo;Morning bus&rdquo; beats a stop code and a direction string.</p></div></details>
     <details><summary>How do I add a widget and choose which stop it shows?</summary>
       <div class="a"><p>Touch and hold an empty part of the Home Screen, tap <b>Edit</b> &rarr; <b>Add Widget</b>, find StopScout, and pick a size.</p><p>Then touch and hold the widget you just placed, tap <b>Edit Widget</b>, and choose the saved stop. That last step is the one people miss &mdash; a freshly placed widget hasn't been pointed at anything yet. Widgets for saved stops need StopScout+; the free widget finds your nearest stop on its own and needs no setup.</p></div></details>
-    <details><summary>Why doesn't the app icon switch to its dark version in dark mode?</summary>
-      <div class="a"><p>That is an iOS setting rather than something the app controls. Touch and hold the Home Screen, tap <b>Edit</b> &rarr; <b>Customize</b>, and choose <b>Dark</b> or <b>Auto</b>. The default pins every icon on the device to its light version, which is why it affects every app you own, not just this one.</p></div></details>
-    <details><summary>Why does a stop say drop-off only?</summary>
-      <div class="a"><p>Some stops in the timetable let riders off but do not take them on. StopScout labels those instead of offering a departure you could not board.</p></div></details>
     <details><summary>How accurate is the gate information at Port Authority?</summary>
       <div class="a"><p>Terminal gate assignments are best-effort and may change. Check station signage before boarding.</p><p>Gates are shown where the data provides them, which is not everywhere and not always in advance.</p></div></details>
     <details><summary>Which agencies and modes are supported?</summary>
@@ -69,18 +64,13 @@
       <div class="a"><p>Not yet.</p></div></details>
     </div>
 
-    <h2 id="report">Report bad data</h2>
-    <p>Stop names, destination strings, gate assignments and timetables come from agency data.
-    Some errors can be corrected in the app; others have to be reported upstream. Either way,
-    send what you saw and where you saw it &mdash; the stop, the route, what StopScout showed
-    and what it should have said. A screenshot helps.</p>
-    <p class="small">Data availability is not guaranteed. When a feed is unreachable, StopScout
-    falls back to timetable times and says so.</p>
-
     <h2 id="contact">Contact</h2>
     <p><a href="mailto:hello@reforged.studio">hello@reforged.studio</a></p>
-    <p>Including your device model, iOS version, the stop or route involved, and a screenshot
-    makes a fix much more likely.</p>
+    <p>For bugs, something in the app behaving oddly, or any question the answers above don't
+    cover. Including your device model, iOS version, and the stop or route involved makes a
+    problem far quicker to track down &mdash; a screenshot helps more than anything.</p>
+    <p class="small">Stop names, destinations, gates and timetables come from agency data and
+    appear as the agency publishes them.</p>
   </div>
 </div></section>
 </main>
