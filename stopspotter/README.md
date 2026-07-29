@@ -1,4 +1,7 @@
-# StopScout — website
+# StopSpotter — website
+
+> **Renamed from StopScout.** The name change is not confined to this folder —
+> see *Rename checklist* at the end before treating it as done.
 
 Three static pages plus one stylesheet. No build step, no framework, no external
 requests, no JavaScript. System fonts only.
@@ -7,7 +10,7 @@ requests, no JavaScript. System fonts only.
 index.html            Marketing page
 privacy.html          Privacy policy   — required App Store Connect field
 support.html          Support          — required App Store Connect field
-stopscout.css         Shared stylesheet
+stopspotter.css         Shared stylesheet
 icon-tile.png         192px app-icon tile — nav and hero lockup
 favicon.png           32px
 icon-512.png          512px, also the Open Graph image
@@ -19,8 +22,8 @@ apple-touch-icon.png  180px
 Drop the folder into the repo alongside `streetproof/` and `fitferry/` and push.
 Cloudflare Pages builds on commit; a static folder needs no configuration
 change, no build command, and no cache purge. The folder name must be exactly
-`stopscout` — the canonical and Open Graph URLs assume
-`https://reforged.studio/stopscout/`.
+`stopspotter` — the canonical and Open Graph URLs assume
+`https://reforged.studio/stopspotter/`.
 
 Internal links are deliberately extensionless (`href="privacy"`, `href="./"`).
 Pages 308-redirects `/privacy.html` to `/privacy`, so linking with the extension
@@ -33,11 +36,11 @@ won't resolve, because `file://` has no directory-index behaviour. To preview
 locally, serve the folder:
 
 ```
-cd stopscout-site && python3 -m http.server 8000
+cd stopspotter-site && python3 -m http.server 8000
 # then open http://localhost:8000/
 ```
 
-You'll also want to add StopScout to the app list on the main `reforged.studio`
+You'll also want to add StopSpotter to the app list on the main `reforged.studio`
 index page — nothing here does that for you.
 
 ---
@@ -51,7 +54,7 @@ Two edits per page:
 1. Delete `class="draft"` from `<body>`.
 2. Delete the `<meta name="robots" content="noindex">` line above it.
 
-Then delete the block in `stopscout.css` marked
+Then delete the block in `stopspotter.css` marked
 `DRAFT WATERMARK — DELETE BEFORE PUBLISHING`. Nothing else references it.
 
 The watermark is a fixed banner at the bottom of the viewport only — there is no
@@ -87,21 +90,21 @@ radii are drawn in CSS, so a bare screen composites better and stays sharp.
 Swap each `<div class="shot …">…</div>` for:
 
 ```html
-<img src="img/stop-detail.png" alt="StopScout stop detail, showing live and
+<img src="img/stop-detail.png" alt="StopSpotter stop detail, showing live and
      scheduled departures" width="1290" height="2796" loading="lazy"
      class="shot phone">
 ```
 
-Optional but better than the CSS mocks: a real Home Screen with a StopScout
-stack, mid-swipe. It would replace the layered `.stack` in the StopScout+
+Optional but better than the CSS mocks: a real Home Screen with a StopSpotter
+stack, mid-swipe. It would replace the layered `.stack` in the StopSpotter+
 section and the `.hs` block in the hero.
 
 ### 4. Turn on the App Store link
 
-Both CTAs use a non-functional placeholder badge. `index.html` carries a
-commented-out live version next to the first one. Apple requires their supplied
-badge artwork rather than a CSS approximation, so drop the official SVG inside
-the `<a>`.
+Both CTAs are real buttons with `href="#"` and a `data-appstore` hook. Replace
+the `href` with the App Store URL. Apple requires their supplied badge artwork
+for the "Download on the App Store" lockup, so at the same time drop the
+official SVG inside the `<a>` in place of the text label.
 
 ---
 
@@ -119,16 +122,9 @@ a lightness register and collapse in greyscale by construction (A16.7). Any new
 mode-coloured element needs a word or glyph doing the real work.
 
 `fill` is the badge background in **both** appearances with `--badge-ink`
-(`#1A1512`) on top. The `deep` tokens are declared in `stopscout.css` but
+(`#1A1512`) on top. The `deep` tokens are declared in `stopspotter.css` but
 unused, because nothing here renders mode colour as text or as an unfilled icon.
 If that changes, `--mode-lrail-deep` (`#846538`) must not go below 15px.
-
-**The icon is a CSS mask, not an image.** The source PNG is a flat `#FFB187`
-glyph on transparency, so `appicon.png` ships as an alpha mask filled with
-`var(--accent)`. One asset renders correctly in both appearances and tracks the
-accent token automatically — the light icon variant isn't needed for the web.
-Worth replacing with an SVG eventually: simple geometry, a fraction of the size,
-crisp at any density.
 
 **No pure white anywhere.** The light set is built on `#FAF7F4`, the app's own
 light surface — the value the mode spec cites when it says a sage badge with dark
@@ -158,7 +154,7 @@ default.
 
 **Light and dark both follow the OS.** Dark is the default and the light set
 lives in the one `prefers-color-scheme: light` block near the top of
-`stopscout.css`. If you ever want to force dark, comment that block out and
+`stopspotter.css`. If you ever want to force dark, comment that block out and
 change `color-scheme` to `dark` plus drop the second `theme-color` tag in each
 page's `<head>`. Print is separate and always renders black on white.
 
@@ -169,12 +165,12 @@ cause is almost always that the PNGs never reached the server rather than
 anything in the CSS. Check by opening the file directly:
 
 ```
-https://reforged.studio/stopscout/icon-tile.png
+https://reforged.studio/stopspotter/icon-tile.png
 ```
 
 A 404 means the binaries aren't in the repo. The usual culprit is a `.gitignore`
 entry like `*.png` or `img/` somewhere up the tree — Cloudflare Pages only serves
-what's committed. `git check-ignore -v stopscout/icon-tile.png` names the rule
+what's committed. `git check-ignore -v stopspotter/icon-tile.png` names the rule
 and the file it came from. `git add -f` gets past it once; fixing the ignore rule
 is better.
 
@@ -212,10 +208,10 @@ instead. Worth deciding whether the app tokens should follow.
 ## Still open
 
 - **Price** appears as `$2.99 · one time · not a subscription` in four places:
-  hero note, divider, the StopScout+ cost cell, and the support FAQ. If it
+  hero note, divider, the StopSpotter+ cost cell, and the support FAQ. If it
   changes, grep `2.99`.
 - **§9.5 of the app spec** hides the purchase row until purchasable and names it
-  `Support StopScout`, which reads as a tip jar. It's a feature unlock now — the
+  `Support StopSpotter`, which reads as a tip jar. It's a feature unlock now — the
   app and the site should use the same word for it.
 - **Terminating arrivals.** If an empty board at a terminus is correct
   behaviour, the app wants an empty state saying so rather than looking broken,
@@ -231,7 +227,7 @@ instead. Worth deciding whether the app tokens should follow.
   Collected" on Apple's questionnaire holds for a bundled-database location
   lookup.
 - **A 404 page.** Pages walks up the directory tree looking for `404.html`, so
-  `/stopscout/404.html` would catch bad StopScout URLs specifically. Not
+  `/stopspotter/404.html` would catch bad StopSpotter URLs specifically. Not
   required, and the root site may already cover it.
 
 ## When the caching proxy ships
@@ -250,3 +246,29 @@ convenience; that no identifier for you or your device is stored; and that the
 agency feeds now see the proxy's IP rather than yours. It must also drop the
 sentence saying requests pass through no Reforged Studio server, which is the
 only line in the document that becomes false.
+
+---
+
+## Rename checklist (StopScout → StopSpotter)
+
+The website is fully renamed. These live elsewhere and are not:
+
+- **App spec verbatim strings.** §9.3f (independence), §9.3c (sources), §9.4
+  (About) and the root Settings footer all contain the old name. The site echoes
+  those deliberately, so if the app isn't updated the two will disagree — and the
+  independence disclaimer is the one statement that most needs to match
+  everywhere.
+- **The NJ TRANSIT developer application**, if it names the app. Worth checking
+  whether an approved application is tied to the submitted name.
+- **App Store Connect**: bundle ID, app record, and the Support URL / Privacy
+  Policy URL fields, which must point at `/stopspotter/…`.
+- **The old path.** `/stopscout/` was pushed live at least briefly. It carried
+  `noindex`, so search exposure should be nil, but if you want any inbound link
+  to survive, add a `_redirects` file at the repo root:
+  ```
+  /stopscout/*  /stopspotter/:splat  301
+  ```
+  Otherwise simply delete the old folder.
+- **Verify the new name is clear** on App Store Connect and as a trademark
+  before committing further — the reason for the change applies equally to its
+  replacement.
