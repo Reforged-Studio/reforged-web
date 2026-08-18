@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy policy — StopSpotter</title>
-<meta name="description" content="StopSpotter collects nothing. No accounts, no analytics, no server — saved stops stay on your device and your location never leaves it.">
+<meta name="description" content="StopSpotter has no accounts, no analytics and no tracking. Saved stops stay on your device, and your location is used on the device and never sent anywhere.">
 <!-- DRAFT: delete this line when you remove class="draft" from <body> -->
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="dark light">
@@ -17,7 +17,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Privacy policy — StopSpotter">
-<meta property="og:description" content="StopSpotter collects nothing. No accounts, no analytics, no server — saved stops stay on your device and your location never leaves it.">
+<meta property="og:description" content="StopSpotter has no accounts, no analytics and no tracking. Saved stops stay on your device, and your location is used on the device and never sent anywhere.">
 <meta property="og:image" content="https://reforged.studio/stopspotter/icon-512.png">
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="stopspotter.css">
@@ -34,21 +34,22 @@
 <main id="main">
 <section class="flush"><div class="wrap">
   <p class="eyebrow">Privacy policy</p>
-  <h1 style="font-size:clamp(28px,5vw,44px)">It doesn't collect anything.</h1>
-  <p class="lead" style="margin-top:20px">No accounts, no analytics, no server. Saved stops stay
-  on the device, and your location never leaves it.</p>
-  <p class="stamp" style="margin-top:26px">Last updated 25 July 2026 &middot; Applies to
+  <h1 class="page-title">There's nobody to be.</h1>
+  <p class="lead">No accounts, no analytics, no tracking. Saved stops
+  stay on your device, and your location is used on the device and never sent anywhere.</p>
+  <p class="stamp">Last updated 29 July 2026 &middot; Applies to
   StopSpotter&nbsp;1.0</p>
   <ul class="strip">
     <li>No accounts</li><li>No analytics</li><li>No tracking</li><li>No ads</li>
-    <li>No third-party SDKs</li><li>No server</li>
+    <li>No third-party SDKs</li><li>No profile of you</li>
   </ul>
 
   <div class="doc">
   <div class="callout"><b>The whole policy in one sentence</b>
-    <p>StopSpotter has no user accounts and no server of its own; saved stops, nicknames and
-    preferences are stored only on your device, and your location is used on-device only, to
-    find stops near you.</p></div>
+    <p>StopSpotter has no user accounts and never asks who you are; saved stops, nicknames and
+    preferences are stored only on your device; your location is used on the device and is not
+    sent anywhere; and the one server the app talks to is asked which stop, never who is
+    asking.</p></div>
 
   <h2>What StopSpotter stores, and where</h2>
   <p>Saved stops, names and preferences are written to storage on your device and stay
@@ -57,34 +58,50 @@
 
   <h2>Location</h2>
   <p>If you allow it, StopSpotter uses your location to list stops near you, and to point the
-  nearest-stop widget at the right stop. That lookup runs against a transit database bundled
-  inside the app, on the device. Your coordinates are not transmitted to Reforged Studio or to
-  anyone else, and they are not stored between sessions.</p>
+  nearest-stop widget at the right stop. That lookup runs on your device, against a transit
+  database the app carries. <b>Your coordinates are not sent to Reforged Studio or to anyone
+  else</b> &mdash; the question "which stops are near this point" is answered without the
+  network.</p>
+  <p>Your most recent coordinate is kept on the device, inside StopSpotter's own storage, so the
+  widget can still name the stop you were at when it can't get a fresh fix. It is discarded
+  after 24 hours, and immediately if you turn location off or switch the app to approximate
+  location. Nothing keeps a history of where you have been.</p>
   <p>You can change or revoke this at any time in Settings &rsaquo; Apps &rsaquo; StopSpotter.
-  Without it, everything except nearby search and the nearest-stop widget still works &mdash;
+  Without it, everything except nearby stops and the nearest-stop widget still works &mdash;
   you can search for stops by name.</p>
 
   <h2>Network requests</h2>
-  <p>To show times, StopSpotter requests predictions directly from NJ TRANSIT's public developer
-  feeds and from a community-hosted PATH real-time feed. Those requests go from your device to
-  those third parties, who necessarily see standard network information such as your IP address,
-  subject to their own practices.</p>
-  <p>Those requests do not pass through any server operated by Reforged Studio, and Reforged
-  Studio receives nothing from them. The requests contain a stop identifier &mdash; never your
-  location, and never any identifier for you or your device beyond what any network request
-  carries.</p>
+  <p>StopSpotter talks to exactly one address on the internet:
+  <code>stopspotter-api.reforged.studio</code>, a small server run by Reforged Studio. Your
+  device does not contact NJ Transit or the Port Authority itself; that server does, on behalf
+  of everyone at once, and passes back the departures. NJ Transit's licence requires that shape
+  &mdash; an app may not send its users' devices to their systems directly.</p>
+  <p><b>What the request contains: a stop identifier.</b> Not your location, not your name, not
+  an account, and no identifier for you or your device. There is nothing in it that could say
+  which requests came from the same person.</p>
+  <p>Like any request to any website, it arrives carrying the IP address your connection is
+  using. The server keeps no record tying a request to a person or a device, and builds no
+  profile of anyone; its hosting provider, Cloudflare, processes the request in the ordinary
+  course of delivering it and may hold short-lived operational logs of its own. The transit
+  agencies, at the far end, see the server &mdash; not you.</p>
 
   <h2>Schedule data</h2>
-  <p>Timetables, route names and stop locations ship inside the app and update when the app
-  updates. Reading them involves no network request at all.</p>
+  <p>Timetables, route names and stop locations are carried inside the app, and reading them
+  needs no network at all &mdash; which is why there is still an answer on screen when
+  everything else is down.</p>
+  <p>So that a timetable change doesn't have to wait for an App Store update, the app also
+  checks the same server for a newer copy of that database: at most once a day, on Wi-Fi, in
+  the background. It's a file download and it says nothing about you.</p>
 
   <h2>Purchases</h2>
   <p>StopSpotter+ is purchased through the App Store. Purchases are handled entirely by Apple,
-  under Apple's own privacy policy. Reforged Studio never sees your payment details.</p>
+  under Apple's own privacy policy. Reforged Studio never sees your payment details, and there
+  is no purchase server of ours involved &mdash; the app simply records on your device that the
+  purchase exists, so the widget knows.</p>
 
   <h2>Children</h2>
-  <p>StopSpotter collects no data from anyone, including children. It is a general-purpose transit
-  utility and is not directed at children.</p>
+  <p>StopSpotter asks nobody who they are, and that includes children. It is a general-purpose
+  transit utility and is not directed at children.</p>
 
   <h2>Changes to this policy</h2>
   <p>If the app's behaviour changes in a way that affects privacy, this policy will be updated
@@ -98,8 +115,8 @@
 </main>
 <footer class="foot"><div class="wrap">
   <p class="indep">StopSpotter is an independent app. It is not endorsed by, affiliated with, or
-  supported by NJ TRANSIT or the Port Authority of NY&nbsp;&amp;&nbsp;NJ.</p>
-  <p>Predictions from NJ TRANSIT data. Derived from publicly available PATH data. Data
+  supported by NJ Transit or the Port Authority of NY&nbsp;&amp;&nbsp;NJ.</p>
+  <p>Predictions from NJ Transit data. Derived from publicly available PATH data. Data
   availability is not guaranteed.</p>
   <nav aria-label="Footer"><a href="privacy">Privacy policy</a>
     <a href="support">Support</a>

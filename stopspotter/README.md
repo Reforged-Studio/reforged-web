@@ -2,6 +2,12 @@
 
 > **Renamed from StopScout.** The name change is not confined to this folder —
 > see *Rename checklist* at the end before treating it as done.
+>
+> **Refreshed 2026-07-29** (copy re-checked against the shipping app, screenshots
+> dropped in, privacy policy re-verified from the source) and **redesigned
+> 2026-07-30** (one type system, restrained image scale, the widget crossfade
+> replaced by a Smart-Stack-style 3D flip — visual design only, no copy changes).
+> Everything that changed is in [CHANGES.md](CHANGES.md); read that first.
 
 Three static pages plus one stylesheet. No build step, no framework, no external
 requests, no JavaScript. System fonts only.
@@ -10,11 +16,13 @@ requests, no JavaScript. System fonts only.
 index.html            Marketing page
 privacy.html          Privacy policy   — required App Store Connect field
 support.html          Support          — required App Store Connect field
-stopspotter.css         Shared stylesheet
+stopspotter.css       Shared stylesheet
+CHANGES.md            What each pass changed, and why — newest first
 icon-tile.png         192px app-icon tile — nav and hero lockup
 favicon.png           32px
 icon-512.png          512px, also the Open Graph image
 apple-touch-icon.png  180px
+img/                  Screenshots and widget captures (see CHANGES.md)
 ```
 
 ### Deploying
@@ -65,39 +73,33 @@ top of the legal pages instead.
 The `noindex` exists so that pushing this folder to test the deploy can't get a
 DRAFT page full of placeholder screenshots into the index.
 
-### 2. Resolve the location question
+### 2. ~~Resolve the location question~~ — SETTLED 2026-07-29
 
-`privacy.html` → **Location** says location is used to list nearby stops *and to
-point the nearest-stop widget at the right stop*. That second use happens
-outside the app, on iOS's refresh schedule. If it needs anything beyond When In
-Use, this paragraph is wrong and so is the App Store privacy questionnaire
-answer. It's a free feature every user gets, so it is not an edge case.
-**Settle this before the app or the site ships.**
+The widget's nearest-stop lookup needs no authorization beyond When In Use plus
+the separate widget-location grant iOS asks for when any StopSpotter widget is
+added. The coordinate is resolved on the device against the transit database the
+app carries, and is never transmitted. `privacy.html` → **Location** now also
+discloses the one thing the old text got wrong: the most recent coordinate *is*
+kept on the device (24-hour expiry, deleted on revoke or on a drop to approximate
+location) so the widget can still name a stop without a fresh fix.
 
-### 3. Drop in screenshots
+The App Store questionnaire answer that follows: precise location, used for app
+functionality, **not linked to identity and not used for tracking**.
 
-Four placeholders, each marked with an HTML comment naming the intended file.
-Export at 2× or 3×, dark appearance, PNG, no device frames — frames and corner
-radii are drawn in CSS, so a bare screen composites better and stays sharp.
+### 3. ~~Drop in screenshots~~ — DONE 2026-07-29
 
-| Replace | File | Aspect | Notes |
-|---|---|---|---|
-| `.shot.wide` in *One place* | `img/search-modes.png` | 16:10 | One query returning a bus stop, a rail station and a PATH station together. The only proof of the coverage claim — worth staging. |
-| `.shot.phone` #1 | `img/stop-detail.png` | 9:19.5 | Mixed provenance, so per-row `Live` / `Scheduled` words show on the secondary line. |
-| `.shot.phone` #2 | `img/search.png` | 9:19.5 | Modes intermixed. |
-| `.shot.phone` #3 | `img/nearby.png` | 9:19.5 | |
+All four placeholders are replaced with real captures, in `img/`. See CHANGES.md
+for what each one shows and how they were staged. The free-widget section and the
+StopSpotter+ section now use real widget renders rather than CSS mocks.
 
-Swap each `<div class="shot …">…</div>` for:
+One capture was not obtained: `img/nearby.png`. The Nearest module never finished
+loading in the simulator, so the third phone slot shows the saved-stops list
+instead. If the nearby list is also slow on a real device, that is a bug worth
+chasing rather than a screenshot to retake.
 
-```html
-<img src="img/stop-detail.png" alt="StopSpotter stop detail, showing live and
-     scheduled departures" width="1290" height="2796" loading="lazy"
-     class="shot phone">
-```
-
-Optional but better than the CSS mocks: a real Home Screen with a StopSpotter
-stack, mid-swipe. It would replace the layered `.stack` in the StopSpotter+
-section and the `.hs` block in the hero.
+Still optional, still better than what is there: a photograph or capture of a real
+Home Screen with a StopSpotter stack mid-swipe, which would replace the `.hs`
+block in the hero — the last CSS mock on the site.
 
 ### 4. Turn on the App Store link
 
@@ -207,45 +209,49 @@ instead. Worth deciding whether the app tokens should follow.
 
 ## Still open
 
-- **Price** appears as `$2.99 · one time · not a subscription` in four places:
-  hero note, divider, the StopSpotter+ cost cell, and the support FAQ. If it
-  changes, grep `2.99`.
-- **§9.5 of the app spec** hides the purchase row until purchasable and names it
-  `Support StopSpotter`, which reads as a tip jar. It's a feature unlock now — the
-  app and the site should use the same word for it.
-- **Terminating arrivals.** If an empty board at a terminus is correct
-  behaviour, the app wants an empty state saying so rather than looking broken,
-  and the support page probably wants an entry for it.
+- **Price** appears as `$2.99` in four places: the hero note, the free/paid
+  divider, the StopSpotter+ cost cell, and the support FAQ. If it changes, grep
+  `2.99`.
+- ~~**§9.5 of the app spec** names the purchase row `Support StopSpotter`~~ —
+  checked 2026-07-29 and no longer true: the shipping Settings row is
+  `StopSpotter+`, and the app never uses tip-jar language. App and site agree.
+- **Terminating arrivals.** The support page now has an entry for it ("A station
+  is showing no departures at all"). The app side is still open: if an empty board
+  at a terminus is correct behaviour, it wants an empty state saying so rather
+  than looking broken.
 - **Widget stacks at scale.** The copy says "as many as you like" and states the
   refresh-budget tradeoff. It deliberately names no number, since WidgetKit
   budgets refreshes per app rather than per widget and nobody has watched ten
   for a day.
-- **Worth a lawyer, not a guess.** The exact attribution wording the NJ TRANSIT
-  licence requires on a public site; the community-hosted PATH feed the app
-  depends on with no agreement in place; whether a future caching proxy triggers
-  New Jersey or CCPA obligations once traffic scales; and whether "Data Not
-  Collected" on Apple's questionnaire holds for a bundled-database location
-  lookup.
+- **Worth a lawyer, not a guess.** The exact attribution wording the NJ Transit
+  licence requires on a public site; whether the caching proxy — which has now
+  shipped and is the only path to live data — triggers New Jersey or CCPA
+  obligations once traffic scales; and whether "Data Not Collected" on Apple's
+  questionnaire holds for a bundled-database location lookup. *(The
+  community-hosted PATH feed that used to be on this list is gone: PATH now comes
+  from the Port Authority's own published data, through the same proxy.)*
 - **A 404 page.** Pages walks up the directory tree looking for `404.html`, so
   `/stopspotter/404.html` would catch bad StopSpotter URLs specifically. Not
   required, and the root site may already cover it.
 
-## When the caching proxy ships
+## ~~When the caching proxy ships~~ — IT SHIPPED, and the policy is rewritten
 
-`privacy.html` → **Network requests** is written to be replaced. Nothing
-elsewhere in the policy depends on its claims — no "as described above", no
-global "nothing ever leaves your device". Amend that section, revise the date
-above it, and no audit of the rest is needed.
+`privacy.html` → **Network requests** now describes the real architecture: one
+address (`stopspotter-api.reforged.studio`), operated by Reforged Studio, which
+the device talks to instead of the agencies; a request carrying a stop identifier
+and nothing else; the IP that any web request carries, acknowledged rather than
+glossed; and the agencies seeing the server rather than you. The sentence saying
+requests pass through no Reforged Studio server — the one line that became false
+— is gone. **Schedule data** gained the once-a-day, Wi-Fi-only check for a newer
+copy of the database, which the old text did not mention.
 
-It will need to state: that requests now reach a proxy operated by Reforged
-Studio before the agency feeds; what the proxy receives (a stop identifier and
-an IP address); that it caches agency responses rather than requests; whether
-request logs exist and for how long they are retained — advice: retain nothing
-and say so, a stated zero-retention policy being worth more than the debugging
-convenience; that no identifier for you or your device is stored; and that the
-agency feeds now see the proxy's IP rather than yours. It must also drop the
-sentence saying requests pass through no Reforged Studio server, which is the
-only line in the document that becomes false.
+**The one thing left open, and it is a Cloudflare setting rather than a copy
+question.** The page currently says the server keeps no record tying a request to
+a person or device, and that Cloudflare "may hold short-lived operational logs of
+its own" — which is true and deliberately unspecific, because retention is a
+property of the hosting account. The old advice here still stands: retain nothing
+and say so. A stated zero-retention position is worth more than the debugging
+convenience, and it would let that clause be replaced with something definite.
 
 ---
 
@@ -253,11 +259,11 @@ only line in the document that becomes false.
 
 The website is fully renamed. These live elsewhere and are not:
 
-- **App spec verbatim strings.** §9.3f (independence), §9.3c (sources), §9.4
-  (About) and the root Settings footer all contain the old name. The site echoes
-  those deliberately, so if the app isn't updated the two will disagree — and the
-  independence disclaimer is the one statement that most needs to match
-  everywhere.
+- ~~**App spec verbatim strings.**~~ Done, and checked on 2026-07-29: the app
+  composes the independence disclaimer and both attributions from one constant
+  that already reads `StopSpotter` and `NJ Transit`. The site was still setting
+  the agency in caps; it now matches the app word for word. See CHANGES.md →
+  *One change that touches every page* if you'd rather go back to `NJ TRANSIT`.
 - **The NJ TRANSIT developer application**, if it names the app. Worth checking
   whether an approved application is tied to the submitted name.
 - **App Store Connect**: bundle ID, app record, and the Support URL / Privacy
