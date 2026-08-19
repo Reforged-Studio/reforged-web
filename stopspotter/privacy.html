@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy policy — StopSpotter</title>
 <meta name="description" content="StopSpotter has no accounts, no analytics and no tracking. Saved stops stay on your device, and your location is used on the device and never sent anywhere.">
-<!-- DRAFT: delete this line when you remove class="draft" from <body> -->
-<meta name="robots" content="noindex">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0E0B09" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#FAF7F4" media="(prefers-color-scheme: light)">
@@ -22,8 +20,7 @@
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="stopspotter.css">
 </head>
-<!-- DRAFT: remove class="draft" to publish. See README.md -->
-<body class="draft">
+<body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
   <a class="mark" href="./"><img src="icon-tile.png" alt="" width="27" height="27">StopSpotter</a>
@@ -36,9 +33,9 @@
   <p class="eyebrow">Privacy policy</p>
   <h1 class="page-title">There's nobody to be.</h1>
   <p class="lead">No accounts, no analytics, no tracking. Saved stops
-  stay on your device, and your location is used on the device and never sent anywhere.</p>
-  <p class="stamp">Last updated 29 July 2026 &middot; Applies to
-  StopSpotter&nbsp;1.0</p>
+  stay on your devices, and your location is used on the device and never sent anywhere.</p>
+  <p class="stamp">Last updated 18 August 2026 &middot; Applies to
+  StopSpotter&nbsp;1.0 on iPhone and Apple&nbsp;Watch</p>
   <ul class="strip">
     <li>No accounts</li><li>No analytics</li><li>No tracking</li><li>No ads</li>
     <li>No third-party SDKs</li><li>No profile of you</li>
@@ -58,10 +55,11 @@
 
   <h2>Location</h2>
   <p>If you allow it, StopSpotter uses your location to list stops near you, and to point the
-  nearest-stop widget at the right stop. That lookup runs on your device, against a transit
-  database the app carries. <b>Your coordinates are not sent to Reforged Studio or to anyone
-  else</b> &mdash; the question "which stops are near this point" is answered without the
-  network.</p>
+  nearest-stop widget at the right stop. It asks for <b>when-in-use</b> access only: there is no
+  background location, no significant-change monitoring, and nothing that follows you around.
+  That lookup runs on your device, against a transit database the app carries. <b>Your
+  coordinates are not sent to Reforged Studio or to anyone else</b> &mdash; the question "which
+  stops are near this point" is answered without the network.</p>
   <p>Your most recent coordinate is kept on the device, inside StopSpotter's own storage, so the
   widget can still name the stop you were at when it can't get a fresh fix. It is discarded
   after 24 hours, and immediately if you turn location off or switch the app to approximate
@@ -84,6 +82,11 @@
   profile of anyone; its hosting provider, Cloudflare, processes the request in the ordinary
   course of delivering it and may hold short-lived operational logs of its own. The transit
   agencies, at the far end, see the server &mdash; not you.</p>
+  <p>The server does keep one running record, and it is worth naming precisely: a log of
+  <i>observed departures</i> &mdash; the times boats and trains were predicted to arrive, taken
+  from the system-wide snapshot it already fetches, so that timetable gaps can be reconstructed
+  later. It is a record of vehicles, not of people. No request, device or person appears in it,
+  and it is written on a fixed schedule whether anyone is using the app or not.</p>
 
   <h2>Schedule data</h2>
   <p>Timetables, route names and stop locations are carried inside the app, and reading them
@@ -94,10 +97,23 @@
   the background. It's a file download and it says nothing about you.</p>
 
   <h2>Purchases</h2>
-  <p>StopSpotter+ is purchased through the App Store. Purchases are handled entirely by Apple,
-  under Apple's own privacy policy. Reforged Studio never sees your payment details, and there
-  is no purchase server of ours involved &mdash; the app simply records on your device that the
-  purchase exists, so the widget knows.</p>
+  <p>StopSpotter+ is purchased through the App&nbsp;Store. Purchases are handled entirely by
+  Apple, under Apple's own privacy policy. Reforged Studio never sees your payment details, and
+  there is no purchase server of ours involved &mdash; the app asks Apple whether the purchase
+  exists and records the answer on your device, so the widget knows. What it stores is one bit
+  of entitlement, not a receipt.</p>
+
+  <h2>Apple&nbsp;Watch</h2>
+  <p>Your saved stops reach the watch from your iPhone over Apple's own device-to-device sync,
+  the same channel any paired app uses. Nothing goes via Reforged Studio and nothing goes via a
+  third party. The watch asks the same server for departures the phone does, and that request has
+  the same shape: a stop identifier and nothing about you.</p>
+
+  <h2>Diagnostics</h2>
+  <p>StopSpotter carries a small diagnostics recorder used while the app is being developed. In
+  the version you download from the App&nbsp;Store it records nothing at all &mdash; the
+  recording is compiled out, not merely switched off. Where it does run, everything it collects
+  stays on the device and leaves it only if you deliberately export it and send it to us.</p>
 
   <h2>Children</h2>
   <p>StopSpotter asks nobody who they are, and that includes children. It is a general-purpose
@@ -115,14 +131,14 @@
 </main>
 <footer class="foot"><div class="wrap">
   <p class="indep">StopSpotter is an independent app. It is not endorsed by, affiliated with, or
-  supported by NJ Transit or the Port Authority of NY&nbsp;&amp;&nbsp;NJ.</p>
-  <p>Predictions from NJ Transit data. Derived from publicly available PATH data. Data
-  availability is not guaranteed.</p>
+  supported by NJ Transit, the Port Authority of NY&nbsp;&amp;&nbsp;NJ, or NY Waterway.</p>
+  <p>Predictions from NJ Transit data. Derived from publicly available PATH data. Schedule data
+  and predictions derived from publicly available NY Waterway data. Data availability is not
+  guaranteed.</p>
   <nav aria-label="Footer"><a href="privacy">Privacy policy</a>
     <a href="support">Support</a>
     <a href="mailto:hello@reforged.studio">hello@reforged.studio</a></nav>
   <p>&copy; 2026 Reforged Studio LLC</p>
 </div></footer>
-<p class="draft-flag">Draft &mdash; not for publication</p>
 </body>
 </html>

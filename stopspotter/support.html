@@ -4,9 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Support — StopSpotter</title>
-<meta name="description" content="Answers to common StopSpotter questions: live versus scheduled times, widget refreshing, gates at Port Authority, saving stops, and what the free app includes.">
-<!-- DRAFT: delete this line when you remove class="draft" from <body> -->
-<meta name="robots" content="noindex">
+<meta name="description" content="Answers to common StopSpotter questions: the five services it covers, live versus scheduled times, widgets and refreshing, the Apple Watch app and Smart Stack cards, gates at Port Authority, saving stops, and what StopSpotter+ costs.">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0E0B09" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#FAF7F4" media="(prefers-color-scheme: light)">
@@ -17,13 +15,12 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Support — StopSpotter">
-<meta property="og:description" content="Answers to common StopSpotter questions: live versus scheduled times, widget refreshing, gates at Port Authority, saving stops, and what the free app includes.">
+<meta property="og:description" content="Answers to common StopSpotter questions: the five services it covers, live versus scheduled times, widgets and refreshing, the Apple Watch app and Smart Stack cards, gates at Port Authority, saving stops, and what StopSpotter+ costs.">
 <meta property="og:image" content="https://reforged.studio/stopspotter/icon-512.png">
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="stopspotter.css">
 </head>
-<!-- DRAFT: remove class="draft" to publish. See README.md -->
-<body class="draft">
+<body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
   <a class="mark" href="./"><img src="icon-tile.png" alt="" width="27" height="27">StopSpotter</a>
@@ -46,34 +43,51 @@
   <div class="doc">
     <h2 id="faq">Common questions</h2>
     <div class="faq">
+    <details open><summary>Which agencies and modes are supported?</summary>
+      <div class="a"><p>Five services, in one app: <b>NJ&nbsp;Transit bus</b>, <b>NJ&nbsp;Transit
+      rail</b>, <b>NJ&nbsp;Transit light rail</b>, <b>PATH</b>, and <b>NY&nbsp;Waterway
+      ferries</b> &mdash; all five with live departures where the operator is reporting them, and
+      the published timetable underneath when they aren't.</p><p>Not New York City Transit, not
+      Amtrak, and not private carriers.</p></div></details>
     <details open><summary>What's the difference between &ldquo;updated 2 min ago&rdquo; and &ldquo;Schedule data&rdquo;?</summary>
-      <div class="a"><p>It's the difference between what the agency is reporting right now and what the timetable says is supposed to happen.</p><p><b>updated 2 min ago</b> means the times came from the agency's own live feed, and tells you when they arrived. <b>Schedule data</b> means the live feed had nothing to say for that stop, so you're reading the timetable. Individual rows say <b>Live</b> or <b>Scheduled</b> for the same reason, because one stop can be a mix of both.</p><p>A Scheduled time is a real countdown &mdash; it just can't know that one particular bus is running late. StopSpotter tells you which kind you're reading rather than letting you assume.</p></div></details>
-    <details open><summary>My widget says &ldquo;Schedule data&rdquo; even though the app shows live times.</summary>
-      <div class="a"><p>Give it a minute or two. A widget builds itself the moment you place it, and if that moment lands before the app has managed its first live fetch, the widget quite correctly shows timetable times and says so.</p><p>It doesn't stay that way. A widget that came up on schedule data asks iOS to rebuild it within a couple of minutes rather than waiting for its usual slot, so it picks up live times on its own. You can also tap the refresh arrow in its corner. If it's still on schedule data after five minutes or so, the live feed genuinely has nothing for that stop right now.</p></div></details>
-    <details><summary>Why does my widget show times that look old?</summary>
-      <div class="a"><p>iOS decides how often widgets may refresh in the background, and it budgets that across every widget on the device. StopSpotter can ask; it cannot insist.</p><p>So the widget always states how old its data is, and tapping the refresh arrow fetches fresh predictions immediately. That is the trade: a widget that is instant and occasionally stale, and honest about which. Past fifteen minutes it says outright that it may not reflect real-time data.</p></div></details>
+      <div class="a"><p>It's the difference between what the operator is reporting right now and what the timetable says is supposed to happen.</p><p><b>updated 2 min ago</b> means the times came from a live feed, and tells you when they arrived. <b>Schedule data</b> means the published timetable, built into the app &mdash; no network needed. You'll see it whenever there's no live prediction to show. It means: this is the timetable, not a prediction.</p><p>Individual rows say <b>Live</b> or <b>Scheduled</b> for the same reason, because one stop can be a mix of both. A Scheduled time is a real countdown &mdash; it just can't know that one particular bus is running late.</p></div></details>
+    <details><summary>Where does the data come from?</summary>
+      <div class="a"><p>Predictions from NJ&nbsp;Transit data. Derived from publicly available PATH data. Schedule data and predictions derived from publicly available NY&nbsp;Waterway data. Timetables come from the operators' published schedule feeds and are carried inside the app, so there is still an answer when the live feeds are down. Data availability is not guaranteed.</p><p>StopSpotter is an independent app. It is not endorsed by, affiliated with, or supported by NJ&nbsp;Transit, the Port Authority of NY&nbsp;&amp;&nbsp;NJ, or NY&nbsp;Waterway.</p></div></details>
+
+    <details><summary>How do I put a stop on the Home Screen?</summary>
+      <div class="a"><p>Touch and hold an empty part of the Home Screen, tap <b>Edit</b> &rarr; <b>Add Widget</b>, find StopSpotter, and pick a size.</p><p>Then &mdash; and this is the step people miss &mdash; touch and hold the widget you just placed, tap <b>Edit Widget</b>, and choose the saved stop from the list. A widget you've just dropped hasn't been pointed at anything yet.</p><p>Place as many as you like and stack them in one spot. Bear in mind iOS budgets background refreshes per app rather than per widget, so the more you place, the less often each updates on its own.</p></div></details>
+    <details><summary>Why does my widget show my nearest stop instead of the one I saved?</summary>
+      <div class="a"><p>Because it hasn't been pointed at one yet. Every widget starts on <b>Nearest stop</b>, which is the free setting and needs no setting up at all.</p><p>Pointing a widget at a stop <i>you</i> saved &mdash; your routes, your direction, your name for it &mdash; is what StopSpotter+ buys. Until then the widget still works; it just answers &ldquo;what's leaving near me&rdquo; rather than &ldquo;when's my bus&rdquo;.</p></div></details>
+    <details><summary>How does a widget refresh?</summary>
+      <div class="a"><p>It updates itself, on iOS's schedule rather than ours. A widget is meant to be glanceable, so it keeps a recent answer on screen and refreshes in the background when the system allows it.</p><p>That's why every widget says how old its data is. If you want the answer for right now, tap the refresh arrow in its corner and it fetches immediately. Past fifteen minutes it says outright that it may not reflect real-time data.</p></div></details>
+    <details><summary>My widget says &ldquo;Schedule data&rdquo; even though the app shows live times.</summary>
+      <div class="a"><p>Give it a minute or two. A widget builds itself the moment you place it, and if that moment lands before the app has managed its first live fetch, the widget quite correctly shows timetable times and says so.</p><p>It doesn't stay that way. A widget that came up on schedule data asks iOS to rebuild it within a couple of minutes rather than waiting for its usual slot. You can also tap the refresh arrow. If it's still on schedule data after five minutes or so, the live feed genuinely has nothing for that stop right now.</p></div></details>
     <details><summary>I tapped Edit Widget and the list of stops just spins.</summary>
-      <div class="a"><p><b>Restart your iPhone.</b> That fixes it.</p><p>The list of stops a widget can show is built on your device, from a file the app has already written &mdash; there's no network involved and nothing to wait for. When it spins anyway, what's stuck is iOS's own record of the app's widget settings, and a restart clears it. We've seen this once, on one phone, after an app was deleted and reinstalled several times in a day; a restart cleared it and it has not come back.</p><p>If a restart doesn't fix it, that's genuinely new &mdash; please write, and say what you'd done just before it started.</p></div></details>
+      <div class="a"><p><b>Restart your iPhone.</b> That fixes it.</p><p>The list of stops a widget can show is built on your device, from a file the app has already written &mdash; there's no network involved and nothing to wait for. When it spins anyway, what's stuck is iOS's own record of the app's widget settings, and a restart clears it.</p><p>If a restart doesn't fix it, that's genuinely new &mdash; please write, and say what you'd done just before it started.</p></div></details>
     <details><summary>Why did adding a widget ask for my location?</summary>
-      <div class="a"><p>Because the widget's out-of-the-box setting is <b>Nearest stop</b>, and iOS asks for that permission once, for the app as a whole, the first time any StopSpotter widget is added.</p><p>There's only one StopSpotter widget, and iOS has no way to ask per setting &mdash; so the prompt appears even if you're planning to point the widget at a stop you saved and will never use the nearest-stop mode at all. You can say no. The widget still works pointed at a saved stop; you'll just get the nearest-stop setting asking to be turned on if you ever pick it.</p></div></details>
-    <details><summary>What is free, and what costs money?</summary>
-      <div class="a"><p>The app is free, and not a limited version &mdash; search, nearby stops, as many saved stops as you like, full detail on any of them, every mode it covers, live and scheduled times. Free also includes a Home Screen widget, showing whichever stop you're nearest to, which needs no setting up at all.</p><p>StopSpotter+ buys one thing: pointing that widget at a stop <i>you</i> saved, with your routes, your direction and your name for it. That's what lets you keep a morning bus and an evening train on the Home Screen at once. It is $2.99, once &mdash; not a subscription. No ads and no account either way.</p></div></details>
+      <div class="a"><p>Because the widget's out-of-the-box setting is <b>Nearest stop</b>, and iOS asks for that permission once, for the app as a whole, the first time any StopSpotter widget is added.</p><p>There's only one StopSpotter widget, and iOS has no way to ask per setting &mdash; so the prompt appears even if you're planning to point the widget at a stop you saved. You can say no. The widget still works pointed at a saved stop.</p></div></details>
+
+    <details><summary>How do I get StopSpotter on my Apple&nbsp;Watch?</summary>
+      <div class="a"><p>It comes with the iPhone app. If your watch installs apps automatically it will already be there; otherwise open the <b>Watch</b> app on your iPhone, scroll to StopSpotter, and turn on <b>Show App on Apple Watch</b>.</p><p>The watch app is part of the free app. It lists every combo you've saved, with live times and the same freshness line the phone shows.</p></div></details>
+    <details><summary>How do I add a StopSpotter card to my Smart&nbsp;Stack?</summary>
+      <div class="a"><p>On the watch face, turn the Digital Crown down to open the Smart Stack, press and hold, tap <b>+</b>, and choose StopSpotter. Then pick which of your saved combos the card should show.</p><p>That last part &mdash; pointing a card at a combo you saved &mdash; is the StopSpotter+ half, exactly as it is on the Home Screen.</p></div></details>
+    <details><summary>My watch card says &ldquo;Unlock in StopSpotter on iPhone&rdquo;.</summary>
+      <div class="a"><p>That card is pointed at one of your saved combos, which is a StopSpotter+ feature, and the purchase hasn't reached the watch yet.</p><p>StopSpotter+ is bought on the iPhone &mdash; there's no separate watch purchase and nothing extra to pay. Open StopSpotter on the phone (buying it, or tapping <b>Restore Purchases</b> in Settings if you already own it), and the watch picks it up from the phone shortly after. The free watch app and its nearest-stop card keep working either way.</p></div></details>
+
     <details><summary>What do I choose when I save a stop?</summary>
       <div class="a"><p>The stop itself, and then as much or as little as you want on top of it: which routes you care about, which direction, and a name of your own.</p><p>Narrowing to one or two routes keeps the list short and useful; leaving it open shows everything departing that stop. The name you give it is what appears on the widget, so &ldquo;Morning bus&rdquo; beats a stop code and a direction string.</p></div></details>
-    <details><summary>How do I put a saved stop on the Home Screen?</summary>
-      <div class="a"><p>Touch and hold an empty part of the Home Screen, tap <b>Edit</b> &rarr; <b>Add Widget</b>, find StopSpotter, and pick a size.</p><p>Then &mdash; and this is the step people miss &mdash; touch and hold the widget you just placed, tap <b>Edit Widget</b>, and choose the saved stop from the list. A widget you've just dropped hasn't been pointed at anything yet; until you do that it shows your nearest stop. Choosing a saved stop is the StopSpotter+ part.</p><p>Place as many as you like and stack them in one spot. Bear in mind iOS budgets background refreshes per app rather than per widget, so the more you place, the less often each updates on its own.</p></div></details>
-    <details><summary>I bought StopSpotter+ on another phone / I reinstalled the app.</summary>
-      <div class="a"><p>Open <b>Settings</b> in the app and tap <b>Restore Purchases</b>, or reach the same button from the StopSpotter+ screen. It's a one-time purchase tied to your Apple Account, so it comes back on any device signed in to the same account.</p><p>Refunds are Apple's to give, not ours &mdash; go to <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>, sign in, and choose the purchase. We never see your payment details and cannot process a refund on your behalf. If something about the app is the reason you want one, we'd like to hear about it either way.</p></div></details>
+    <details><summary>Can I reorder my saved stops? What are the chips at the top?</summary>
+      <div class="a"><p>Yes &mdash; on the iPhone, press and hold a saved stop and drag it. There's no Edit button to find first. The order you set is the order the widget's picker offers, so putting your morning stop first is worth doing. On the watch, reordering appears once you have more than one card to arrange.</p><p>The row of chips above the list &mdash; Bus, Rail, Light&nbsp;Rail, PATH, Ferry &mdash; appears when your saved stops span more than one mode, and filters the list to one of them. It's a view, not a setting: nothing is deleted and the widget is unaffected.</p></div></details>
+
     <details><summary>Which gate is my bus at Port Authority?</summary>
-      <div class="a"><p>Where NJ Transit reports a gate for a departure, StopSpotter puts it on the row, next to the route. That's most Port Authority bus departures, most of the time.</p><p>Gate assignments are not everywhere and not always given in advance, and they can change after they're published. Check the terminal signage before you board.</p></div></details>
+      <div class="a"><p>Where NJ&nbsp;Transit publishes a gate for a departure, StopSpotter puts it on the row next to the route, reading <b>Gate&nbsp;213</b> or, when the operator says so rather than naming a number, <b>Check board</b>.</p><p><b>Some departures show no gate at all, and that is not a fault.</b> NJ&nbsp;Transit does not publish one for every trip &mdash; gates are not assigned everywhere, are not always given in advance, and can change after they're published. StopSpotter shows a gate when there is one to show and stays quiet when there isn't, rather than guessing. Check the terminal signage before you board.</p></div></details>
     <details><summary>A station is showing no departures at all.</summary>
       <div class="a"><p>Most often that means nothing is scheduled to <i>leave</i> from it soon. Trips that terminate at a station don't produce departures there &mdash; at the end of a line, or late at night, an empty board is the correct answer rather than a broken one.</p><p>If a direction filter is set on a saved stop, that narrows it too. Open the stop itself and switch to all departures to see everything.</p></div></details>
-    <details><summary>Which agencies and modes are supported?</summary>
-      <div class="a"><p>NJ Transit bus, NJ Transit rail, NJ Transit light rail, and PATH &mdash; all four in one app, all four with live departures where the agency is reporting them. Not New York City Transit, not Amtrak, and not private carriers.</p></div></details>
-    <details><summary>Where does the data come from?</summary>
-      <div class="a"><p>Predictions from NJ Transit data. Derived from publicly available PATH data. Timetables come from the agencies' published schedule feeds and are carried inside the app, so there is still an answer when the live feeds are down. Data availability is not guaranteed.</p><p>StopSpotter is an independent app. It is not endorsed by, affiliated with, or supported by NJ Transit or the Port Authority of NY&nbsp;&amp;&nbsp;NJ.</p></div></details>
-    <details><summary>Is there an Apple Watch app?</summary>
-      <div class="a"><p>Not yet.</p></div></details>
+
+    <details><summary>What is free, and what does StopSpotter+ cost?</summary>
+      <div class="a"><p>The app is free, and not a limited version &mdash; search, nearby stops, as many saved stops as you like, full detail on any of them, all five services, live and scheduled times, and the watch app. Free also includes a widget on the Home Screen and a card on the watch, both showing whichever stop you're nearest to, which need no setting up at all.</p><p>StopSpotter+ buys one thing: pointing those at a stop <i>you</i> saved, with your routes, your direction and your name for it &mdash; on iPhone and Apple&nbsp;Watch alike. It is <b>$2.99, once</b>. No subscription, nothing to renew, and no ads or account either way.</p></div></details>
+    <details><summary>I bought StopSpotter+ on another device / I reinstalled the app.</summary>
+      <div class="a"><p>Open <b>Settings</b> in the app and tap <b>Restore Purchases</b>, or reach the same button from the StopSpotter+ screen. It's a one-time purchase tied to your Apple Account, so it comes back on any device signed in to the same account, and the watch picks it up from the phone.</p><p>Refunds are Apple's to give, not ours &mdash; go to <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>, sign in, and choose the purchase. We never see your payment details and cannot process a refund on your behalf. If something about the app is the reason you want one, we'd like to hear about it either way.</p></div></details>
     </div>
 
     <h2 id="contact">Contact</h2>
@@ -88,14 +102,14 @@
 </main>
 <footer class="foot"><div class="wrap">
   <p class="indep">StopSpotter is an independent app. It is not endorsed by, affiliated with, or
-  supported by NJ Transit or the Port Authority of NY&nbsp;&amp;&nbsp;NJ.</p>
-  <p>Predictions from NJ Transit data. Derived from publicly available PATH data. Data
-  availability is not guaranteed.</p>
+  supported by NJ Transit, the Port Authority of NY&nbsp;&amp;&nbsp;NJ, or NY Waterway.</p>
+  <p>Predictions from NJ Transit data. Derived from publicly available PATH data. Schedule data
+  and predictions derived from publicly available NY Waterway data. Data availability is not
+  guaranteed.</p>
   <nav aria-label="Footer"><a href="privacy">Privacy policy</a>
     <a href="support">Support</a>
     <a href="mailto:hello@reforged.studio">hello@reforged.studio</a></nav>
   <p>&copy; 2026 Reforged Studio LLC</p>
 </div></footer>
-<p class="draft-flag">Draft &mdash; not for publication</p>
 </body>
 </html>

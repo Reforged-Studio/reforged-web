@@ -49,10 +49,14 @@
   /* mode fills — badge background, both appearances (§A16.2) */
   --mode-bus:#AECB9B; --mode-rail:#CBB3D6;
   --mode-lrail:#DCC49A; --mode-path:#A3BFD9;
+  /* M35 — ferry's RULED violet/orchid. It is the one mode with no route number to
+     print, so its identity is a GLYPH in a dot (.m-ferry below), never a numeral and
+     never an operator's wordmark. */
+  --mode-ferry:#DAA0CA;
   --badge-ink:#1A1512;
   /* mode deeps — declared for completeness, unused on this site */
   --mode-bus-deep:#4C6B3E; --mode-rail-deep:#6E5880;
-  --mode-lrail-deep:#846538; --mode-path-deep:#3E6389;
+  --mode-lrail-deep:#846538; --mode-path-deep:#3E6389; --mode-ferry-deep:#7B3D6A;
 
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
@@ -235,6 +239,18 @@ h1+.lead,h1+.stamp{margin-top:20px}
 .wg-badge.m-path{background:var(--mode-path)}
 .wg-badge.m-bus,.wg-badge.m-rail,.wg-badge.m-lrail,.wg-badge.m-path{
   color:var(--badge-ink);border-color:transparent}
+/* ---------- ferry — a GLYPH-DOT, and why it is not a badge ----------
+   Every other mode's identity is the thing printed on the front of the vehicle: a
+   route number, a line code. NY Waterway publishes no such token per departure, and
+   the app renders ferry as a mark rather than a numeral for exactly that reason —
+   so the site does the same. A round dot, the mode fill behind it, the glyph in
+   --badge-ink on top. No numerals, and no operator wordmark: the disclaimer in the
+   footer is the only place an operator is named. The glyph is an inline data URI so
+   the page stays self-contained. */
+.wg-badge.m-ferry{background:var(--mode-ferry);border-color:transparent;
+  min-width:0;width:26px;height:26px;padding:0;border-radius:50%;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231A1512'%3E%3Cpath d='M11 3h2v2h2.4c.6 0 1 .4 1.1.9L17 12H7l.5-6.1c0-.5.5-.9 1.1-.9H11V3z'/%3E%3Cpath d='M4.2 13.5h15.6l-1.3 4.1A2.6 2.6 0 0 1 16 19.4H8a2.6 2.6 0 0 1-2.5-1.8l-1.3-4.1z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:center;background-size:16px 16px}
 .wg-dest{font-size:13.5px;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;
   white-space:nowrap}
 .wg-time{margin-left:auto;font:700 18px/1 var(--mono);font-variant-numeric:tabular-nums;
@@ -261,6 +277,20 @@ h1+.lead,h1+.stamp{margin-top:20px}
   border:1px solid var(--line)}
 /* the free-widget section's variant: one real capture, one row of tiles */
 .hs-mini{max-width:min(322px,100%);margin-top:var(--sp-xl)}
+/* the mock inside a .step media column — narrower than the section-width one */
+.hs-step{max-width:232px;margin:0}
+.hs-step .hs-grid{grid-template-columns:repeat(4,1fr);gap:9px}
+/* S1a — the same mock, wrapped round the turning card. The stack's dots sit
+   OUTSIDE the card by --dot, so the mock needs that much side padding again or
+   the dots collide with its border. */
+.hs-flip{max-width:min(425px,100%);margin-top:var(--sp-xl);
+  padding-left:calc(18px + var(--dot,11px));padding-right:calc(18px + var(--dot,11px))}
+/* The card is re-sized against the MOCK's content box rather than the viewport, less
+   22px so the stack's dots — which sit outside the card by --dot on the right — still
+   land inside the mock. Without this the 345px card overflows the padding box, the auto
+   margins collapse, and the card sits 11px left of centre. */
+.hs-flip .flip{--fw:min(345px,calc(100% - 22px));margin:0 auto}
+.hs-flip .hs-grid{margin-top:18px}
 .hs .wgshot{display:block;width:100%;height:auto;border:1px solid var(--line2);
   border-radius:20px}
 
@@ -304,26 +334,28 @@ h1+.lead,h1+.stamp{margin-top:20px}
   backface-visibility:hidden;will-change:transform,opacity;
   box-shadow:0 18px 38px -28px rgba(0,0,0,.7);
   transform:rotateX(0deg) translateZ(var(--r));
-  animation:wgflip 12s linear infinite,wgvis 12s step-end infinite}
+  animation:wgflip 16s linear infinite,wgvis 16s step-end infinite}
 .face img{display:block;width:100%;height:100%}
 .face::after{content:"";position:absolute;inset:0;border-radius:inherit;
   pointer-events:none;opacity:0;
   background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.04) 50%,
     rgba(0,0,0,.62) 100%);
-  animation:wgshade 12s linear infinite}
+  animation:wgshade 16s linear infinite}
+/* delay for slot k of N is -(T - k*4s); with T=16s that is 0, -12s, -8s, -4s. */
 .face:nth-child(1){--d:0s}
-.face:nth-child(2){--d:-8s}
-.face:nth-child(3){--d:-4s}
+.face:nth-child(2){--d:-12s}
+.face:nth-child(3){--d:-8s}
+.face:nth-child(4){--d:-4s}
 .face,.face::after{animation-delay:var(--d)}
 
 @keyframes wgflip{
-  0%,28.333%{transform:rotateX(0deg) translateZ(var(--r));
-             animation-timing-function:var(--turn)}
-  33.333%   {transform:rotateX(90deg) translateZ(var(--r))}
-  33.334%   {transform:rotateX(-90deg) translateZ(var(--r))}
-  94.999%   {transform:rotateX(-90deg) translateZ(var(--r));
-             animation-timing-function:var(--turn)}
-  100%      {transform:rotateX(0deg) translateZ(var(--r))}
+  0%,21.25%{transform:rotateX(0deg) translateZ(var(--r));
+            animation-timing-function:var(--turn)}
+  25%      {transform:rotateX(90deg) translateZ(var(--r))}
+  25.001%  {transform:rotateX(-90deg) translateZ(var(--r))}
+  96.25%   {transform:rotateX(-90deg) translateZ(var(--r));
+            animation-timing-function:var(--turn)}
+  100%     {transform:rotateX(0deg) translateZ(var(--r))}
 }
 /* A face is painted only while it is turning or at rest. It goes invisible at
    exactly 33.333% — the instant it reaches +90° and is edge-on, so nothing
@@ -332,26 +364,26 @@ h1+.lead,h1+.stamp{margin-top:20px}
    later instead put a real (if brief) window where a sampled frame caught the
    face face-on at ~30°: a flash. step-end holds each value to the next stop. */
 @keyframes wgvis{
-  0%      {opacity:1}
-  33.333% {opacity:0}
-  94.999% {opacity:1}
+  0%     {opacity:1}
+  25%    {opacity:0}
+  96.25% {opacity:1}
 }
 /* light falls off the edge that is tipping away — dark at the top on the way
    out, dark at the bottom on the way in. Same overlay does both. */
 @keyframes wgshade{
-  0%,28.333%     {opacity:0}
-  33.333%        {opacity:.9}
-  33.334%,94.999%{opacity:.9}
-  100%           {opacity:0}
+  0%,21.25%     {opacity:0}
+  25%           {opacity:.9}
+  25.001%,96.25%{opacity:.9}
+  100%          {opacity:0}
 }
 
-/* the three faces at rest, for reduced motion */
+/* the faces at rest, for reduced motion — four of them since M35's ferry joined */
 .wgtrio{display:none;gap:var(--sp-md);margin-top:var(--sp-xl)}
 .wgtrio img{width:100%;height:auto;border:1px solid var(--line2);
   border-radius:var(--r-widget)}
-@media (min-width:760px){.wgtrio{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:760px){.wgtrio{grid-template-columns:repeat(2,1fr)}}
 
-/* Reduced motion: no roll at all — the same three widgets, at rest. */
+/* Reduced motion: no roll at all — the same four widgets, at rest. */
 @media (prefers-reduced-motion:reduce){
   .flip{display:none}
   .wgtrio{display:grid}
@@ -401,6 +433,23 @@ h1+.lead,h1+.stamp{margin-top:20px}
 }
 /* the one wide capture — sized to the text column it explains, not the page */
 .shot{display:block;width:100%;border-radius:var(--r-card)}
+
+/* ---------- the watch frame, and the card that sits beside it ----------
+   Same idea as .device one size down: a slim bezel whose radius is most of the
+   short side, because a watch is nearly all corner. The Smart Stack card below
+   it is deliberately NOT framed — it is a card, not a screen, and drawing a
+   bezel round it would claim it fills the display, which it does not. */
+.watch{width:170px;padding:6px;border-radius:38px;background:var(--card2);
+  border:1px solid var(--line2);box-shadow:0 22px 44px -32px rgba(0,0,0,.7)}
+.watch img{display:block;width:100%;height:auto;border-radius:32px}
+.card-aside{margin:18px 0 0;width:190px}
+.card-aside img{display:block;width:100%;height:auto;border-radius:12px;
+  border:1px solid var(--line2)}
+.card-aside figcaption{margin-top:8px;font:400 11px/1.4 var(--mono);
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+@media (prefers-color-scheme:light){
+  .watch{box-shadow:0 16px 34px -26px rgba(60,40,25,.45)}
+}
 img.shot{height:auto;border:1px solid var(--line2)}
 .shot.wide{max-width:540px;margin:var(--sp-xl) 0 0}
 div.shot{background:var(--bg2);border:1px dashed var(--line2);
@@ -419,6 +468,8 @@ div.shot.phone{aspect-ratio:9/19.5}
 .split h2 span{color:var(--accent);font-weight:700}
 .split p{margin:0;color:var(--ink2);max-width:54ch;font-size:var(--t-body)}
 .split .price{color:var(--accent);margin-top:4px}
+/* the second line in the band — the watch, said once, in the band's own voice */
+.split .also{color:var(--ink3);font-size:var(--t-small)}
 .tier{display:block;color:var(--ink3);margin-bottom:12px}
 .tier.up{color:var(--accent)}
 
@@ -462,25 +513,13 @@ div.shot.phone{aspect-ratio:9/19.5}
 .foot nav{display:flex;gap:18px;flex-wrap:wrap}
 .foot a{font-size:var(--t-small)}
 
-/* ==========================================================================
-   DRAFT WATERMARK — DELETE BEFORE PUBLISHING
-   Remove class="draft" from <body> on all three pages, then delete this block.
-   ========================================================================== */
-body.draft .draft-flag{display:block}
-body.draft{padding-bottom:30px}
-.draft-flag{display:none;position:fixed;bottom:0;left:0;right:0;z-index:91;
-  background:var(--accent);color:var(--bg);text-align:center;
-  font:700 var(--t-label)/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
-  padding:9px}
-/* ======================= END DRAFT WATERMARK ============================= */
-
 /* ---------- print (legal + support pages) ---------- */
 @media print{
   :root{--bg:#fff;--bg2:#fff;--card:#fff;--card2:#fff;--ink:#000;--ink2:#222;
     --ink3:#555;--line:#ccc;--line2:#999;--accent:#7A4426;--sched:#405568;--split-bg:#fff}
   body{font-size:11pt;background:#fff;color:#000}
   .top nav,.foot nav,.jump,.skip,.cta,.hs,.stack,.shot,.shots,.device,.badge,
-  .flip,.wgtrio,.wgshot{display:none!important}
+  .flip,.wgtrio,.wgshot,.watch,.card-aside{display:none!important}
   section{padding:14pt 0;border-top:1px solid #ccc;break-inside:avoid}
   h1{font-size:20pt}h2{font-size:13pt}h3{font-size:11.5pt}
   .doc{max-width:none}
@@ -489,9 +528,6 @@ body.draft{padding-bottom:30px}
   .faq summary::after{content:""}
   a{color:#000;text-decoration:underline}
   .doc a[href^="mailto:"]::after{content:" (" attr(href) ")";font-size:9pt}
-  .draft-flag{display:none!important}
-  body.draft .doc::before{content:"DRAFT — NOT FOR PUBLICATION";display:block;
-    font:700 10pt/1 var(--mono);letter-spacing:.2em;margin:0 0 14pt;color:#000}
 }
 
 /* ==========================================================================
@@ -543,11 +579,12 @@ body.draft{padding-bottom:30px}
   display:grid;gap:5px;z-index:2;pointer-events:none}
 .stackdots i{display:block;width:5px;height:5px;border-radius:50%;
   background:var(--ink);opacity:.28;
-  animation:dotcycle 12s var(--turn) infinite}
-.stackdots i:nth-child(2){animation-delay:-8s}
-.stackdots i:nth-child(3){animation-delay:-4s}
+  animation:dotcycle 16s var(--turn) infinite}
+.stackdots i:nth-child(2){animation-delay:-12s}
+.stackdots i:nth-child(3){animation-delay:-8s}
+.stackdots i:nth-child(4){animation-delay:-4s}
 @keyframes dotcycle{
-  0%,22%   {opacity:.92}
-  33%,100% {opacity:.28}
+  0%,16.5% {opacity:.92}
+  25%,100% {opacity:.28}
 }
 @media (prefers-reduced-motion:reduce){.stackdots{display:none}}

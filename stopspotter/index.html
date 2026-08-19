@@ -3,10 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>StopSpotter — New Jersey transit on your Home Screen</title>
-<meta name="description" content="StopSpotter puts New Jersey transit departures on your iPhone Home Screen. An independent app covering NJ Transit bus, rail and light rail, plus PATH.">
-<!-- DRAFT: delete this line when you remove class="draft" from <body> -->
-<meta name="robots" content="noindex">
+<title>StopSpotter — New Jersey transit on your Home Screen and Apple Watch</title>
+<meta name="description" content="StopSpotter puts New Jersey transit departures on your iPhone Home Screen and Apple Watch. An independent app covering NJ Transit bus, rail and light rail, PATH, and NY Waterway ferries.">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0E0B09" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#FAF7F4" media="(prefers-color-scheme: light)">
@@ -16,14 +14,13 @@
 <link rel="icon" href="icon-512.png" sizes="512x512">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="StopSpotter — New Jersey transit on your Home Screen">
-<meta property="og:description" content="StopSpotter puts New Jersey transit departures on your iPhone Home Screen. An independent app covering NJ Transit bus, rail and light rail, plus PATH.">
+<meta property="og:title" content="StopSpotter — New Jersey transit on your Home Screen and Apple Watch">
+<meta property="og:description" content="StopSpotter puts New Jersey transit departures on your iPhone Home Screen and Apple Watch. An independent app covering NJ Transit bus, rail and light rail, PATH, and NY Waterway ferries.">
 <meta property="og:image" content="https://reforged.studio/stopspotter/icon-512.png">
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="stopspotter.css">
 </head>
-<!-- DRAFT: remove class="draft" to publish. See README.md -->
-<body class="draft">
+<body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
   <a class="mark" href="./"><img src="icon-tile.png" alt="" width="27" height="27">StopSpotter</a>
@@ -41,8 +38,8 @@
   <div class="hero-split">
     <p class="lockup"><img src="icon-tile.png" alt="" width="32" height="32"><b>StopSpotter</b></p>
     <h1>When is the next one?<br>Right on your Home&nbsp;Screen.</h1>
-    <p class="deck">An independent app covering NJ&nbsp;Transit bus, rail and light rail, plus
-    PATH.</p>
+    <p class="deck">An independent app covering NJ&nbsp;Transit bus, rail and light rail,
+    PATH, and NY&nbsp;Waterway ferries.</p>
     <!-- The real widget, cropped straight out of a Home Screen capture — not a CSS
          reconstruction of one. It is the FREE default: an unconfigured widget, showing the
          nearest stop under its own station name. A nicknamed saved combo is StopSpotter+,
@@ -62,9 +59,9 @@
       <p>Save the stops you use and the answer is waiting when you glance &mdash;
       live predictions when the agency is reporting them, timetable data when it isn't, and
       always a note saying which you're looking at and how old it is.</p>
-      <p>iPhone, iOS&nbsp;26.2 or later. The free app puts your nearest stop
-      on the Home Screen; <a href="#plus">StopSpotter+</a> points a widget at a stop you saved
-      &mdash; $2.99, one time.</p>
+      <p>iPhone, iOS&nbsp;26.2 or later, and Apple&nbsp;Watch. The free app puts your nearest
+      stop on the Home Screen and on your wrist; <a href="#plus">StopSpotter+</a> points a widget
+      at a stop you saved &mdash; $2.99, one time.</p>
     </div>
   </div>
 </div></section>
@@ -77,19 +74,22 @@
   modes get filed separately. StopSpotter doesn't file them separately. Every operator and mode it
   supports lives in one index, so one search reaches all of it and mode arrives as a tag on the
   result rather than a choice you make first.</p>
-  <p class="body">A bus stop and a PATH station turn up in the same search and sit side by side
-  in Saved. You stop keeping a mental map of which app knows about which part of your
-  journey.</p>
+  <p class="body">A bus stop, a PATH station and a ferry terminal turn up in the same search and
+  sit side by side in Saved. You stop keeping a mental map of which app knows about which part of
+  your journey.</p>
   <ul class="modes">
     <li><span class="wg-badge m-bus">126</span>Bus</li>
     <li><span class="wg-badge m-rail">NEC</span>Rail</li>
     <li><span class="wg-badge m-lrail">RVL</span>Light rail</li>
     <li><span class="wg-badge m-path">PATH</span>PATH trains</li>
+    <li><span class="wg-badge m-ferry" aria-hidden="true"></span>NY&nbsp;Waterway ferries</li>
   </ul>
-  <img src="img/saved-modes.png" alt="Two saved stops in one list: a 126 bus from Port
-       Authority Bus Terminal with its gate, and a PATH train to 33rd Street." width="1240"
-       height="890" loading="lazy" class="shot wide">
-  <p class="wg-cap">One list &middot; a bus terminal and a PATH station, side by side</p>
+  <img src="img/saved-modes.png" alt="One Saved list carrying four agencies and modes at once:
+       chips for Bus, Rail, PATH and Ferry above a 126 bus combo to New York, a PATH combo to
+       World Trade Center, and an NEC rail combo to New York." width="1240"
+       height="1080" loading="lazy" class="shot wide">
+  <p class="wg-cap">One list &middot; a bus stop, a rail station, a PATH station and a ferry
+  terminal, side by side</p>
 </div></section>
 
 <section><div class="wrap">
@@ -110,106 +110,100 @@
       grows older, a tap of the refresh button fetches the latest.</p></li>
     <li><span class="c-when">Timetable</span>
       <span class="c-str sch">Schedule data</span>
-      <p>The published times, bundled in the app and needing no network at all. You'll see this
-      whenever there's no live prediction to show &mdash; whether nothing live runs for that stop
-      and hour, or the feed isn't answering. The label doesn't separate the two, so neither do
-      we: it means <b>this is the timetable, not a prediction</b>.</p></li>
+      <p>The published timetable, built into the app &mdash; no network needed. You'll see it
+      whenever there's no live prediction to show. It means: this is the timetable, not a
+      prediction.</p></li>
   </ol>
   <p class="body note">The labelling isn't a disclaimer. It's the difference
   between a number you can plan around and a number worth double-checking.</p>
 </div></section>
 
-<!-- ONE narrative, in the order a rider actually meets the app: discover → departures
-     → save → saved tab, then the widget section below closes it. Each step is a .step
-     row, text beside the visual that proves it, alternating sides on wide screens and
-     stacking to a single column at 860px. -->
+<!-- ONE narrative, in the order a rider actually meets the app: discover → save →
+     the wrist → the Home Screen. Four .step rows, text beside the visual that proves
+     it, alternating sides on wide screens and stacking to one column at 860px. The
+     last step's visual is the Home-Screen mock rather than a phone frame, because the
+     thing it is proving is a widget in situ. -->
 <section class="tour-open"><div class="wrap">
   <p class="eyebrow">Inside the app</p>
   <h2>Find it once. Then just glance.</h2>
   <p class="body">Not a widget with an app bolted on. Search any stop in the
-  system, see everything upcoming there, save the routes and direction you actually take &mdash;
-  and from then on the answer is one glance away. Every step below is free.</p>
+  system, save the routes and direction you actually take &mdash; and from then on the answer is
+  one glance away, on your phone and on your wrist.</p>
 </div></section>
 
 <section class="step"><div class="wrap">
   <div class="step-copy">
     <span class="k">01 &middot; Discover</span>
     <h3>One search reaches every mode.</h3>
-    <p>Bus, rail, light rail and PATH sit in one index, so you type once and the mode arrives as
-    a tag on the result rather than a choice you make first.</p>
+    <p>NJ&nbsp;Transit bus, rail and light rail, PATH and NY&nbsp;Waterway ferries sit in one
+    index, so you type once and the mode arrives as a tag on the result rather than a choice you
+    make first. Open it somewhere unfamiliar and the stops around you are already on the map,
+    closest first, with the next departures underneath.</p>
   </div>
-  <div class="step-media"><div class="device"><img src="img/search.png" alt="StopSpotter's search
-       screen, with bus, rail, light rail and PATH side by side as one row of modes."
+  <div class="step-media"><div class="device"><img src="img/tour-01-search.png" alt="StopSpotter's
+       Search screen at Hoboken Terminal: a map with mode-coloured pins including a violet ferry
+       pin, a row of mode chips, and a Nearest stops list &mdash; the ferry terminal 280 feet away
+       with boats to Brookfield Place in 7 and 27 minutes, then rail, bus and PATH stops below."
        width="760" height="1651" loading="lazy"></div></div>
 </div></section>
 
 <section class="step rev"><div class="wrap">
   <div class="step-copy">
-    <span class="k">02 &middot; Or don't search at all</span>
-    <h3>Stops near you, no typing.</h3>
-    <p>Somewhere unfamiliar, open StopSpotter and the stops around you are already listed,
-    closest first, with the routes each one serves.</p>
-  </div>
-  <div class="step-media"><div class="device"><img src="img/nearest.jpg" alt="The Nearest list:
-       a map of Hoboken with clustered stop pins, and below it Washington St at 12th St, 160 feet
-       away, serving the 22 and 126 to Hoboken and the 89 to Hoboken Terminal."
-       width="760" height="1651" loading="lazy"></div></div>
-</div></section>
-
-<section class="step"><div class="wrap">
-  <div class="step-copy">
-    <span class="k">03 &middot; Departures</span>
-    <h3>Gates at Port Authority.</h3>
-    <p>Open a stop and everything upcoming is there. Where NJ Transit reports the gate a bus is
-    boarding from, it sits right on the row &mdash; so you read it here instead of hunting the
-    concourse board. Gate assignments can change; check the signage before boarding.</p>
-  </div>
-  <div class="step-media"><div class="device"><img src="img/stop-detail.png" alt="Departures from
-       Port Authority Bus Terminal, each row labelled Live and carrying its gate number."
-       width="760" height="1651" loading="lazy"></div></div>
-</div></section>
-
-<section class="step rev"><div class="wrap">
-  <div class="step-copy">
-    <span class="k">04 &middot; Save it</span>
+    <span class="k">02 &middot; Save it</span>
     <h3>Your routes, your direction, your name for it.</h3>
     <p>Pick the routes you care about and which way you're going, then call it whatever you like.
-    A saved stop can watch several routes at once &mdash; the 119 and the 126, whichever comes
-    first &mdash; and merge them into one list.</p>
+    One saved combo can watch several routes at once &mdash; the 119 and the 126, whichever comes
+    first. Everything you save lands on one page, every agency and every mode together, times on
+    the card.</p>
   </div>
-  <div class="step-media"><div class="device"><img src="img/filter.png" alt="Choosing routes and
-       destinations at Willow Ave at 15th St: the 89, 119 and 126 each listed with the
-       destinations they serve." width="760" height="1651" loading="lazy"></div></div>
+  <div class="step-media"><div class="device"><img src="img/tour-02-saved.png" alt="The Saved
+       page: mode chips for Bus, Rail, PATH and Ferry, then four saved combos &mdash; a 126 bus to
+       New York, a PATH train to World Trade Center, an NEC rail combo to New York, and a ferry
+       from Hoboken to Brookfield Place whose rows carry the violet ferry mark instead of a route
+       number." width="760" height="1651" loading="lazy"></div></div>
 </div></section>
 
 <section class="step"><div class="wrap">
   <div class="step-copy">
-    <span class="k">05 &middot; Saved</span>
-    <h3>Then you never search again.</h3>
-    <p>Everything you saved in one tab, live times and gates on the card. Saving is free and
-    there's no limit on how many you keep.</p>
+    <span class="k">03 &middot; On your wrist</span>
+    <h3>Your stops on Apple&nbsp;Watch.</h3>
+    <p>The watch app lists every combo you've saved, with live times and the same freshness line
+    the phone shows. It's part of the free app. Smart&nbsp;Stack cards go a step further and put a
+    stop one crown-scroll from the watch face &mdash; pointing a card at a saved combo is the
+    StopSpotter+ part, the same as on the Home Screen.</p>
   </div>
-  <div class="step-media"><div class="device"><img src="img/saved.png" alt="Saved stops in one
-       list — bus and PATH together, some showing live times and gates, some showing schedule
-       data." width="760" height="1651" loading="lazy"></div></div>
+  <div class="step-media">
+    <div class="watch"><img src="img/tour-03-watch.png" alt="The StopSpotter watch app: two saved
+         combos, PATH&gt;Home with a 126 bus pill showing 2 min then 6 and 10, and Journal Square
+         with a PATH pill showing Now then 10, each stamped updated just now." width="422"
+         height="514" loading="lazy"></div>
+    <figure class="card-aside">
+      <img src="img/tour-03-card.png" alt="A Smart Stack card on the watch: Journal Square,
+           4 min then 12, footer reading updated just now." width="322" height="139"
+           loading="lazy">
+      <figcaption>A Smart&nbsp;Stack card</figcaption>
+    </figure>
+  </div>
 </div></section>
 
-<section><div class="wrap">
-  <p class="eyebrow">06 &middot; The free widget</p>
-  <h2>And then you don't open the app at all.</h2>
-  <p class="body">That's where the walkthrough ends and the Home Screen
-  begins. Free includes one widget, showing the nearest stop. Nothing to configure and nothing
-  to pick &mdash; it's there for the trip you didn't plan, when you're somewhere unfamiliar and
-  have no saved stop to check.</p>
-  <!-- Shown at Home-Screen scale: the real capture with a row of app tiles under
-       it, so the size on the page is the size it is on a phone. -->
-  <div class="hs hs-mini">
-    <img src="img/widget-nearest.png" alt="The free StopSpotter widget: Journal Square, 720 feet
-         away, with a PATH train to 33rd Street in 3 minutes and one to Hoboken in 8, updated 30
-         seconds ago." width="1035" height="487" loading="lazy" class="wgshot">
-    <div class="hs-grid" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+<section class="step rev"><div class="wrap">
+  <div class="step-copy">
+    <span class="k">04 &middot; On your Home Screen, free</span>
+    <h3>The nearest stop, nothing to set up.</h3>
+    <p>Every rider gets a widget showing whichever stop you're nearest to. No purchase, nothing to
+    configure and nothing to pick &mdash; it's there for the trip you didn't plan, when you're
+    somewhere unfamiliar and have no saved stop to check.</p>
   </div>
-  <p class="wg-cap">Free &middot; always the nearest stop &middot; nothing to set up</p>
+  <div class="step-media">
+    <div class="hs hs-step">
+      <img src="img/widget-nearest.png" alt="The free StopSpotter widget on a Home Screen:
+           Journal Square, 720 feet away in Jersey City, with a PATH train to 33rd Street in
+           3 minutes and one to Hoboken in 8, footer reading updated 30s ago." width="1035"
+           height="471" loading="lazy" class="wgshot">
+      <div class="hs-grid" aria-hidden="true"><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span></div>
+    </div>
+  </div>
 </div></section>
 
 <section class="split" id="plus"><div class="wrap">
@@ -217,7 +211,8 @@
   <h2>StopSpotter<span>+</span></h2>
   <p>All your stops on the Home Screen &mdash; as many as you like, stacked in one spot you
   swipe through.</p>
-  <p class="price">$2.99 &middot; one time &middot; not a subscription</p>
+  <p class="also">On Apple&nbsp;Watch too: your saved combos as Smart&nbsp;Stack cards.</p>
+  <p class="price">$2.99 &middot; one time &middot; no subscription, no renewal</p>
 </div></section>
 
 <section><div class="wrap">
@@ -231,15 +226,21 @@
        roll, outgoing face over the top, incoming face up from below. Three real
        widget renders, CSS only. Under prefers-reduced-motion the card is hidden
        and .wgtrio shows the same three at rest — no motion at all. -->
-  <div class="flip" role="img" aria-label="One StopSpotter widget, turning through three
-       saved stops: a 126 bus to New York showing schedule data; a PATH train to 33rd Street
-       updated 30 seconds ago; and Hoboken Terminal showing the 22, the 126 and PATH together.">
-    <div class="flip-stage">
-      <div class="face"><img src="img/widget-bus.png" alt="" width="1035" height="487"></div>
-      <div class="face"><img src="img/widget-path.png" alt="" width="1035" height="487"></div>
-      <div class="face"><img src="img/widget-mixed.png" alt="" width="1035" height="487"></div>
+  <div class="hs hs-flip">
+    <div class="flip" role="img" aria-label="One StopSpotter widget on a Home Screen, turning
+         through four saved stops: a 126 bus to New York showing schedule data; a PATH train to
+         33rd Street updated 30 seconds ago; Hoboken Terminal showing the 22, the 126 and PATH
+         together; and a NY Waterway ferry from Hoboken to Brookfield Place.">
+      <div class="flip-stage">
+        <div class="face"><img src="img/widget-bus.png" alt="" width="1035" height="487"></div>
+        <div class="face"><img src="img/widget-path.png" alt="" width="1035" height="487"></div>
+        <div class="face"><img src="img/widget-mixed.png" alt="" width="1035" height="487"></div>
+        <div class="face"><img src="img/widget-ferry.png" alt="" width="1035" height="471"></div>
+      </div>
+      <div class="stackdots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     </div>
-    <div class="stackdots" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="hs-grid" aria-hidden="true"><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span></div>
   </div>
   <div class="wgtrio">
     <img src="img/widget-bus.png" alt="Widget: a 126 bus to New York in 8 minutes, footer
@@ -248,6 +249,9 @@
          footer reading updated 30s ago." width="1035" height="487" loading="lazy">
     <img src="img/widget-mixed.png" alt="Widget: Hoboken Terminal with the 22, the 126 and
          PATH on one card." width="1035" height="487" loading="lazy">
+    <img src="img/widget-ferry.png" alt="Widget: a NY Waterway ferry from Hoboken to Brookfield
+         Place in 11 minutes, footer reading Schedule data." width="1035" height="471"
+         loading="lazy">
   </div>
   <p class="wg-cap">One widget per saved stop &mdash; stack them and swipe</p>
   <div class="grid">
@@ -256,11 +260,18 @@
       StopSpotter and a size. Then touch and hold the widget you just placed, tap
       <b>Edit Widget</b>, and pick the saved stop it should show &mdash; that last step is the
       one people miss.</p></div>
+    <div class="cell"><span class="k">Both devices</span>
+      <h3>iPhone and Apple&nbsp;Watch</h3>
+      <p>The same purchase points widgets at your saved combos in both places &mdash; on the Home
+      Screen, and as Smart&nbsp;Stack cards a crown-scroll from the watch face.</p></div>
     <div class="cell"><span class="k">What it costs</span>
       <h3>$2.99, one time</h3>
-      <p>Not a subscription. Bought through the App Store, restorable on your other
-      devices.</p></div>
+      <p>No subscription and no renewal &mdash; you buy it once and own it. Bought through the
+      App&nbsp;Store, restorable on your other devices.</p></div>
   </div>
+  <p class="body">The free app is complete without it: search, saved combos, all five
+  services, the watch app, and the nearest-stop widget on both devices. StopSpotter+ changes
+  one thing &mdash; which stop a widget points at.</p>
   <p class="small note">iOS budgets background widget
   refreshes per app rather than per widget, so the more you place the less often each one
   updates on its own. The tap is always there, and every widget says how old its data is.</p>
@@ -275,15 +286,15 @@
 </main>
 <footer class="foot"><div class="wrap">
   <p class="indep">StopSpotter is an independent app. It is not endorsed by, affiliated with, or
-  supported by NJ Transit or the Port Authority of NY&nbsp;&amp;&nbsp;NJ.</p>
-  <p>Predictions from NJ Transit data. Derived from publicly available PATH data. Data
-  availability is not guaranteed.</p>
+  supported by NJ Transit, the Port Authority of NY&nbsp;&amp;&nbsp;NJ, or NY Waterway.</p>
+  <p>Predictions from NJ Transit data. Derived from publicly available PATH data. Schedule data
+  and predictions derived from publicly available NY Waterway data. Data availability is not
+  guaranteed.</p>
   <nav aria-label="Footer"><a href="privacy">Privacy policy</a>
     <a href="support">Support</a>
     <a href="mailto:hello@reforged.studio">hello@reforged.studio</a></nav>
   <p>&copy; 2026 Reforged Studio LLC</p>
 </div></footer>
-<p class="draft-flag">Draft &mdash; not for publication</p>
 <!-- No script on this page. The reduced-motion shim that used to live here existed only to
      pause the walkthrough video (CSS cannot stop a playing video); the video is gone, and the
      remaining motion — the widget stack's roll and its dots — is CSS, suppressed by
