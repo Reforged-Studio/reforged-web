@@ -134,7 +134,7 @@ img{max-width:100%;height:auto}
 
 /* ---------- type primitives ----------
    Every uppercase mono label on the site is the SAME size and tracking. */
-.eyebrow,.cta-note,.wg-cap,.c-when,.cell .k,.split .above,.split .price,
+.eyebrow,.cta-note,.c-when,.cell .k,.split .above,.split .price,
 .tier,.stamp,.strip li,.jump a,.callout b{
   font-family:var(--mono);font-size:var(--t-label);font-weight:600;
   line-height:1.4;letter-spacing:.14em;text-transform:uppercase}
@@ -263,7 +263,10 @@ h1+.lead,h1+.stamp{margin-top:20px}
   border:0;padding:0 2px;font-family:inherit;line-height:1;cursor:pointer}
 /* measured in px, not ch: `ch` ignores the .14em tracking these labels carry,
    which is what was breaking the longest caption onto a two-word second line. */
-.wg-cap{color:var(--ink3);margin:var(--sp-sm) 0 0;max-width:480px;text-wrap:balance}
+/* Figure captions are sentences, set in the text face at small size — not 11px tracked
+   uppercase. The old .wg-cap treatment made a readable sentence into a label you skim past. */
+.fig-cap{margin:var(--sp-sm) 0 0;font-size:var(--t-small);line-height:1.5;
+  color:var(--ink3);max-width:52ch;text-wrap:balance}
 
 /* home-screen frame — the scale reference. A widget is a widget because
    there are app tiles next to it, not because it is big. */
@@ -277,19 +280,30 @@ h1+.lead,h1+.stamp{margin-top:20px}
   border:1px solid var(--line)}
 /* the free-widget section's variant: one real capture, one row of tiles */
 .hs-mini{max-width:min(322px,100%);margin-top:var(--sp-xl)}
-/* the mock inside a .step media column — narrower than the section-width one */
-.hs-step{max-width:232px;margin:0}
+
+/* ---------- ONE geometry for every Home-Screen mock (v2, item 2) ----------
+   The rule the three instances now share: the widget card spans the mock's CONTENT
+   BOX exactly, and so does the icon grid, so their left and right edges are flush.
+   Nothing is inset and nothing is cropped.
+
+   Two things had broken that, and they were different bugs.
+
+   (a) `.hs-step` collapsed to 73px. `.step-media` is `justify-self:center`, which makes
+       the grid item SHRINK-TO-FIT rather than fill its 360px track. The mock's content
+       is a percentage-width image and a grid of empty spans — no intrinsic width between
+       them — so shrink-to-fit resolved to almost nothing. `.device` never showed this
+       because it carries an explicit `width`. The fix is an explicit width here too:
+       a max-width cannot give an element an intrinsic size.
+
+   (b) `.hs-flip`'s card was deliberately 22px narrower than the grid, to keep the stack's
+       dots inside the mock. That bought dot clearance at the cost of the alignment this
+       rule is about. The dots sit only 11px outside the card, and the mock's own 18px of
+       padding is more than that — so they can simply overlay the padding, and the card
+       goes back to full width. */
+.hs-step{width:min(360px,100%);margin:0}
 .hs-step .hs-grid{grid-template-columns:repeat(4,1fr);gap:9px}
-/* S1a — the same mock, wrapped round the turning card. The stack's dots sit
-   OUTSIDE the card by --dot, so the mock needs that much side padding again or
-   the dots collide with its border. */
-.hs-flip{max-width:min(425px,100%);margin-top:var(--sp-xl);
-  padding-left:calc(18px + var(--dot,11px));padding-right:calc(18px + var(--dot,11px))}
-/* The card is re-sized against the MOCK's content box rather than the viewport, less
-   22px so the stack's dots — which sit outside the card by --dot on the right — still
-   land inside the mock. Without this the 345px card overflows the padding box, the auto
-   margins collapse, and the card sits 11px left of centre. */
-.hs-flip .flip{--fw:min(345px,calc(100% - 22px));margin:0 auto}
+.hs-flip{width:min(425px,100%);margin-top:var(--sp-xl)}
+.hs-flip .flip{--fw:100%;margin:0}
 .hs-flip .hs-grid{margin-top:18px}
 .hs .wgshot{display:block;width:100%;height:auto;border:1px solid var(--line2);
   border-radius:20px}
@@ -324,7 +338,7 @@ h1+.lead,h1+.stamp{margin-top:20px}
 /* Mid-turn a corner swings ~26px past the card's resting box, top and bottom —
    the same way a rotating cube shows its diagonal. The margins above and below
    are that clearance, not decoration: at var(--sp-md) the incoming card's
-   corner reached into the caption's line box. (A `.flip + .wg-cap` rule would
+   corner reached into the caption's line box. (A `.flip + .fig-cap` rule would
    not do it — the reduced-motion .wgtrio sits between them in the markup.) */
 @media (min-width:760px){.flip{--fw:345px}}
 .flip-stage{position:absolute;inset:0;transform-style:preserve-3d;
@@ -334,27 +348,27 @@ h1+.lead,h1+.stamp{margin-top:20px}
   backface-visibility:hidden;will-change:transform,opacity;
   box-shadow:0 18px 38px -28px rgba(0,0,0,.7);
   transform:rotateX(0deg) translateZ(var(--r));
-  animation:wgflip 16s linear infinite,wgvis 16s step-end infinite}
+  animation:wgflip 10.8s linear infinite,wgvis 10.8s step-end infinite}
 .face img{display:block;width:100%;height:100%}
 .face::after{content:"";position:absolute;inset:0;border-radius:inherit;
   pointer-events:none;opacity:0;
   background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.04) 50%,
     rgba(0,0,0,.62) 100%);
-  animation:wgshade 16s linear infinite}
-/* delay for slot k of N is -(T - k*4s); with T=16s that is 0, -12s, -8s, -4s. */
+  animation:wgshade 10.8s linear infinite}
+/* delay for slot k of N is -(T - k*slot); with T=10.8s, slot 2.7s: 0, -8.1, -5.4, -2.7. */
 .face:nth-child(1){--d:0s}
-.face:nth-child(2){--d:-12s}
-.face:nth-child(3){--d:-8s}
-.face:nth-child(4){--d:-4s}
+.face:nth-child(2){--d:-8.1s}
+.face:nth-child(3){--d:-5.4s}
+.face:nth-child(4){--d:-2.7s}
 .face,.face::after{animation-delay:var(--d)}
 
 @keyframes wgflip{
-  0%,21.25%{transform:rotateX(0deg) translateZ(var(--r));
-            animation-timing-function:var(--turn)}
+  0%,19.444%{transform:rotateX(0deg) translateZ(var(--r));
+             animation-timing-function:var(--turn)}
   25%      {transform:rotateX(90deg) translateZ(var(--r))}
   25.001%  {transform:rotateX(-90deg) translateZ(var(--r))}
-  96.25%   {transform:rotateX(-90deg) translateZ(var(--r));
-            animation-timing-function:var(--turn)}
+  94.444%  {transform:rotateX(-90deg) translateZ(var(--r));
+             animation-timing-function:var(--turn)}
   100%     {transform:rotateX(0deg) translateZ(var(--r))}
 }
 /* A face is painted only while it is turning or at rest. It goes invisible at
@@ -365,16 +379,16 @@ h1+.lead,h1+.stamp{margin-top:20px}
    face face-on at ~30°: a flash. step-end holds each value to the next stop. */
 @keyframes wgvis{
   0%     {opacity:1}
-  25%    {opacity:0}
-  96.25% {opacity:1}
+  25%     {opacity:0}
+  94.444% {opacity:1}
 }
 /* light falls off the edge that is tipping away — dark at the top on the way
    out, dark at the bottom on the way in. Same overlay does both. */
 @keyframes wgshade{
-  0%,21.25%     {opacity:0}
-  25%           {opacity:.9}
-  25.001%,96.25%{opacity:.9}
-  100%          {opacity:0}
+  0%,19.444%     {opacity:0}
+  25%            {opacity:.9}
+  25.001%,94.444%{opacity:.9}
+  100%           {opacity:0}
 }
 
 /* the faces at rest, for reduced motion — four of them since M35's ferry joined */
@@ -433,20 +447,34 @@ h1+.lead,h1+.stamp{margin-top:20px}
 }
 /* the one wide capture — sized to the text column it explains, not the page */
 .shot{display:block;width:100%;border-radius:var(--r-card)}
+/* v4 — the wide capture's SIZE is unchanged from v2 (`.shot.wide` below still caps it at
+   540px); what changed is the capture. v3 swapped in a whole-phone screenshot, chrome and
+   all, and it rendered ~1170px tall — that is what "far too large" meant. The image is now
+   trimmed to the chips row and the four combo cards, so the block comes back down while
+   keeping the live stamps, the gate chips and the ferry card v3 added. */
 
 /* ---------- the watch frame, and the card that sits beside it ----------
    Same idea as .device one size down: a slim bezel whose radius is most of the
    short side, because a watch is nearly all corner. The Smart Stack card below
    it is deliberately NOT framed — it is a card, not a screen, and drawing a
    bezel round it would claim it fills the display, which it does not. */
-.watch{width:170px;padding:6px;border-radius:38px;background:var(--card2);
+/* ---------- the step's device frame ----------
+   v3: steps 01 and 02 are WHOLE-SURFACE captures again, shot on an iPhone SE at Dynamic
+   Type `large` rather than cropped out of a big-phone screenshot. A 750px-wide capture in a
+   340px frame renders the app's body text at about 15px — legible — where the same text off
+   a 1320px capture in a 190px frame was about 7px. The device frame comes back with them,
+   because what is shown is now a whole device again. */
+.step-media .device{width:min(500px,100%)}
+
+.watch{width:216px;padding:7px;border-radius:44px;background:var(--card2);
   border:1px solid var(--line2);box-shadow:0 22px 44px -32px rgba(0,0,0,.7)}
-.watch img{display:block;width:100%;height:auto;border-radius:32px}
-.card-aside{margin:18px 0 0;width:190px}
-.card-aside img{display:block;width:100%;height:auto;border-radius:12px;
-  border:1px solid var(--line2)}
-.card-aside figcaption{margin-top:8px;font:400 11px/1.4 var(--mono);
-  letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.watch img{display:block;width:100%;height:auto;border-radius:37px}
+/* v3 — one hero capture instead of two stacked lozenges, rendered large enough that the
+   card's own type is readable. The app-list capture was dropped rather than set beside it:
+   in a 360px column a two-up arrangement leaves the second frame about 110px wide, which
+   renders its text at roughly 5px. */
+.watch-hero{width:min(300px,100%);border-radius:60px;padding:9px}
+.watch-hero img{border-radius:52px}
 @media (prefers-color-scheme:light){
   .watch{box-shadow:0 16px 34px -26px rgba(60,40,25,.45)}
 }
@@ -460,8 +488,38 @@ div.shot.wide{aspect-ratio:16/10}
 div.shot.phone{aspect-ratio:9/19.5}
 
 /* ---------- free / paid divider ---------- */
+/* ---------- pricing — two cards, and the closing band (v2, item 4) ----------
+   Replaces the .grid cluster that used to sit under the rotation: three cells in a
+   two-column grid rendered a fourth, empty, shaded cell, and the three did not belong
+   together anyway (a how-to, a device note, a price). Two cards, one comparison. */
+.pricing{display:grid;gap:var(--sp-md);margin-top:var(--sp-xl)}
+/* v4 — `align-items` is left at `stretch` deliberately: the two cards must reach the same
+   bottom edge at every breakpoint, and `start` was what let the shorter one end ragged. */
+@media (min-width:760px){.pricing{grid-template-columns:1fr 1fr}}
+.pcard{background:var(--card);border:1px solid var(--line);
+  border-radius:var(--r-card);padding:26px 24px 28px;
+  display:flex;flex-direction:column}
+/* the paid card echoes the accent rule the old .split band carried */
+.pcard.plus{border-top:2px solid var(--accent);background:var(--split-bg)}
+.pcard .pk{margin:0;font:400 var(--t-label)/1 var(--mono);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink3)}
+.pcard.plus .pk{color:var(--accent)}
+.pcard .pp{margin:10px 0 0;font-size:var(--t-title);font-weight:700;
+  letter-spacing:-.03em;line-height:1.05}
+.pcard .pp span{font-size:var(--t-body);font-weight:400;color:var(--ink3);
+  letter-spacing:0}
+.pcard .pd{margin:12px 0 0;font-size:var(--t-body);line-height:1.6;color:var(--ink2)}
+.pfoot{margin:var(--sp-md) 0 0;font-size:var(--t-small);color:var(--ink3);max-width:56ch}
+
+/* the closing band — full-bleed, the page's last word before the footer */
+.cta-band{background:var(--split-bg);border-top:2px solid var(--accent)}
+.cta-band h2{max-width:20ch}
+.cta-band .cta{margin-top:var(--sp-md)}
+
+/* SITE-2 — restored as a BREAK rather than a section: half the vertical padding it
+   carried before closeout v2 cut it (var(--sp-sec) -> half of it, at both breakpoints). */
 .split{background:var(--split-bg);border-top:2px solid var(--accent);
-  border-bottom:1px solid var(--line2);padding:var(--sp-sec) 0}
+  border-bottom:1px solid var(--line2);padding:calc(var(--sp-sec) / 2) 0}
 .split .wrap{display:grid;gap:12px}
 .split .above{color:var(--ink3);margin:0}
 .split h2{font-size:var(--t-display);line-height:1.04;letter-spacing:-.032em}
@@ -519,7 +577,7 @@ div.shot.phone{aspect-ratio:9/19.5}
     --ink3:#555;--line:#ccc;--line2:#999;--accent:#7A4426;--sched:#405568;--split-bg:#fff}
   body{font-size:11pt;background:#fff;color:#000}
   .top nav,.foot nav,.jump,.skip,.cta,.hs,.stack,.shot,.shots,.device,.badge,
-  .flip,.wgtrio,.wgshot,.watch,.card-aside{display:none!important}
+  .flip,.wgtrio,.wgshot,.watch{display:none!important}
   section{padding:14pt 0;border-top:1px solid #ccc;break-inside:avoid}
   h1{font-size:20pt}h2{font-size:13pt}h3{font-size:11.5pt}
   .doc{max-width:none}
@@ -544,9 +602,14 @@ div.shot.phone{aspect-ratio:9/19.5}
    colours are StopSpotter's own tokens — only the LAYOUT idea is borrowed.
    The media column is fixed and the copy takes the remainder, so a long paragraph
    never squeezes the phone into a sliver. */
-.step .wrap{display:grid;grid-template-columns:minmax(0,1fr) 232px;
+/* SITE-2 — the media track comes back to 360px, because the thing standing in it changed.
+   v4's 500px was sized to a BARE capture at >=0.40 rendered scale; steps 01 and 02 now render
+   inside `.rphone`, whose width is the reference's 240px and is not ours to enlarge, and the
+   watch beside it is 230px. A 500px track around a 240px frame is not scale, it is a gutter.
+   360px still clears step 04's `.hs-step`, which is the widest thing left in the column. */
+.step .wrap{display:grid;grid-template-columns:minmax(0,1fr) 360px;
   column-gap:var(--sp-xl);align-items:center}
-.step.rev .wrap{grid-template-columns:232px minmax(0,1fr)}
+.step.rev .wrap{grid-template-columns:360px minmax(0,1fr)}
 .step.rev .step-copy{order:2}
 .step-copy .k{display:block;color:var(--accent);margin-bottom:12px}
 .step-copy h3{font-size:var(--t-lead);font-weight:700;letter-spacing:-.01em;margin:0 0 10px}
@@ -579,12 +642,72 @@ div.shot.phone{aspect-ratio:9/19.5}
   display:grid;gap:5px;z-index:2;pointer-events:none}
 .stackdots i{display:block;width:5px;height:5px;border-radius:50%;
   background:var(--ink);opacity:.28;
-  animation:dotcycle 16s var(--turn) infinite}
-.stackdots i:nth-child(2){animation-delay:-12s}
-.stackdots i:nth-child(3){animation-delay:-8s}
-.stackdots i:nth-child(4){animation-delay:-4s}
+  animation:dotcycle 10.8s var(--turn) infinite}
+.stackdots i:nth-child(2){animation-delay:-8.1s}
+.stackdots i:nth-child(3){animation-delay:-5.4s}
+.stackdots i:nth-child(4){animation-delay:-2.7s}
 @keyframes dotcycle{
-  0%,16.5% {opacity:.92}
-  25%,100% {opacity:.28}
+  0%,19.444%{opacity:.92}
+  25%,100%  {opacity:.28}
 }
 @media (prefers-reduced-motion:reduce){.stackdots{display:none}}
+
+/* ==========================================================================
+   SITE-2 — the reference device frames
+   Construction and dimensions are lifted from reference/example.html: the frame beside
+   PROOF PINS / PROGRESS (`.phone.sm` — 240 × 488 outer, a 9px bezel, a 74 × 20 notch pill
+   15px down, a 30px screen radius) and the watch beside "Leave your phone at home"
+   (a 230 × 278 body at a 62px radius, a 50px screen radius, a crown, a side button and two
+   band stubs). Structure and geometry are the reference's; only the COLOURS are ours — the
+   chassis is --card2 over --line2, the way `.device` already draws one, and the glow is
+   --accent where the reference's was blue.
+   ========================================================================== */
+.rphone{position:relative;width:240px;height:488px;border-radius:38px;padding:9px;
+  background:var(--card2);border:1px solid var(--line2);
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.85),0 0 60px -22px rgba(255,177,135,.30)}
+.rphone::before{content:"";position:absolute;top:15px;left:50%;transform:translateX(-50%);
+  width:74px;height:20px;background:#000;border-radius:12px;z-index:3}
+.rphone .rscreen{width:100%;height:100%;border-radius:30px;overflow:hidden;position:relative;
+  background:var(--bg)}
+.rphone .rscreen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  display:block}
+
+/* The watch, same treatment one size down. The bands are stubs rather than a whole strap —
+   enough to read as a watch, and they sit OUTSIDE the body, so the frame needs the vertical
+   room the reference gives it. */
+.rwatch{position:relative;width:230px;margin:26px 0}
+.rwatch-body{position:relative;width:230px;height:278px;border-radius:62px;padding:12px;
+  background:var(--card2);border:1px solid var(--line2);
+  box-shadow:0 30px 70px -28px rgba(0,0,0,.85),0 0 50px -20px rgba(255,177,135,.28)}
+.rwatch-screen{width:100%;height:100%;border-radius:50px;overflow:hidden;position:relative;
+  background:var(--bg)}
+.rwatch-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  display:block}
+.rwatch .crown{position:absolute;right:-4px;top:96px;width:7px;height:34px;
+  background:var(--card2);border:1px solid var(--line2);border-radius:4px}
+.rwatch .sidebtn{position:absolute;right:-3px;top:140px;width:5px;height:46px;
+  background:var(--card2);border:1px solid var(--line);border-radius:4px}
+.rwatch .band{position:absolute;left:50%;transform:translateX(-50%);width:150px;
+  background:var(--card);border:1px solid var(--line)}
+.rwatch .band.top{top:-26px;height:40px;border-radius:18px 18px 6px 6px}
+.rwatch .band.bot{bottom:-26px;height:40px;border-radius:6px 6px 18px 18px}
+
+@media (prefers-color-scheme:light){
+  .rphone,.rwatch-body{box-shadow:0 22px 46px -30px rgba(60,40,25,.55),
+    0 0 44px -22px rgba(150,85,53,.22)}
+}
+/* The frames are device drawings, not content — the print sheet drops them with the rest. */
+@media print{.rphone,.rwatch{display:none!important}}
+
+/* The whole-commute capture: a framed phone in a prose column, left-aligned with the text
+   it explains the way `.shot.wide` was. */
+.commute-shot{margin:var(--sp-xl) 0 0}
+
+/* ---------- SITE-2 — the support page's FAQ groups ----------
+   Light headings in the page's own grammar: the mono label that already marks every eyebrow,
+   kicker and caption, set in --ink3 so it divides without competing with the h2 above it or
+   the summaries below. No filter chips — grouping eighteen questions is the whole job. */
+.fgroup{margin:var(--sp-lg) 0 6px;font:600 var(--t-label)/1.3 var(--mono);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink3)}
+.fgroup:first-of-type{margin-top:var(--sp-md)}
+@media print{.fgroup{color:#000;margin-top:14pt}}

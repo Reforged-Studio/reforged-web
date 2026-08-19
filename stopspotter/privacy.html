@@ -31,9 +31,18 @@
 <main id="main">
 <section class="flush"><div class="wrap">
   <p class="eyebrow">Privacy policy</p>
-  <h1 class="page-title">There's nobody to be.</h1>
-  <p class="lead">No accounts, no analytics, no tracking. Saved stops
-  stay on your devices, and your location is used on the device and never sent anywhere.</p>
+  <!-- The headline is a STORAGE claim, deliberately, and not the "everything stays on your
+       device" line a data-free app could use: this app does send one thing, a stop
+       identifier, every time it asks for departures. What genuinely never leaves is the
+       saved list itself — stops, nicknames, preferences — which is what this says and all
+       it says. The one server is named two lines down, in the callout. -->
+  <h1 class="page-title">Your saved stops stay on your devices.</h1>
+  <!-- SITE-2 item 19 — the lead used to open "No accounts, no analytics, no tracking",
+       which is the strip immediately below it, said twice in a row. The strip stays: it
+       scans, and it is this page's signature. The lead now carries only what neither the
+       strip nor the headline does — what happens to a location fix. -->
+  <p class="lead">Your location is used on the device, and never sent
+  anywhere.</p>
   <p class="stamp">Last updated 18 August 2026 &middot; Applies to
   StopSpotter&nbsp;1.0 on iPhone and Apple&nbsp;Watch</p>
   <ul class="strip">
@@ -136,9 +145,8 @@
   and predictions derived from publicly available NY Waterway data. Data availability is not
   guaranteed.</p>
   <nav aria-label="Footer"><a href="privacy">Privacy policy</a>
-    <a href="support">Support</a>
-    <a href="mailto:hello@reforged.studio">hello@reforged.studio</a></nav>
-  <p>&copy; 2026 Reforged Studio LLC</p>
+    <a href="support">Support</a></nav>
+  <p>&copy; 2026 <a href="https://reforged.studio">Reforged Studio LLC</a></p>
 </div></footer>
 </body>
 </html>
