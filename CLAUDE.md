@@ -9,9 +9,8 @@ no package manifest. A root landing page plus one directory per shipped app.
 Pages builds on commit"). Pages 308-redirects `/privacy.html` → `/privacy`, so internal links are
 deliberately extensionless (`href="privacy"`, `href="./"`). Keep it that way.
 
-**Deploy mechanism: OWNER FILLS IN** — git remote, branch, Pages project name. This working copy
-has **no `.git` directory** and no CI / wrangler / `_redirects` / `_headers` config, so the push
-target cannot be read from the tree.
+**Deploy mechanism:** push to `main` at `https://github.com/Reforged-Studio/reforged-web` —
+Cloudflare Pages builds on commit, so **push = deploy**. No other config exists in the tree.
 
 ## Deploy and commit rules
 
