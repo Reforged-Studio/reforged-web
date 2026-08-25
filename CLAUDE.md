@@ -24,6 +24,19 @@ cd /Users/bobferriola/ReforgedStudioWebsite && git add -A && git commit -m "..."
 Plain descriptive commit messages. **No milestone numbering in this repo** — that belongs to the
 app projects.
 
+## Working branches for larger changes
+
+Push to `main` = production deploy, so multi-session or significant work happens on a working
+branch (e.g. `draft/<topic>`), pushed freely for backup without touching production.
+
+Cloudflare Pages builds a preview deployment for every push to a non-production branch, at a
+hash-prefixed `*.pages.dev` URL that keeps updating until the branch merges — review rendered
+changes there before merging. Production and the custom domain are unaffected by previews.
+
+Merge to `main` only when the work is done; that merge+push is the deploy moment.
+
+Small single-file edits may continue to commit straight to `main`.
+
 ## Structure
 
 - `index.html` — landing page. All CSS in one inline `<style>`, Google Fonts, inline-SVG grain.
