@@ -40,6 +40,9 @@ default next step; the merge block is handed only after the owner says to land i
 There is no small-edit exception. If the owner wants to skip the branch for a trivial change, the
 owner says so explicitly, per change; sessions never propose it.
 
+`.claude/settings.json` denies `git push` and `git merge` at the tool-permission level, so this
+isn't just a written rule — a handed branch commit+push block is the only path to production.
+
 ## Structure
 
 - `index.html` — landing page. All CSS in one inline `<style>`, Google Fonts, inline-SVG grain.
