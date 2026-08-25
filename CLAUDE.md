@@ -24,18 +24,21 @@ cd /Users/bobferriola/ReforgedStudioWebsite && git add -A && git commit -m "..."
 Plain descriptive commit messages. **No milestone numbering in this repo** — that belongs to the
 app projects.
 
-## Working branches for larger changes
+## Branch-first workflow — main is production
 
-Push to `main` = production deploy, so multi-session or significant work happens on a working
-branch (e.g. `draft/<topic>`), pushed freely for backup without touching production.
+Push to `main` = production deploy. Therefore **all work** — any size, any file — lands on a
+working branch (`draft/<topic>`) by default. Sessions stage on the branch and hand the owner a
+branch commit+push block.
 
-Cloudflare Pages builds a preview deployment for every push to a non-production branch, at a
-hash-prefixed `*.pages.dev` URL that keeps updating until the branch merges — review rendered
-changes there before merging. Production and the custom domain are unaffected by previews.
+Cloudflare builds a preview URL for every non-production branch push; the owner reviews the
+rendered preview there.
 
-Merge to `main` only when the work is done; that merge+push is the deploy moment.
+Merging to `main` happens **only** on explicit owner approval given after the owner has seen the
+preview (or waived it in so many words). A session **never** hands a main-push block as the
+default next step; the merge block is handed only after the owner says to land it.
 
-Small single-file edits may continue to commit straight to `main`.
+There is no small-edit exception. If the owner wants to skip the branch for a trivial change, the
+owner says so explicitly, per change; sessions never propose it.
 
 ## Structure
 
