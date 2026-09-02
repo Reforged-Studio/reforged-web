@@ -136,6 +136,9 @@
   .phone.sm{width:240px;height:488px;border-radius:38px;padding:9px;justify-self:center;}
   .phone.sm::before{width:74px;height:20px;top:15px;}
   .phone.sm .screen{border-radius:30px;}
+  /* Proof export video isn't shot at the phone's own screen aspect ratio (unlike the
+     screenshot stills) — cover would crop its baked-in wordmark, so it gets contain instead. */
+  .screen video.screen-img{object-fit:contain;}
 
   /* plus extras grid — reuses .feat pattern */
   .pextras{padding:88px 0;border-top:1px solid var(--sp-hairline);}
@@ -165,8 +168,8 @@
   /* post-card close: one calm block, no competing box */
   .price-note{margin:32px 0 0;padding-top:28px;border-top:1px solid var(--sp-hairline);
     display:flex;flex-direction:column;gap:14px;}
-  .price-note .why p:first-child{font-size:15px;font-weight:600;}
-  .price-note .why p+p{margin-top:4px;font-size:15px;color:var(--sp-text-secondary);}
+  .price-note .why p{font-size:15px;color:var(--sp-text-secondary);}
+  .price-note .why p+p{margin-top:4px;}
   .final .support-final{margin-top:10px;}
 
   /* faq */
@@ -230,9 +233,10 @@
         <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div><div class="txt"><h3>Live route tracking</h3><p>Watch your run draw in real time as you go.</p></div></div>
         <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="txt"><h3>Workout history</h3><p>Browse or filter past workouts with routes, splits, and stats.</p></div></div>
         <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></div><div class="txt"><h3>Works with Apple Health</h3><p>Pulls routes from Apple Health and saves new ones back to it, all kept private.</p></div></div>
-        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></div><div class="txt"><h3>Detailed metrics</h3><p>Everything your devices capture — pace, heart rate zones, elevation, running form — saved to Apple Health.</p></div></div>
-        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><rect x="9" y="5" width="6" height="2.2" rx="1.1" fill="currentColor" stroke="none"/></svg></div><div class="txt"><h3>Live Activities</h3><p>Your workout on the Lock Screen and Dynamic Island.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></div><div class="txt"><h3>Detailed metrics</h3><p>Pace, heart rate zones, elevation, running form — everything your devices capture, saved to Apple Health. Plus StreetProof's own scores: effort, training load, and adjusted pace.</p></div></div>
         <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div><div class="txt"><h3>Map layers and filters</h3><p>Turn past routes on or off, filter them by date, or have each run drawn in a different color. The watch has its own set of switches.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><rect x="9" y="5" width="6" height="2.2" rx="1.1" fill="currentColor" stroke="none"/></svg></div><div class="txt"><h3>Live Activities</h3><p>Your workout on the Lock Screen and Dynamic Island.</p></div></div>
+        <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v13"/><path d="m8 6 4-4 4 4"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/></svg></div><div class="txt"><h3>Share your route</h3><p>Any run exports as a clean image or clip of its route, ready to post.</p></div></div>
         <div class="feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM12 17.5h-3l1.5-7 4 3 2-3"/></svg></div><div class="txt"><h3>More than running</h3><p>Walks and bike ride activities from Apple Health appear, too, along with the stats from treadmill and stationary bike activities.</p></div></div>
       </div>
     </div>
@@ -302,8 +306,26 @@
     </div>
   </section>
 
-  <!-- NEW v3: Location Beacon. -->
+  <!-- NEW v3.1: Proof (image/video export). -->
   <section class="pfeat">
+    <div class="container">
+      <div class="wrap">
+        <div class="pf-media">
+          <div class="phone sm"><div class="screen"><video class="screen-img" autoplay muted loop playsinline preload="none" poster="/streetproof/proof-replay-poster.jpg" aria-label="StreetProof Proof — a Manhattan city replay filling in run by run">
+            <source src="/streetproof/proof-replay.mp4" type="video/mp4">
+          </video></div></div>
+        </div>
+        <div>
+          <span class="k">Proof</span>
+          <h3>Share your proof.</h3>
+          <p class="body">Export any run, city, or your whole map as an image or a short clip. Watch a run draw itself and claim pins as it goes, or replay a city filling in run by run — stills and videos, light or dark, with your stats built in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW v3: Location Beacon. -->
+  <section class="pfeat flip">
     <div class="container">
       <div class="wrap">
         <div class="pf-media">
@@ -349,14 +371,6 @@
           <a class="btn-ghost" href="https://go.reforged.studio/streetproof/plus?plan=lifetime&amp;checkout=1">Own it forever</a>
         </div>
       </div>
-
-      <div class="price-note">
-        <div class="why">
-          <p>No ads, no accounts.</p>
-          <p>Built by one runner. StreetProof+ is what keeps it that way.</p>
-        </div>
-      </div>
-
     </div>
   </section>
 
