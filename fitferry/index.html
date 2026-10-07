@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FitFerry — Move workouts in and out of Apple Health</title>
-  <meta name="description" content="FitFerry imports GPX, TCX, and FIT files into Apple Health as real historical workouts, and exports them back out. Everything on your device. No account, no subscription.">
+  <meta name="description" content="FitFerry imports GPX, TCX, and FIT files into Apple Health as real historical workouts, and exports them back out. No accounts, no analytics, no servers of ours. No subscription.">
   <meta name="theme-color" content="#1EB093">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231EB093'/><path fill='%23fff' d='M86 21 L69.9 9.4 L69.9 13 L38 13 Q21.2 13 21.2 30.4 L21.2 87 L37.2 87 L37.2 65 L25.4 53.1 L37.2 41.3 L37.2 31 Q37.2 29 39 29 L69.9 29 L69.9 32.7 Z'/><path fill='%23fff' d='M27.2 53.1 L37.6 42.7 L37.7 45.3 L71.6 45.3 L71.6 61 L37.7 61 L37.6 63.6 Z'/></svg>">
   <link rel="stylesheet" href="styles.css">
@@ -42,7 +42,7 @@
       <div class="wrap">
         <div>
           <span class="tag">iPhone &amp; iPad · iOS 18+</span>
-          <h1>Workouts in.<br>Workouts out.<br>Your call.</h1>
+          <h1>Workouts in.<br>Workouts out.<br>It&rsquo;s your data.</h1>
           <p class="sub">FitFerry moves GPX, TCX, and FIT files into Apple Health and back out again. On your device, on your terms.</p>
 
           <a class="cta" href="https://apps.apple.com/us/app/fitferry/id6790206124">Download on the App Store</a>
@@ -50,12 +50,12 @@
           <p class="fine">Free unlimited exports plus 3 imports to test. $2.99 once for unlimited imports. No subscription, no account.</p>
         </div>
 
-        <!-- PLACEHOLDER: hero screenshot.
-             Replace the inner text with an <img> of the app's main screen.
-             Intended asset: iPhone screenshot, 1290 × 2796 px (6.7-inch),
-             displayed inside this CSS device frame. Include descriptive alt text. -->
+        <!-- Hero screenshot: the App Store set's Import Log shot (FitFerry repo,
+             docs/screenshots/appstore/dark/iphone-03-import-log-tile.png, 1320 × 2868),
+             scaled to 720 px wide. Synthetic data only. The filename carries
+             the version so cached copies stop serving. -->
         <div class="device">
-          <img src="hero-screenshot.png" alt="FitFerry's import screen showing a file inspector with GPS route, heart rate, and elevation data" width="1290" height="2796">
+          <img src="hero-screenshot-11-dark.png" alt="FitFerry's Import screen in dark mode: a Choose Files button above the Import Log, which lists six imported files, each with its activity type and original date" width="720" height="1564">
         </div>
       </div>
     </section>
@@ -63,7 +63,7 @@
     <!-- ================= Signpost row ================= -->
     <div class="signs">
       <div class="wrap">
-        <span class="sign"><span class="arr" aria-hidden="true">→</span> IN:&nbsp;&nbsp;GPX · TCX · FIT</span>
+        <span class="sign"><span class="arr" aria-hidden="true">→</span> IN:&nbsp;&nbsp;GPX · TCX · FIT · ZIP</span>
         <span class="sign"><span class="arr" aria-hidden="true">←</span> OUT:&nbsp;&nbsp;GPX · TCX</span>
         <span class="sign">ON-DEVICE · NO ACCOUNT</span>
       </div>
@@ -74,7 +74,7 @@
       <div class="wrap">
         <span class="eyebrow">Why it exists</span>
         <h2>Your data should be yours.</h2>
-        <p class="lede">The runs, rides, and swims you've logged over the years belong to you, not to whichever platform holds them. FitFerry moves them into Apple Health and back out again, whenever you like. All of it happens on your device: no servers, no accounts, no analytics. The only place your data goes is where you send it.</p>
+        <p class="lede">The runs, rides, and swims you've logged over the years belong to you, not to whichever platform holds them. FitFerry moves them into Apple Health and back out again, whenever you like. Your files and workouts are processed on your iPhone or iPad, with no servers of ours, no accounts, and no analytics. Nothing you import or export ever reaches us.</p>
       </div>
     </section>
 
@@ -87,27 +87,52 @@
         <div class="features-grid">
           <article class="feature">
             <h3><span class="a" aria-hidden="true">→</span> Import</h3>
-            <p>Bring GPX, TCX, and FIT files into Apple Health as genuine historical workouts, with real past dates, GPS routes, and heart rate.</p>
+            <p>Bring GPX, TCX, and FIT files into Apple Health as genuine historical workouts, with real past dates and time zones, GPS routes, heart rate, distance, and elevation gain when the file records it.</p>
           </article>
 
           <article class="feature">
             <h3><span class="a" aria-hidden="true">⇉</span> Bulk import</h3>
-            <p>Drop in a whole platform export, like a Strava or Garmin zip, and bring your entire history over in one pass.</p>
+            <p>Pick a whole platform export, like a Strava or Garmin archive, and bring your entire history over in one pass. Zip and .gz files open as they are, with no unzipping first. You can also share a file straight to FitFerry from Files or another app.</p>
           </article>
 
           <article class="feature">
             <h3><span class="a" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="position:relative; top:1.5px"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.5-4.5"/></svg></span> File Inspector</h3>
-            <p>See exactly what a file carries before you import it: dates, route points, heart rate, and everything else inside.</p>
+            <p>See exactly what a file carries before anything is written: dates, route points, heart rate, and everything else inside. Impossible readings, like a heart rate of 0 or a stray GPS jump, are left out and counted.</p>
+          </article>
+
+          <article class="feature">
+            <h3><span class="a" aria-hidden="true">↗</span> Every activity</h3>
+            <p>Runs, walks, hikes, rides, swims, rowing, yoga, strength, skiing, and more import as their own activity. Change any file's type before importing, or set them all at once.</p>
+          </article>
+
+          <article class="feature">
+            <h3><span class="a" aria-hidden="true">⇄</span> Duplicates handled</h3>
+            <p>Workouts already in Apple Health are skipped, and likely duplicates from other apps are flagged before you import. Importing the same export twice is safe.</p>
+          </article>
+
+          <article class="feature">
+            <h3><span class="a" aria-hidden="true">↻</span> Built for big batches</h3>
+            <p>One bad file never stops the rest. A long import keeps the screen awake, can be cancelled at any time, and picks up where it left off if it's interrupted. A summary at the end shows what landed and why anything didn't, and the Import Log keeps the record.</p>
           </article>
 
           <article class="feature">
             <h3><span class="a" aria-hidden="true">←</span> Export</h3>
-            <p>Take workouts out of Apple Health as GPX or TCX files. Filter, multi-select, and export as many as you like. Export is always unlimited.</p>
+            <p>Take any workout out of Apple Health, from any app, as a GPX or TCX file. Routes are labeled with the place they started, so the right one is easy to find. Filter, multi-select, and export as many as you like. Export is always unlimited.</p>
           </article>
 
           <article class="feature">
-            <h3><span class="a" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="position:relative; top:1.5px"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span> Everything on-device</h3>
-            <p>No account to create, no server to trust. Your files and your health data are processed on your iPhone or iPad and nowhere else.</p>
+            <h3><span class="a" aria-hidden="true">↩</span> Undo an import</h3>
+            <p>Delete what FitFerry imported: one workout, one batch, or everything. It only ever removes workouts FitFerry wrote itself, never another app's.</p>
+          </article>
+
+          <article class="feature">
+            <h3><span class="a" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="position:relative; top:1.5px"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span> Nothing reaches us</h3>
+            <p>No accounts. No analytics. No data on servers. No third-party access. Your files and health data are processed on your iPhone or iPad; Apple's own frameworks may look up a map point for place names and time zones.</p>
+          </article>
+
+          <article class="feature">
+            <h3><span class="a" aria-hidden="true">↕</span> Fits your settings</h3>
+            <p>Miles or kilometers by region, and layouts that hold at the largest accessibility text sizes, on iPhone and iPad.</p>
           </article>
         </div>
       </div>
@@ -123,7 +148,7 @@
           <div class="price">
             <span class="p-label">Free</span>
             <span class="p-num">$0</span>
-            <p>Three imports to check that your files land exactly right, plus unlimited export.</p>
+            <p>Three imports to check that your files land exactly right, plus unlimited export. Files already in Apple Health don't use one up.</p>
           </div>
           <div class="price hot">
             <span class="p-label">Lifetime unlock</span>
