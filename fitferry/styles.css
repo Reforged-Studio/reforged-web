@@ -212,9 +212,9 @@ h2 {
 /* Device frame (screenshot placeholder) */
 .device {
   justify-self: center; position: relative; z-index: 1;
-  width: min(240px, 64vw); aspect-ratio: 1290 / 2796;
+  width: min(240px, 64vw); aspect-ratio: 1320 / 2868;
   border: 9px solid var(--hero-ink); border-radius: 40px;
-  background: #fff;
+  background: #000;
   overflow: hidden;
   padding: 0;
   box-shadow: 0 30px 60px -30px rgba(4, 40, 32, 0.55);

@@ -67,27 +67,69 @@
           <li><strong>Unsupported format.</strong> FitFerry reads GPX, TCX, and FIT. Other formats, such as CSV or KML, need to be converted to one of those first. If an unsupported file is inside a zip alongside supported files, FitFerry simply skips it and imports the rest.</li>
         </ul>
         <p>If you're unsure what a file contains, open it in the File Inspector first. It shows the dates, route points, and samples a file carries before anything is written to Health.</p>
+        <p><strong>Bad readings are left out.</strong> FitFerry leaves out a heart rate outside 20–260 bpm (a strap reading 0, for example), cadence over 300, a temperature beyond ±60 °C, negative distance, a coordinate that's off the map, and short GPS jumps. The File Inspector counts what it left out, for example "Heart rate: 1,203 samples (2 ignored)". A file is still refused when nothing usable is left, when a value isn't a number at all, when its times are missing or unreadable, or when it runs longer than 4 days.</p>
+        <p><strong>Times with no time zone</strong>, like 2024-05-01T09:30:00, are read as UTC. The inspector says "Times have no time zone; treated as UTC." If the file was written in local time, the workout will be off by your difference from UTC.</p>
+        <p><strong>Longer than 4 days.</strong> Apple Health doesn't accept a workout that long, and FitFerry says so: "This workout is longer than 4 days, which Apple Health doesn't allow."</p>
+        <p><strong>Several workouts in one file</strong> still import as one. A GPX with several tracks is merged. A TCX with several activities imports only the first. A multi-sport FIT takes the first sport's type.</p>
+        <p><strong>The reason is in the Import Log.</strong> Tap the row. Details shows the technical text if you want to send it to us.</p>
+
+        <h3>It says a workout is a likely duplicate</h3>
+        <p>A file that's already in Apple Health is skipped, and doesn't use up a free import. If Health already holds a workout of the same type that starts within 2 minutes and covers about the same distance, even one from your watch or another app, the File Inspector flags the file as a likely duplicate and leaves it out. Tap Import Anyway on that file if you want it.</p>
+
+        <h3>An import was interrupted</h3>
+        <p>A long import keeps the screen awake, and Cancel finishes the file in progress and marks the rest Not Attempted. If the app is closed partway through, the next launch offers to resume the remaining files or discard them. Batches of two or more files end with a summary of what was imported, what was already in Health, and what couldn't be read.</p>
+
+        <h3>Where's my elevation gain?</h3>
+        <p>FitFerry saves elevation gain with a workout only when the file itself records a total. GPX and TCX files don't carry one: they hold altitude readings, not a total, and FitFerry doesn't estimate a total from them. FIT files, the kind most watches and bike computers write, usually do. When a file has one, the File Inspector shows it before you import ("Elevation gain: 412 ft", in your region's units). If that line is missing, the file doesn't state a total.</p>
+        <p>The route's altitudes are imported as they are in every case. FitFerry 1.0 saved no elevation gain for any file. To add a FIT file's total to a workout imported with 1.0, delete the workout from the Import Log (open its row and tap Delete from Apple Health), then import the file again. On the free tier, that counts as an import.</p>
+
+        <h3>Removing something FitFerry imported</h3>
+        <p>Open a row in the Import Log and tap Delete from Apple Health to remove that workout, or its whole batch. The menu at the top of the Import tab has Delete Everything FitFerry Imported. Each asks you to confirm first, and only workouts FitFerry wrote are removed, along with their routes and samples. Deleting is always free, and it doesn't give free imports back.</p>
 
         <h3>Where do imported workouts appear?</h3>
         <p>In the Health app under Browse → Activity → Workouts, and in the Fitness app on the Summary tab. Because imports keep their real historical dates, scroll back to the workout's original date: a 2021 ride appears in 2021, not today. Route maps and heart rate appear on the workout's detail page when the file included them.</p>
 
         <h3>FitFerry can't see Apple Health</h3>
-        <p>Imports and exports need Health permission. Check Settings → Privacy &amp; Security → Health → FitFerry, and make sure both read and write access are enabled for workouts.</p>
+        <p>FitFerry needs Health access to write workouts, and to read them for Export. Go to Settings → Apps → Health → Data Access &amp; Devices → FitFerry and tap Turn On All. If an import says Health access is missing, it offers an Open Settings button.</p>
+        <p>On iOS 27, if Health asks how much data to share, choose All Recorded Data. With Past 30 Days, the Export tab lists only the last month of other apps' workouts, and FitFerry shows a hint when it sees only recent workouts.</p>
+
+        <h3 id="strava">Getting your Strava export</h3>
+        <ul>
+          <li>On the Strava website (not the app), go to Settings → My Account → "Download or Delete Your Account" → Request Your Archive. Strava emails you a link, usually within a few hours.</li>
+          <li>Open the email on your iPhone or iPad and tap the link. Safari saves the zip, whose name starts with "export_", to Files → Downloads.</li>
+          <li>In FitFerry, tap Choose Files → Browse → Downloads and pick the zip. FitFerry reads the activities folder, including Strava's compressed .fit.gz, .gpx.gz and .tcx.gz files, and takes each activity's name and type from the export's activities file. It ignores the photos and other files in the archive.</li>
+        </ul>
+
+        <h3 id="garmin">Getting your Garmin export</h3>
+        <ul>
+          <li>On garmin.com, sign in and go to Account → Data Management → Export Your Data. Garmin emails you a link, which can take a day or more.</li>
+          <li>Open the link on your iPhone or iPad. The zip lands in Files → Downloads.</li>
+          <li>In FitFerry, tap Choose Files and pick the zip. Your activities are in zips of their own inside it, and FitFerry opens those for you. Garmin keeps activity names in a file FitFerry doesn't read, so its rows show file names.</li>
+        </ul>
+        <p>With either export, the first 3 new workouts are free. If they run out partway through, FitFerry offers the unlock, and when you buy it the import carries on. Files already in Health don't use up a free import.</p>
 
         <h2 id="faq">Frequently asked</h2>
 
         <div class="faq">
           <div>
             <h3>Where does my data go?</h3>
-            <p>Only where you send it. Files are parsed on your device, and every read or write to Apple Health happens on your device. FitFerry has no servers, no accounts, and no analytics.</p>
+            <p>Your files and your health data never reach us. Files are parsed on your device, and every read or write to Apple Health happens on your device. FitFerry has no servers, no accounts, and no analytics. The only piece of your data that leaves your device is a single map point, which FitFerry looks up with Apple to show a place name or find a workout's time zone. The <a href="privacy.html">privacy policy</a> has the details.</p>
           </div>
           <div>
             <h3>Which formats does it support?</h3>
-            <p>GPX, TCX, and FIT for import. GPX and TCX for export. Zip archives containing those formats work too.</p>
+            <p>Import: GPX, TCX, and FIT, one file or many, and zip or gzip archives of them, including Strava's .fit.gz files and the zips inside a Garmin export. Export: GPX and TCX. A workout with no GPS route exports as TCX only, because GPX can't hold one.</p>
+          </div>
+          <div>
+            <h3>Which activities does it import?</h3>
+            <p>Run, walk, hike, cycle, swim, rowing, elliptical, strength, yoga, cross-country and downhill skiing, paddling, and Other. The type comes from the file, from a Strava export's activity list, or from the title. Anything FitFerry can't name imports as Other, and you can change any file's type in the File Inspector before importing, or set them all at once. A file with no GPS imports as an indoor workout unless you switch it to outdoor.</p>
+          </div>
+          <div>
+            <h3>Can it export workouts from other apps?</h3>
+            <p>Yes. The Export tab lists every workout Apple Health lets FitFerry read, whichever app or watch recorded it, with a place label on the ones that have a route. Export is always free.</p>
           </div>
           <div>
             <h3>Does it work with a Strava or Garmin export zip?</h3>
-            <p>Yes. Request your data export from the platform, get the zip onto your device, and FitFerry will import the workouts inside it.</p>
+            <p>Yes. Pick the whole zip in FitFerry; there's no need to unzip it first. See <a href="#strava">Getting your Strava export</a> and <a href="#garmin">Getting your Garmin export</a> above.</p>
           </div>
           <div>
             <h3>Do imported workouts show up in Apple Fitness?</h3>
@@ -99,7 +141,7 @@
           </div>
           <div>
             <h3>How do I get my files onto my iPhone?</h3>
-            <p>Any way you'd move a normal file: save them to iCloud Drive, AirDrop them from a Mac, or put them anywhere the Files app can reach. FitFerry opens them from there.</p>
+            <p>Any way you'd move a normal file: save them to iCloud Drive, AirDrop them from a Mac, or put them anywhere the Files app can reach. FitFerry opens them from there. You can also share a file or an export zip straight to FitFerry from the Files app: tap Share, then FitFerry.</p>
           </div>
         </div>
 
