@@ -59,13 +59,13 @@
   .vis{display:flex;justify-content:center;align-items:flex-start;position:relative;}
 
   /* devices */
-  .phone{width:270px;aspect-ratio:1320/2868;border-radius:40px;border:8px solid #16181d;box-shadow:0 0 0 1px #2a2d35,0 30px 80px rgba(2,144,254,.18);overflow:hidden;background:#0e1017;}
-  .phone img{width:100%;height:100%;object-fit:cover;object-position:top;}
-  .phone.cut{aspect-ratio:1320/2440;border-bottom:none;border-radius:40px 40px 0 0;position:relative;box-shadow:0 0 0 1px #2a2d35;-webkit-mask-image:linear-gradient(180deg,#000 82%,transparent);mask-image:linear-gradient(180deg,#000 82%,transparent);}
-  .watch{width:150px;aspect-ratio:416/496;border-radius:40px;border:7px solid #16181d;box-shadow:0 0 0 1px #2a2d35,0 20px 50px rgba(0,0,0,.6);overflow:hidden;background:#000;}
-  .watch img{width:100%;height:100%;object-fit:cover;}
+  .phone{width:270px;border-radius:40px;border:8px solid #16181d;box-shadow:0 0 0 1px #2a2d35,0 30px 80px rgba(2,144,254,.18);overflow:hidden;background:#0e1017;}
+  .phone img{width:100%;height:auto;}
+  .phone.cut{border-bottom:none;border-radius:40px 40px 0 0;position:relative;box-shadow:0 0 0 1px #2a2d35;-webkit-mask-image:linear-gradient(180deg,#000 82%,transparent);mask-image:linear-gradient(180deg,#000 82%,transparent);}
+  .watch{width:150px;border-radius:40px;border:7px solid #16181d;box-shadow:0 0 0 1px #2a2d35,0 20px 50px rgba(0,0,0,.6);overflow:hidden;background:#000;}
+  .watch img{width:100%;height:auto;}
   .vis .watch{align-self:flex-end;margin-left:-46px;margin-bottom:60px;z-index:2;}
-  .watch.big{width:250px;border-radius:64px;border-width:10px;margin:0;align-self:center;}
+  .watch.big{width:228px;border-radius:64px;border-width:10px;margin:0;align-self:center;}
   .phonecol{display:flex;flex-direction:column;align-items:center;}
   .legend{display:flex;gap:8px;justify-content:center;margin-top:14px;}
   .legend span{font-size:11px;font-weight:600;padding:4px 9px;border-radius:14px;border:1px solid rgba(255,255,255,.14);color:#b9c6df;}
@@ -77,25 +77,25 @@
   /* history cards + numbers */
   .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;}
   .card{background:var(--sp-surface);border-radius:20px;overflow:hidden;border:1px solid var(--sp-hairline);}
-  .card .img{height:420px;overflow:hidden;}
+  .card .img{aspect-ratio:334/420;overflow:hidden;}
   .card .img img{width:100%;height:100%;object-fit:cover;object-position:top;}
   .card .tx{padding:18px 20px 22px;}
   .band{margin-top:24px;}
   .band .tx{padding-bottom:6px;}
   .m3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:14px 20px 22px;align-items:start;}
   .m3>div{background:#0e1017;border-radius:16px;padding:10px;}
-  .m3 img{width:100%;margin-bottom:8px;}
+  .m3 img{width:100%;height:auto;margin-bottom:8px;}
   .m3 img:last-child{margin-bottom:0;}
 
   /* export tiles */
   .tiles{display:flex;gap:20px;justify-content:center;align-items:flex-end;}
-  .tile{border-radius:16px;overflow:hidden;border:1px solid var(--sp-hairline);background:#0b0d12;aspect-ratio:9/16;}
+  .tile{box-sizing:content-box;border-radius:16px;overflow:hidden;border:1px solid var(--sp-hairline);background:#0b0d12;aspect-ratio:9/16;}
   .tile img,.tile video{width:100%;height:100%;object-fit:cover;}
-  .tiles.pair .tile{width:220px;}
+  .tiles.pair .tile{width:218px;}
   .tiles.trio{margin-top:44px;}
   .tiles.trio .tile{width:300px;}
   .tiles.quad{margin-top:44px;}
-  .tiles.quad .tile{width:244px;}
+  .tiles.quad .tile{width:242px;}
 
   /* StreetProof+ act */
   .plus{background:linear-gradient(180deg,var(--sp-plus-top),var(--sp-plus-bottom));}
@@ -152,8 +152,8 @@
     .g4{grid-template-columns:1fr 1fr;}
     .phone{width:230px;}
     .tiles{flex-wrap:wrap;}
-    .tiles.trio .tile,.tiles.quad .tile{width:calc(50% - 10px);}
-    .tiles.pair .tile{width:calc(50% - 10px);}
+    .tiles.trio .tile,.tiles.quad .tile{width:calc(50% - 12px);}
+    .tiles.pair .tile{width:calc(50% - 12px);}
     .plusbreak .wordmark{font-size:52px;}
     .pcard .price{font-size:44px;}
   }
@@ -174,11 +174,11 @@
           <p class="lead">A map-first running app for iPhone and Apple Watch. Every run fills in your map — the streets you've covered show, and the ones you haven't keep pulling you somewhere new.</p>
           <div style="margin-top:28px"><a href="https://apps.apple.com/us/app/streetproof/id6764345712" class="btn-primary">Download on the App Store</a></div>
           <p class="under">Free for iPhone and Apple Watch. No ads, no account.</p>
-          <p class="jump"><a href="#plus">StreetProof+ turns your map into a game ↓</a></p>
+          <p class="jump"><a href="#plus">See what StreetProof+ adds</a></p>
         </div>
         <div class="vis">
-          <div class="phone"><img src="/streetproof/shot-map-35.jpg" alt="StreetProof home map: every past run drawn over Manhattan, with the Run, History, Progress and Menu tabs"/></div>
-          <div class="watch"><img src="/streetproof/shot-watch-park.jpg" alt="StreetProof on Apple Watch, mid-run"/></div>
+          <div class="phone"><img src="/streetproof/shot-map-35-254.jpg" srcset="/streetproof/shot-map-35-214.jpg 214w, /streetproof/shot-map-35-254.jpg 254w, /streetproof/shot-map-35-428.jpg 428w, /streetproof/shot-map-35-508.jpg 508w, /streetproof/shot-map-35-642.jpg 642w" sizes="(max-width:860px) 214px, 254px" width="642" height="1395" alt="StreetProof home map: every past run drawn over Manhattan, with the Run, History, Progress and Menu tabs"/></div>
+          <div class="watch"><img src="/streetproof/watch-park-272.jpg" srcset="/streetproof/watch-park-136.jpg 136w, /streetproof/watch-park-272.jpg 272w, /streetproof/watch-park-408.jpg 408w" sizes="136px" width="408" height="486" alt="StreetProof on Apple Watch, mid-run"/></div>
         </div>
       </div>
     </section>
@@ -196,7 +196,7 @@
           <h2>Leave your phone<br><span class="accent">at home.</span></h2>
           <p class="lead">Most fitness apps treat the Apple Watch as a stripped-down, metrics-only companion to the phone. StreetProof gives you the full map-first experience on your wrist with a cellular Watch — your past routes, your current run, and nothing else to carry.</p>
         </div>
-        <div class="vis"><div class="watch big"><img src="/streetproof/shot-watch-bridge.jpg" alt="A run in progress on the Apple Watch map"/></div></div>
+        <div class="vis"><div class="watch big"><img src="/streetproof/watch-bridge-416.jpg" srcset="/streetproof/watch-bridge-208.jpg 208w, /streetproof/watch-bridge-416.jpg 416w" sizes="208px" width="416" height="496" alt="A run in progress on the Apple Watch map"/></div></div>
       </div>
     </section>
 
@@ -204,16 +204,16 @@
     <section>
       <div class="center"><div class="eyebrow">Your history</div><h2>All your runs. <span class="accent">View them your way.</span></h2></div>
       <div class="g3">
-        <div class="card"><div class="img"><img src="/streetproof/shot-map-filtered-35.jpg" alt="The route map, filtered to this year"/></div><div class="tx"><h3>Route map</h3><p class="small">Every run in Apple Health, drawn the day you install. See it all, or filter by date.</p></div></div>
-        <div class="card"><div class="img"><img src="/streetproof/shot-history-35.jpg" alt="The History tab: runs grouped by month, each with its route thumbnail"/></div><div class="tx"><h3>History</h3><p class="small">Every run with its route thumbnail, filterable by date, distance, place and activity.</p></div></div>
-        <div class="card"><div class="img"><img src="/streetproof/shot-calendar-35.jpg" alt="The training calendar"/></div><div class="tx"><h3>Training calendar</h3><p class="small">Each day's dot scales with its training load, so your biggest days and weeks stand out at a glance.</p></div></div>
+        <div class="card"><div class="img"><img src="/streetproof/shot-map-filtered-35-668.jpg" srcset="/streetproof/shot-map-filtered-35-334.jpg 334w, /streetproof/shot-map-filtered-35-668.jpg 668w, /streetproof/shot-map-filtered-35-1002.jpg 1002w" sizes="(max-width:860px) calc(100vw - 42px), 334px" width="1002" height="1260" alt="The route map, filtered to this year"/></div><div class="tx"><h3>Route map</h3><p class="small">Every run in Apple Health, drawn the day you install. See it all, or filter by date.</p></div></div>
+        <div class="card"><div class="img"><img src="/streetproof/shot-history-35-668.jpg" srcset="/streetproof/shot-history-35-334.jpg 334w, /streetproof/shot-history-35-668.jpg 668w, /streetproof/shot-history-35-1002.jpg 1002w" sizes="(max-width:860px) calc(100vw - 42px), 334px" width="1002" height="1260" alt="The History tab: runs grouped by month, each with its route thumbnail"/></div><div class="tx"><h3>History</h3><p class="small">Every run with its route thumbnail, filterable by date, distance, place and activity.</p></div></div>
+        <div class="card"><div class="img"><img src="/streetproof/shot-calendar-35-668.jpg" srcset="/streetproof/shot-calendar-35-334.jpg 334w, /streetproof/shot-calendar-35-668.jpg 668w, /streetproof/shot-calendar-35-1002.jpg 1002w" sizes="(max-width:860px) calc(100vw - 42px), 334px" width="1002" height="1260" alt="The training calendar"/></div><div class="tx"><h3>Training calendar</h3><p class="small">Each day's dot scales with its training load, so your biggest days and weeks stand out at a glance.</p></div></div>
       </div>
       <div class="card band">
         <div class="tx"><h3>Your numbers are all here</h3><p class="small">Everything your devices capture: splits, heart rate zones, elevation and running form. Plus StreetProof's own scores for effort, training load and adjusted pace.</p></div>
         <div class="m3">
-          <div><img src="/streetproof/m-effort-35.jpg" alt="Effort score"/><img src="/streetproof/m-pace-35.jpg" alt="Adjusted pace score"/><img src="/streetproof/m-load-35.jpg" alt="Training load chart"/></div>
-          <div><img src="/streetproof/m-splits-35.jpg" alt="Splits with pace bars"/></div>
-          <div><img src="/streetproof/m-zones-35.jpg" alt="Heart rate zones"/></div>
+          <div><img src="/streetproof/m-effort-35-546.jpg" srcset="/streetproof/m-effort-35-302.jpg 302w, /streetproof/m-effort-35-546.jpg 546w, /streetproof/m-effort-35-604.jpg 604w, /streetproof/m-effort-35-819.jpg 819w" sizes="(max-width:860px) calc(100vw - 102px), 302px" width="819" height="154" alt="Effort score"/><img src="/streetproof/m-pace-35-546.jpg" srcset="/streetproof/m-pace-35-302.jpg 302w, /streetproof/m-pace-35-546.jpg 546w, /streetproof/m-pace-35-604.jpg 604w, /streetproof/m-pace-35-819.jpg 819w" sizes="(max-width:860px) calc(100vw - 102px), 302px" width="819" height="214" alt="Adjusted pace score"/><img src="/streetproof/m-load-35-546.jpg" srcset="/streetproof/m-load-35-302.jpg 302w, /streetproof/m-load-35-546.jpg 546w, /streetproof/m-load-35-604.jpg 604w, /streetproof/m-load-35-819.jpg 819w" sizes="(max-width:860px) calc(100vw - 102px), 302px" width="819" height="290" alt="Training load chart"/></div>
+          <div><img src="/streetproof/m-splits-35-546.jpg" srcset="/streetproof/m-splits-35-302.jpg 302w, /streetproof/m-splits-35-546.jpg 546w, /streetproof/m-splits-35-604.jpg 604w, /streetproof/m-splits-35-819.jpg 819w" sizes="(max-width:860px) calc(100vw - 102px), 302px" width="819" height="749" alt="Splits with pace bars"/></div>
+          <div><img src="/streetproof/m-zones-35-546.jpg" srcset="/streetproof/m-zones-35-302.jpg 302w, /streetproof/m-zones-35-546.jpg 546w, /streetproof/m-zones-35-604.jpg 604w, /streetproof/m-zones-35-819.jpg 819w" sizes="(max-width:860px) calc(100vw - 102px), 302px" width="819" height="524" alt="Heart rate zones"/></div>
         </div>
       </div>
     </section>
@@ -225,10 +225,9 @@
           <div class="eyebrow">Share your route</div>
           <h2>Proof worth <span class="accent">posting.</span></h2>
           <p class="lead">Turn any outdoor run into a clean image, or a clip of the route drawing itself, with your title and stats. Ran a race? Add its official distance and time.</p>
-          <p class="jump"><a href="#plus">StreetProof+ adds colored maps, Proof Pins and full-city replays ↓</a></p>
         </div>
         <div class="tiles pair">
-          <div class="tile"><img src="/streetproof/export-marathon-route-35.jpg" alt="A marathon route exported on Apple's dark map"/></div>
+          <div class="tile"><img src="/streetproof/export-home-multicolor-35-311.jpg" srcset="/streetproof/export-home-multicolor-35-218.jpg 218w, /streetproof/export-home-multicolor-35-311.jpg 311w, /streetproof/export-home-multicolor-35-436.jpg 436w, /streetproof/export-home-multicolor-35-467.jpg 467w, /streetproof/export-home-multicolor-35-654.jpg 654w" sizes="(max-width:860px) calc(50vw - 32px), 218px" width="654" height="1162" alt="Every run on one map: Manhattan exported with each route in its own color on a dark background"/></div>
           <div class="tile"><video autoplay muted loop playsinline preload="none" poster="/streetproof/route-clip-poster-34b.jpg" aria-label="A half marathon route through Brooklyn drawing itself">
             <source src="/streetproof/route-clip-hd-34b.mp4" type="video/mp4" media="(min-resolution: 1.5dppx)">
             <source src="/streetproof/route-clip-sd-34b.mp4" type="video/mp4">
@@ -253,10 +252,10 @@
           </div>
           <div class="vis">
             <div class="phonecol">
-              <div class="phone"><img src="/streetproof/shot-pins-35.jpg" alt="Proof Pins over Midtown: completed in blue, uncompleted in red"/></div>
+              <div class="phone"><img src="/streetproof/shot-pins-35-254.jpg" srcset="/streetproof/shot-pins-35-214.jpg 214w, /streetproof/shot-pins-35-254.jpg 254w, /streetproof/shot-pins-35-428.jpg 428w, /streetproof/shot-pins-35-508.jpg 508w, /streetproof/shot-pins-35-642.jpg 642w" sizes="(max-width:860px) 214px, 254px" width="642" height="1395" alt="Proof Pins over Midtown: completed in blue, uncompleted in red"/></div>
               <div class="legend"><span><i style="color:var(--sp-pin-completed)">●</i> completed</span><span><i style="color:var(--sp-pin-uncompleted)">●</i> uncompleted</span></div>
             </div>
-            <div class="watch"><img src="/streetproof/shot-watch-pins.jpg" alt="Uncompleted Proof Pins on the watch, mid-run"/></div>
+            <div class="watch"><img src="/streetproof/watch-pins-272.jpg" srcset="/streetproof/watch-pins-136.jpg 136w, /streetproof/watch-pins-272.jpg 272w, /streetproof/watch-pins-408.jpg 408w" sizes="136px" width="408" height="486" alt="Uncompleted Proof Pins on the watch, mid-run"/></div>
           </div>
         </div>
       </section>
@@ -264,9 +263,9 @@
       <section>
         <div class="center"><div class="eyebrow">How it works</div><h2>Find the red. <span class="accent">Turn it blue.</span></h2></div>
         <div class="steps">
-          <div class="step"><div class="img"><img class="mid" src="/streetproof/shot-watch-inrun.jpg" alt=""/></div><div class="tx"><div class="n">STEP 1</div><h3>Spot</h3><p class="small">Mid-run, see the blocks you haven't claimed on your watch or phone, whichever you bring. Red Proof Pins mark what's left.</p></div></div>
-          <div class="step"><div class="img"><img src="/streetproof/step-collect-35.jpg" alt=""/></div><div class="tx"><div class="n">STEP 2</div><h3>Collect</h3><p class="small">Run past a pin and it's yours. Every run ends with the new ones you picked up.</p></div></div>
-          <div class="step"><div class="img"><img src="/streetproof/step-complete-35.jpg" alt=""/></div><div class="tx"><div class="n">STEP 3</div><h3>Complete</h3><p class="small">Every pin moves your city's number. Keep going until it reads 100%.</p></div></div>
+          <div class="step"><div class="img"><img class="mid" src="/streetproof/step-spot-watch-416.jpg" srcset="/streetproof/step-spot-watch-286.jpg 286w, /streetproof/step-spot-watch-416.jpg 416w" sizes="(max-width:860px) calc(100vw - 42px), 286px" width="416" height="301" alt=""/></div><div class="tx"><div class="n">STEP 1</div><h3>Spot</h3><p class="small">Mid-run, see the blocks you haven't claimed on your watch or phone, whichever you bring. Red Proof Pins mark what's left.</p></div></div>
+          <div class="step"><div class="img"><img src="/streetproof/step-collect-35-572.jpg" srcset="/streetproof/step-collect-35-286.jpg 286w, /streetproof/step-collect-35-572.jpg 572w, /streetproof/step-collect-35-666.jpg 666w, /streetproof/step-collect-35-999.jpg 999w" sizes="(max-width:860px) calc(100vw - 42px), 286px" width="999" height="724" alt=""/></div><div class="tx"><div class="n">STEP 2</div><h3>Collect</h3><p class="small">Run past a pin and it's yours. Every run ends with the new ones you picked up.</p></div></div>
+          <div class="step"><div class="img"><img src="/streetproof/step-complete-35-572.jpg" srcset="/streetproof/step-complete-35-286.jpg 286w, /streetproof/step-complete-35-572.jpg 572w, /streetproof/step-complete-35-666.jpg 666w, /streetproof/step-complete-35-999.jpg 999w" sizes="(max-width:860px) calc(100vw - 42px), 286px" width="999" height="724" alt=""/></div><div class="tx"><div class="n">STEP 3</div><h3>Complete</h3><p class="small">Every pin moves your city's number. Keep going until it reads 100%.</p></div></div>
         </div>
       </section>
 
@@ -277,7 +276,7 @@
             <h2>Watch your city <span class="accent">fill in.</span></h2>
             <p class="lead">See how close you are to covering every block, in every city you run in. Run somewhere new and that city adds itself, in the US and 159 countries.</p>
           </div>
-          <div class="vis"><div class="phone cut"><img src="/streetproof/shot-city-35.jpg" alt="Manhattan, 79% complete: completed Proof Pins in blue, uncompleted in red"/></div></div>
+          <div class="vis"><div class="phone cut"><img src="/streetproof/shot-city-35-254.jpg" srcset="/streetproof/shot-city-35-214.jpg 214w, /streetproof/shot-city-35-254.jpg 254w, /streetproof/shot-city-35-428.jpg 428w, /streetproof/shot-city-35-508.jpg 508w, /streetproof/shot-city-35-642.jpg 642w" sizes="(max-width:860px) 214px, 254px" width="642" height="1187" alt="Manhattan, 79% complete: completed Proof Pins in blue, uncompleted in red"/></div></div>
         </div>
       </section>
 
@@ -288,7 +287,7 @@
             <h2>Every pin has<br><span class="accent">a story.</span></h2>
             <p class="lead">Map Explorer lets you see how many times you've covered each block, when, and which runs did it.</p>
           </div>
-          <div class="vis"><div class="phone cut"><img src="/streetproof/map-explorer-35.jpg" alt="Map Explorer: a Proof Pin's runs listed, the picked run's route highlighted on the home map"/></div></div>
+          <div class="vis"><div class="phone cut"><img src="/streetproof/map-explorer-35-254.jpg" srcset="/streetproof/map-explorer-35-214.jpg 214w, /streetproof/map-explorer-35-254.jpg 254w, /streetproof/map-explorer-35-428.jpg 428w, /streetproof/map-explorer-35-508.jpg 508w, /streetproof/map-explorer-35-642.jpg 642w" sizes="(max-width:860px) 214px, 254px" width="642" height="1187" alt="Map Explorer: a Proof Pin's runs listed, the picked run's route highlighted on the home map"/></div></div>
         </div>
       </section>
 
@@ -296,8 +295,8 @@
         <div class="center"><div class="eyebrow">Animated Proof</div><h2>Bring your whole history <span class="accent">to life.</span></h2>
           <p class="lead" style="margin-left:auto;margin-right:auto">Pins flipping as a run draws. A city filling in, run by run. Your entire map, year after year. Export any of it as a video or an image, on colored maps, and print it big enough to frame.</p></div>
         <div class="tiles quad">
-          <div class="tile"><img src="/streetproof/export-marathon-34.jpg" alt="The Chicago Marathon exported on the Blueprint colored map, with its race result"/></div>
-          <div class="tile"><img src="/streetproof/export-run-pins-34.jpg" alt="The Philadelphia Marathon exported on the Charcoal colored map, with its race result"/></div>
+          <div class="tile"><img src="/streetproof/export-marathon-34-311.jpg" srcset="/streetproof/export-marathon-34-242.jpg 242w, /streetproof/export-marathon-34-311.jpg 311w, /streetproof/export-marathon-34-467.jpg 467w, /streetproof/export-marathon-34-484.jpg 484w, /streetproof/export-marathon-34-726.jpg 726w" sizes="(max-width:860px) calc(50vw - 32px), 242px" width="726" height="1291" alt="The Chicago Marathon exported on the Blueprint colored map, with its race result"/></div>
+          <div class="tile"><img src="/streetproof/export-run-pins-34-311.jpg" srcset="/streetproof/export-run-pins-34-242.jpg 242w, /streetproof/export-run-pins-34-311.jpg 311w, /streetproof/export-run-pins-34-467.jpg 467w, /streetproof/export-run-pins-34-484.jpg 484w, /streetproof/export-run-pins-34-726.jpg 726w" sizes="(max-width:860px) calc(50vw - 32px), 242px" width="726" height="1291" alt="The Philadelphia Marathon exported on the Charcoal colored map, with its race result"/></div>
           <div class="tile"><video autoplay muted loop playsinline preload="none" poster="/streetproof/proof-replay-v2-poster.jpg" aria-label="A Manhattan city replay filling in run by run">
             <source src="/streetproof/proof-replay-hd.mp4" type="video/mp4" media="(min-resolution: 1.5dppx)">
             <source src="/streetproof/proof-replay-sd.mp4" type="video/mp4">
@@ -313,7 +312,7 @@
             <h2>Give someone a<br><span class="accent">front-row seat.</span></h2>
             <p class="lead">Set it up once with one person's email. Every activity you start sends them a link to a private page: your route so far, where you are now, and how recent that is. No accounts, and the link expires soon after you finish.</p>
           </div>
-          <div class="vis"><div class="phone cut"><img src="/streetproof/shot-beacon-page-34.jpg" alt="The live page a contact sees"/></div></div>
+          <div class="vis"><div class="phone cut"><img src="/streetproof/shot-beacon-page-35-254.jpg" srcset="/streetproof/shot-beacon-page-35-214.jpg 214w, /streetproof/shot-beacon-page-35-254.jpg 254w, /streetproof/shot-beacon-page-35-428.jpg 428w, /streetproof/shot-beacon-page-35-508.jpg 508w, /streetproof/shot-beacon-page-35-642.jpg 642w" sizes="(max-width:860px) 214px, 254px" width="642" height="1187" alt="The live page a contact sees"/></div></div>
         </div>
       </section>
 
